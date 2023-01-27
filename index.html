@@ -8,30 +8,58 @@
     <body>
         <script>
             console.log('Hello, welcome to ROCK, PAPER, SCISSORS');
-            console.log(getUserChoice());
-            console.log(getComputerChoice());
             function getComputerChoice () {
                 function randomNumber3 () {
                     return Math.floor(Math.random() * 3)
                 }
                 if (randomNumber3() === 1) {
-                    return 'The computer has chosen: ROCK';
+                    return 'ROCK';
                 } else if (randomNumber3() === 2) {
-                    return 'The computer has chosen: PAPER';
+                    return 'TPAPER';
                 } else {
-                    return 'The computer has chosen: SCISSORS';
+                    return 'SCISSORS';
                 }
             }
             function getUserChoice() {
                 var userInput = prompt('Please input rock, paper or scissors').toUpperCase();
                 if (userInput === 'ROCK' || userInput === 'PAPER' || userInput === 'SCISSORS') {
-                    return `You have chosen: ${userInput}`;
+                    return userInput;
                 } else {
                     alert('Error: please input rock, paper or scissors');
                     return getUserChoice();
                 }
             }
-            console.log('Determine a winner');
+            function determineWinner(userChoice, computerChoice) {
+                if (userChoice === 'ROCK') {
+                    if (computerChoice === 'SCISSORS') {
+                        return 'ROCK beats SCISSORS: you win!';
+                    } else {
+                        return 'ROCK is beaten by PAPER, you lose!';
+                    }
+                }
+                if (userChoice === 'PAPER') {
+                    if (computerChoice === 'ROCK') {
+                        return 'PAPER beats ROCK: you win!';
+                    } else {
+                        return 'PAPER is beaten by SCISSORS, you lose!';
+                    }
+                }
+                if (userChoice === 'SCISSORS') {
+                    if (computerChoice === 'PAPER') {
+                        return 'SCISSORS beats PAPER: you win!';
+                    } else {
+                        return 'SCISSORS is beaten by ROCK, you lose!';
+                    }
+                }
+                if (userChoice === computerChoice) {
+                    return 'It\'s a draw!';
+                }
+            }
+            computerChoice = getComputerChoice();
+            userChoice = getUserChoice();
+            console.log(`The computer has chosen: ${computerChoice}`)
+            console.log(`You have chosen: ${userChoice}`)
+            console.log(determineWinner(userChoice, computerChoice))
         </script>
     </body>
 </html>
