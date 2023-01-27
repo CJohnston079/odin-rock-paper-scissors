@@ -7,15 +7,7 @@
     </head>
     <body>
         <script>
-            console.log('Hello, welcome to Rock, Paper Scissors');
-            function getUserChoice() {
-                var userInput = prompt('Please input rock, paper or scissors').toLowerCase();
-                if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors') {
-                    return userInput;
-                } else {
-                    alert('Error: please input rock, paper or scissors');
-                }
-            }
+            console.log('Hello, welcome to ROCK, PAPER, SCISSORS');
             console.log(getUserChoice());
             console.log(getComputerChoice());
             function getComputerChoice () {
@@ -23,11 +15,20 @@
                     return Math.floor(Math.random() * 3)
                 }
                 if (randomNumber3() === 1) {
-                    return 'rock';
+                    return 'The computer has chosen: ROCK';
                 } else if (randomNumber3() === 2) {
-                    return 'paper';
+                    return 'The computer has chosen: PAPER';
                 } else {
-                    return 'scissors';
+                    return 'The computer has chosen: SCISSORS';
+                }
+            }
+            function getUserChoice() {
+                var userInput = prompt('Please input rock, paper or scissors').toUpperCase();
+                if (userInput === 'ROCK' || userInput === 'PAPER' || userInput === 'SCISSORS') {
+                    return `You have chosen: ${userInput}`;
+                } else {
+                    alert('Error: please input rock, paper or scissors');
+                    return getUserChoice();
                 }
             }
             console.log('Determine a winner');
