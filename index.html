@@ -30,6 +30,9 @@
                 }
             }
             function determineWinner(userChoice, computerChoice) {
+                if (userChoice === computerChoice) {
+                    return 'It\'s a draw!';
+                }
                 if (userChoice === 'ROCK') {
                     if (computerChoice === 'SCISSORS') {
                         return 'ROCK beats SCISSORS: you win!';
@@ -51,15 +54,17 @@
                         return 'SCISSORS is beaten by ROCK, you lose!';
                     }
                 }
-                if (userChoice === computerChoice) {
-                    return 'It\'s a draw!';
-                }
             }
-            computerChoice = getComputerChoice();
-            userChoice = getUserChoice();
-            console.log(`The computer has chosen: ${computerChoice}`)
-            console.log(`You have chosen: ${userChoice}`)
-            console.log(determineWinner(userChoice, computerChoice))
+            function playRound () {
+                computerChoice = getComputerChoice();
+                userChoice = getUserChoice();
+                console.log(`The computer has chosen: ${computerChoice}`)
+                console.log(`You have chosen: ${userChoice}`)
+                console.log(determineWinner(userChoice, computerChoice))
+            }
+            playRound ();
+            playRound ();
+            playRound ();
         </script>
     </body>
 </html>
