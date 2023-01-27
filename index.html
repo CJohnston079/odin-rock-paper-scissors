@@ -6,6 +6,23 @@
         <title>Rock, Paper, Scissors</title>
     </head>
     <body>
-        
+        <script>
+            console.log('Hello, welcome to Rock, Paper Scissors');
+            console.log('Get user choice');
+            function getComputerChoice () {
+                function randomNumber3 () {
+                    return Math.floor(Math.random() * 3)
+                }
+                if (randomNumber3() === 1) {
+                    return 'rock';
+                } else if (randomNumber3() === 2) {
+                    return 'paper';
+                } else {
+                    return 'scissors';
+                }
+            }
+            console.log(getComputerChoice());
+            console.log('Determine a winner');
+        </script>
     </body>
 </html>
