@@ -90,16 +90,41 @@
             }
             playRound();
             let result = determineWinner(userChoice, computerChoice);
-            console.log(`User: ${tallyUserScore(result)}`);
-            console.log(`Computer: ${tallyComputerScore(result)}`);
+            let userScore = 0;
+            let computerScore = 0;
+            tallyUserScore(result);
+            tallyComputerScore(result);
+            userScore += tallyUserScore(result);
+            computerScore += tallyComputerScore(result);
+            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
             playRound();
             result = determineWinner(userChoice, computerChoice);
-            console.log(`User: ${tallyUserScore(result)}`);
-            console.log(`Computer: ${tallyComputerScore(result)}`);
+            tallyUserScore(result);
+            tallyComputerScore(result);
+            userScore += tallyUserScore(result);
+            computerScore += tallyComputerScore(result);
+            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
             playRound();
             result = determineWinner(userChoice, computerChoice);
-            console.log(`User: ${tallyUserScore(result)}`);
-            console.log(`Computer: ${tallyComputerScore(result)}`);
+            tallyUserScore(result);
+            tallyComputerScore(result);
+            userScore += tallyUserScore(result);
+            computerScore += tallyComputerScore(result);
+            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
+            playRound();
+            result = determineWinner(userChoice, computerChoice);
+            tallyUserScore(result);
+            tallyComputerScore(result);
+            userScore += tallyUserScore(result);
+            computerScore += tallyComputerScore(result);
+            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
+            playRound();
+            result = determineWinner(userChoice, computerChoice);
+            tallyUserScore(result);
+            tallyComputerScore(result);
+            userScore += tallyUserScore(result);
+            computerScore += tallyComputerScore(result);
+            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
         </script>
     </body>
 </html>
