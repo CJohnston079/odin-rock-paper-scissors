@@ -62,38 +62,44 @@
                 console.log(`You have chosen: ${userChoice}`)
                 console.log(`${determineWinner(userChoice, computerChoice)}`)
             }
-            function tallyUserScore(playRound) {
-                if (playRound === 'ROCK beats SCISSORS: you win!' ||
-                    playRound === `PAPER beats ROCK: you win!` ||
-                    playRound === `SCISSORS beats PAPER: you win!`) {
+            function tallyUserScore(result) {
+                if (result === 'ROCK beats SCISSORS: you win!' ||
+                    result === `PAPER beats ROCK: you win!` ||
+                    result === `SCISSORS beats PAPER: you win!`) {
                     return 1;
-                } else if (playRound === 'ROCK is beaten by PAPER, you lose!' ||
-                    playRound === `PAPER is beaten by SCISSORS, you lose!` ||
-                    playRound === `SCISSORS is beaten by ROCK, you lose!`) {
+                } else if (result === 'ROCK is beaten by PAPER, you lose!' ||
+                    result === `PAPER is beaten by SCISSORS, you lose!` ||
+                    result === `SCISSORS is beaten by ROCK, you lose!`) {
                     return 0;
                 } else {
                     return 0;
                 }
             }
-            function tallyComputerScore(playRound) {
-                if (playRound === 'ROCK beats SCISSORS: you win!' ||
-                    playRound === `PAPER beats ROCK: you win!` ||
-                    playRound === `SCISSORS beats PAPER: you win!`) {
+            function tallyComputerScore(result) {
+                if (result === 'ROCK beats SCISSORS: you win!' ||
+                    result === `PAPER beats ROCK: you win!` ||
+                    result === `SCISSORS beats PAPER: you win!`) {
                     return 0;
-                } else if (playRound === 'ROCK is beaten by PAPER, you lose!' ||
-                    playRound === `PAPER is beaten by SCISSORS, you lose!` ||
-                    playRound === `SCISSORS is beaten by ROCK, you lose!`) {
+                } else if (result === 'ROCK is beaten by PAPER, you lose!' ||
+                    result === `PAPER is beaten by SCISSORS, you lose!` ||
+                    result === `SCISSORS is beaten by ROCK, you lose!`) {
                     return 1;
                 } else {
                     return 0;
                 }
             }
             playRound();
-            console.log(tallyScore());
+            let result = determineWinner(userChoice, computerChoice);
+            console.log(`User: ${tallyUserScore(result)}`);
+            console.log(`Computer: ${tallyComputerScore(result)}`);
             playRound();
-            console.log(tallyScore());
+            result = determineWinner(userChoice, computerChoice);
+            console.log(`User: ${tallyUserScore(result)}`);
+            console.log(`Computer: ${tallyComputerScore(result)}`);
             playRound();
-            console.log(tallyScore());
+            result = determineWinner(userChoice, computerChoice);
+            console.log(`User: ${tallyUserScore(result)}`);
+            console.log(`Computer: ${tallyComputerScore(result)}`);
         </script>
     </body>
 </html>
