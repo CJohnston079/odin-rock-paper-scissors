@@ -125,6 +125,20 @@
             userScore += tallyUserScore(result);
             computerScore += tallyComputerScore(result);
             console.log(`Player: ${userScore} | Computer: ${computerScore}`)
+            function overallWinner (userScore, computerScore) {
+                if (userScore > computerScore) {
+                    console.log(`Congratulations! You are the champion!`);
+                    alert(`Congratulations! You are the champion!`);
+                } if (userScore < computerScore) {
+                    console.log(`Game over! Better luck next time!`);
+                    alert(`Game over! Better luck next time!`);
+                } else {
+                    console.log(`It's a draw! Try again to beat the computer!`);
+                    alert(`It's a draw! Try again to beat the computer!`);
+                }
+            }
+            overallWinner(userScore, computerScore)
+            location.reload();
         </script>
     </body>
 </html>
