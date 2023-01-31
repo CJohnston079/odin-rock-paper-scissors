@@ -87,44 +87,19 @@
                 } else {
                     return 0;
                 }
+                
             }
-            playRound();
-            let result = determineWinner(userChoice, computerChoice);
             let userScore = 0;
             let computerScore = 0;
-            tallyUserScore(result);
-            tallyComputerScore(result);
-            userScore += tallyUserScore(result);
-            computerScore += tallyComputerScore(result);
-            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
-            playRound();
-            result = determineWinner(userChoice, computerChoice);
-            tallyUserScore(result);
-            tallyComputerScore(result);
-            userScore += tallyUserScore(result);
-            computerScore += tallyComputerScore(result);
-            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
-            playRound();
-            result = determineWinner(userChoice, computerChoice);
-            tallyUserScore(result);
-            tallyComputerScore(result);
-            userScore += tallyUserScore(result);
-            computerScore += tallyComputerScore(result);
-            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
-            playRound();
-            result = determineWinner(userChoice, computerChoice);
-            tallyUserScore(result);
-            tallyComputerScore(result);
-            userScore += tallyUserScore(result);
-            computerScore += tallyComputerScore(result);
-            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
-            playRound();
-            result = determineWinner(userChoice, computerChoice);
-            tallyUserScore(result);
-            tallyComputerScore(result);
-            userScore += tallyUserScore(result);
-            computerScore += tallyComputerScore(result);
-            console.log(`Player: ${userScore} | Computer: ${computerScore}`)
+            for (let i = 0; i < 5; i++) {
+                playRound();
+                let result = determineWinner(userChoice, computerChoice);
+                tallyUserScore(result);
+                tallyComputerScore(result);
+                userScore += tallyUserScore(result);
+                computerScore += tallyComputerScore(result);
+                console.log(`Player: ${userScore} | Computer: ${computerScore}`)
+            }
             function overallWinner (userScore, computerScore) {
                 if (userScore > computerScore) {
                     console.log(`Congratulations! You are the champion!`);
