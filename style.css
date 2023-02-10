@@ -1,0 +1,15 @@
+body {
+    background-color: hsla(240,100%,10%,1);
+    color: white;
+    text-align: center;
+    /* font-family: 'Press Start 2P', cursive; */
+    font-family: 'Silkscreen', cursive;
+}
+
+h1 {
+    padding: 2rem;
+    /* background-color: hsla(240,100%,20%,1); */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    line-height: 1.5;
+}
