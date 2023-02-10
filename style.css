@@ -8,7 +8,7 @@ body {
 
 hr {
     width: 80%;
-    margin: 4rem auto;
+    margin: 2rem auto;
     border: solid 2px hsla(240,20%,50%,1);
     box-shadow: 0px 0px 25px white;
 }
@@ -40,33 +40,54 @@ hr {
       );
 }
 
-.arena {
+#arena {
     display: flex;
-    flex: auto;
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    margin: 4rem auto;
+    margin: 0rem auto;
 }
 
-.arena > .pixel-border {
-    height: 16rem;
-    width: 16rem;
+#arena > .pixel-border {
+    height: 12rem;
+    width: 12rem;
 }
 
-#computer-choice {
+#pc-choice {
     transform: scaleX(-1);
 }
 
 .countdown {
     /* background-color: red; */
-    padding: 2rem 3rem;
+    padding: 2rem 4rem;
     font-size: 3rem;
     transition: padding 0.5s;
-    text-shadow: 0px 0px 5px white;
+    text-shadow: 0px 0px 10px white;
 }
 
 .countdown:active {
     opacity: 0;
     padding: 0;
+}
+
+#tool-chooser {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.tool-choice > .pixel-border {
+    height: 8rem;
+    width: 8rem;
+    border-color: hsla(240,40%,80%,1);
+}
+
+.tool-choice {
+    line-height: 0;
+}
+
+#scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
 }

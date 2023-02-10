@@ -12,15 +12,39 @@
     </head>
     <body>
         <h1 class="site-title">Rock, Paper, Scissors</h1>
-        <div class="arena">
+        <div id="arena">
             <div id="player-choice" class="pixel-border">
-                <img src="./images/scissors-pickme.svg">
+                <img src="./images/scissors-active.svg">
             </div>
-            <h1 class="countdown">3</h1>
-            <div id="computer-choice" class="pixel-border">
-                <img src="./images/paper-pickme.svg">
+            <h1 class="countdown">vs</h1>
+            <div id="pc-choice" class="pixel-border">
+                <img src="./images/paper-active.svg">
             </div>
         </div>
         <hr>
+        <h2>Choose your weapon:</h2>
+        <div id="tool-chooser">
+            <div class="tool-choice">
+                <img class ="pixel-border" src="./images/rock-pickme.svg"/>
+                <h3>Rock</h3>
+            </div>
+            <div class="tool-choice">
+                <img class ="pixel-border" src="./images/paper-pickme.svg"/>
+                <h3>Paper</h3>
+            </div>
+            <div class="tool-choice">
+                <img class ="pixel-border" src="./images/scissors-pickme.svg"/>
+                <h3>Scissors</h3>
+            </div>
+        </div>
+        <hr>
+        <h2>Scoreboard</h2>
+        <div id="scoreboard">
+            <p>Player wins: <strong>0</strong></p>
+            <p>Opponent wins: <strong>0</strong></p>
+            <p>Draws: <strong>0</strong></p>
+            <p>Rounds played: <strong>0</strong></p>
+        </div>
+        <p style="font-size: 0.8rem;">Copyright © 2023</p>
     </body>
 </html>
