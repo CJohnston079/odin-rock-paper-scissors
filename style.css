@@ -6,10 +6,67 @@ body {
     font-family: 'Silkscreen', cursive;
 }
 
-h1 {
+hr {
+    width: 80%;
+    margin: 4rem auto;
+    border: solid 2px hsla(240,20%,50%,1);
+    box-shadow: 0px 0px 25px white;
+}
+
+.site-title {
     padding: 2rem;
     /* background-color: hsla(240,100%,20%,1); */
     font-family: 'Press Start 2P', cursive;
     font-size: 3rem;
     line-height: 1.5;
+}
+
+.pixel-border {
+    border: solid 4px white;
+    border-radius: 4px;
+    clip-path: polygon(
+        0px 4px,
+        4px 4px,
+        4px 0px,
+        calc(100% - 4px) 0px,
+        calc(100% - 4px) 4px,
+        100% 4px,
+        100% calc(100% - 4px),
+        calc(100% - 4px) calc(100% - 4px),
+        calc(100% - 4px) 100%,
+        4px 100%,
+        4px calc(100% - 4px),
+        0px calc(100% - 4px)
+      );
+}
+
+.arena {
+    display: flex;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 4rem auto;
+}
+
+.arena > .pixel-border {
+    height: 16rem;
+    width: 16rem;
+}
+
+#computer-choice {
+    transform: scaleX(-1);
+}
+
+.countdown {
+    /* background-color: red; */
+    padding: 2rem 3rem;
+    font-size: 3rem;
+    transition: padding 0.5s;
+    text-shadow: 0px 0px 5px white;
+}
+
+.countdown:active {
+    opacity: 0;
+    padding: 0;
 }
