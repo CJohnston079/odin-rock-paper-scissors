@@ -82,6 +82,8 @@ hr {
     padding: 0;
 }
 
+/* Tool chooser */
+
 .tool-chooser {
     display: flex;
     justify-content: center;
@@ -89,14 +91,25 @@ hr {
     gap: 0rem 4rem;
 }
 
+.tool-choice {
+    line-height: 1;
+    transition: 200ms;
+}
+
 .tool-choice > img {
     height: 8rem;
     width: 8rem;
     border-color: hsla(240,40%,80%,1);
+    transition: transform 200ms;
 }
 
-.tool-choice {
-    line-height: 0;
+.tool-choice:hover {
+    color: hsla(50, 100%, 60%, 1);
+    text-shadow: 0px 0px 10px white;
+}
+
+.tool-choice > img:hover {
+    transform: scale(1.1);
 }
 
 .scoreboard {

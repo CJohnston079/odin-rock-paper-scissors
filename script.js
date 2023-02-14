@@ -1,7 +1,28 @@
-function hover(img) {
-    img.src = '/images/rock-active.svg';
+const choiceRock = document.getElementById('rps-rock');
+const choicePaper = document.getElementById('rps-paper');
+const choiceScissors = document.getElementById('rps-scissors');
+
+function highlightRock () {
+    choiceRock.src="./images/rock-active.svg";
+}
+function highlightPaper () {
+    choicePaper.src="./images/paper-active.svg";
+}
+function highlightScissors () {
+    choiceScissors.src="./images/scissors-active.svg";
+}
+function deactivateChocie () {
+    choiceRock.src="./images/rock-hover.svg";
+    choicePaper.src="./images/paper-hover.svg";
+    choiceScissors.src="./images/scissors-hover.svg"
 }
 
+choiceRock.addEventListener('mouseover', highlightRock);
+choicePaper.addEventListener('mouseover', highlightPaper);
+choiceScissors.addEventListener('mouseover', highlightScissors);
+choiceRock.addEventListener('mouseout', deactivateChocie);
+choicePaper.addEventListener('mouseout', deactivateChocie);
+choiceScissors.addEventListener('mouseout', deactivateChocie);
 
 
 /*
