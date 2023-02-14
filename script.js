@@ -11,7 +11,7 @@ function getComputerChoice () {
         return 'SCISSORS';
     }
 }
-// function getUserChoice() {
+function getUserChoice() {
     var userInput = prompt('Please input rock, paper or scissors').toUpperCase();
     if (userInput === 'ROCK' || userInput === 'PAPER' || userInput === 'SCISSORS') {
         return userInput;
@@ -95,7 +95,7 @@ function overallWinner (userScore, computerScore) {
     if (userScore > computerScore) {
         console.log(`Congratulations! You are the champion!`);
         alert(`Congratulations! You are the champion!`);
-    } if (userScore < computerScore) {
+    } else if (userScore < computerScore) {
         console.log(`Game over! Better luck next time!`);
         alert(`Game over! Better luck next time!`);
     } else {

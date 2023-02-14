@@ -52,6 +52,13 @@ hr {
     border-bottom: solid 0.5rem hsla(240,10%,50%,1);
 }
 
+#player-box {
+    margin: 2rem auto;
+    padding: 2rem;
+    display: inline-block;
+    background-image: linear-gradient(to top, black, #272727);
+}
+
 #arena > .rps-image {
     height: 12rem;
     width: 12rem;
@@ -90,13 +97,6 @@ hr {
 
 .tool-choice {
     line-height: 0;
-}
-
-#player-box {
-    margin: 2rem auto;
-    padding: 2rem;
-    display: inline-block;
-    background-image: linear-gradient(to top, black, #272727);
 }
 
 .scoreboard {
