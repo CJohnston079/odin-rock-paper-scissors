@@ -1,3 +1,6 @@
+
+
+/*
 console.log('Hello, welcome to ROCK, PAPER, SCISSORS');
 function getComputerChoice () {
     function randomNumber3 () {
@@ -12,7 +15,7 @@ function getComputerChoice () {
     }
 }
 function getUserChoice() {
-    var userInput = prompt('Please input rock, paper or scissors').toUpperCase();
+    let userInput = prompt('Please input rock, paper or scissors').toUpperCase();
     if (userInput === 'ROCK' || userInput === 'PAPER' || userInput === 'SCISSORS') {
         return userInput;
     } else {
@@ -105,3 +108,4 @@ function overallWinner (userScore, computerScore) {
 }
 overallWinner(userScore, computerScore)
 location.reload();
+*/
