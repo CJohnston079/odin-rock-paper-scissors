@@ -22,9 +22,9 @@ hr {
 }
 
 .pixel-border {
-    border: solid 4px white;
+    /* border: solid 4px white;
     border-radius: 4px;
-    clip-path: polygon(
+    /* clip-path: polygon(
         0px 4px,
         4px 4px,
         4px 0px,
@@ -37,7 +37,7 @@ hr {
         4px 100%,
         4px calc(100% - 4px),
         0px calc(100% - 4px)
-      );
+      ); */ */
 }
 
 #arena {

@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(1,0,0,1,0,-36)">
+    <g transform="matrix(1,0,0,1,0,-18)">
+        <g transform="matrix(1,0,0,1,0,18)">
+            <rect id="rock-inactive" x="0" y="0" width="16" height="16" style="fill:none;"/>
+            <clipPath id="_clip1">
+                <rect id="rock-inactive1" serif:id="rock-inactive" x="0" y="0" width="16" height="16"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g transform="matrix(1.10816,0,0,1.05551,-1.75498,-0.429381)">
+                    <path d="M3.319,5.253L3.319,5.86L2.162,5.86L2.162,10.72L3.319,10.72L3.319,11.327L5.055,11.327L5.055,11.934L8.527,11.934L8.527,11.327L9.105,11.327L9.105,10.72L7.948,10.72L7.948,10.112L10.262,10.112L10.262,8.897L8.527,8.897L8.527,8.29L10.262,8.29L10.262,7.075L8.527,7.075L8.527,6.467L10.262,6.467L10.262,5.253L6.212,5.253L6.212,4.645L7.948,4.645L7.948,4.038L5.634,4.038L5.634,4.645L4.477,4.645L4.477,5.253L3.319,5.253Z" style="fill:rgb(185,185,198);"/>
+                </g>
+                <g transform="matrix(7.85191e-17,1.28231,-1.28231,7.85191e-17,18.5936,-0.655625)">
+                    <path d="M3.5,9L3.5,11L3,11L3,9L3.5,9ZM3.5,11L4,11L4,12L3.5,12L3.5,11ZM4,12L4.5,12L4.5,13L4,13L4,12ZM4.5,13L5,13L5,14L9,14L9,13L9.5,13L9.5,14.5L4.5,14.5L4.5,13ZM9.5,13L9.5,11.5L10,11.5L10,13L9.5,13ZM10,11.5L10,8.5L10.5,8.5L10.5,11.5L10,11.5ZM10,8.5L9.5,8.5L9.5,8L10,8L10,8.5ZM9.5,8L9,8L9,9L8.5,9L8.5,7L9,7L9,7.5L9.5,7.5L9.5,8ZM8.5,7L7.5,7L7.5,6.5L8.5,6.5L8.5,7ZM7.5,7L7.5,8.5L7,8.5L7,7L7.5,7ZM7,7L6,7L6,6.5L7,6.5L7,7ZM6,7L6,8.5L5.5,8.5L5.5,7L6,7ZM5.5,7L4.5,7L4.5,6.5L5.5,6.5L5.5,7ZM4.5,7L4.5,10.5L4,10.5L4,9L3.5,9L3.5,8.5L4,8.5L4,7L4.5,7Z" style="fill:rgb(115,115,140);"/>
+                </g>
+                <path d="M0.641,15.359L0,15.359L0,0.641L0.641,0.641L0.641,15.359ZM0.641,0.641L0.641,0L15.359,-0L15.359,0.641L0.641,0.641ZM15.359,0.641L16,0.641L16,15.359L15.359,15.359L15.359,0.641ZM15.359,15.359L15.359,16L0.641,16L0.641,15.359L15.359,15.359Z" style="fill:rgb(115,115,140);"/>
+            </g>
+        </g>
     </g>
 </svg>
