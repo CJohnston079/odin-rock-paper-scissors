@@ -13,38 +13,38 @@
     <body>
         <h1 class="site-title">Rock, Paper, Scissors</h1>
         <div id="arena">
-            <div id="player-choice" class="pixel-border">
-                <img src="./images/scissors-active.svg">
+            <div id="player-choice" class="rps-image">
+                <img src="./images/unknown-choice.svg">
             </div>
             <h1 class="countdown">vs</h1>
-            <div id="pc-choice" class="pixel-border">
-                <img src="./images/paper-active.svg">
+            <div id="pc-choice" class="rps-image">
+                <img src="./images/unknown-choice.svg">
             </div>
         </div>
-        <hr>
-        <h2>Choose your weapon:</h2>
-        <div id="tool-chooser">
-            <div class="tool-choice">
-                <img class ="pixel-border" src="./images/rock-hover.svg"/>
-                <h3>Rock</h3>
+        <section id="player-box" class="pixel-border">
+            <h2>Make your choice:</h2>
+            <div class="tool-chooser">
+                <div class="tool-choice">
+                    <img class ="rps-image" src="./images/rock-inactive.svg"/>
+                    <h3>Rock</h3>
+                </div>
+                <div class="tool-choice">
+                    <img class ="rps-image" src="./images/paper-inactive.svg"/>
+                    <h3>Paper</h3>
+                </div>
+                <div class="tool-choice">
+                    <img class ="rps-image" src="./images/scissors-inactive.svg"/>
+                    <h3>Scissors</h3>
+                </div>
             </div>
-            <div class="tool-choice">
-                <img class ="pixel-border" src="./images/paper-hover.svg"/>
-                <h3>Paper</h3>
+            <hr>
+            <h2>Scoreboard</h2>
+            <div class="scoreboard">
+                <p>Player wins: <strong>0</strong></p>
+                <p>Opponent wins: <strong>0</strong></p>
+                <p>Draws: <strong>0</strong></p>
+                <p>Rounds played: <strong>0</strong></p>
             </div>
-            <div class="tool-choice">
-                <img class ="pixel-border" src="./images/scissors-hover.svg"/>
-                <h3>Scissors</h3>
-            </div>
-        </div>
-        <hr>
-        <h2>Scoreboard</h2>
-        <div id="scoreboard">
-            <p>Player wins: <strong>0</strong></p>
-            <p>Opponent wins: <strong>0</strong></p>
-            <p>Draws: <strong>0</strong></p>
-            <p>Rounds played: <strong>0</strong></p>
-        </div>
-        <p style="font-size: 0.8rem;">Copyright © 2023</p>
+        </section>
     </body>
 </html>
