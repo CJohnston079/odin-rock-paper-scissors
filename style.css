@@ -1,3 +1,5 @@
+/* Element styling */
+
 * {
     margin: 0.5rem 0;
 }
@@ -13,13 +15,6 @@ hr {
     width: 80%;
     margin: 2rem auto;
     border: solid 2px white;
-}
-
-.site-title {
-    padding: 2rem;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 3rem;
-    line-height: 1.5;
 }
 
 .pixel-border {
@@ -41,12 +36,21 @@ hr {
       );
 }
 
+.reflect {
+    transform: scaleX(-1);
+}
+
+.site-title {
+    padding: 2rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    line-height: 1.5;
+}
+
 #arena {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-wrap: wrap; */
-    /* gap: 0rem 0rem; */
     padding: 2rem;
     background-image: linear-gradient(to top, hsla(0, 100%, 0%, 0.6), hsla(0,100%,0%,0));
     border-bottom: solid 0.5rem hsla(240,10%,50%,1);
@@ -65,12 +69,7 @@ hr {
     flex-shrink: 0;
 }
 
-.reflect {
-    transform: scaleX(-1);
-}
-
 .countdown {
-    /* background-color: red; */
     padding: 2rem 4rem;
     font-size: 3rem;
     transition: padding 0.5s;
@@ -96,20 +95,9 @@ hr {
     transition: 200ms;
 }
 
-.tool-choice > img {
-    height: 8rem;
-    width: 8rem;
-    border-color: hsla(240,40%,80%,1);
-    transition: transform 200ms;
-}
-
 .tool-choice:hover {
     color: hsla(50, 100%, 60%, 1);
     text-shadow: 0px 0px 10px white;
-}
-
-.tool-choice > img:hover {
-    transform: scale(1.1);
 }
 
 .scoreboard {
@@ -118,3 +106,41 @@ hr {
     flex-wrap: wrap;
     gap: 0rem 2rem;
 }
+
+/* Hover effect for choice selection */
+
+.rps-rock,
+.rps-paper,
+.rps-scissors {
+    height: 8rem;
+    width: 8rem;
+    transition: 200ms;
+}
+
+.rps-rock:hover,
+.rps-paper:hover,
+.rps-scissors:hover {
+    transform: scale(1.1);
+}
+
+.rps-rock {background-image: url(./images/rock-hover.svg);}
+.rps-rock:hover {background-image: url(./images/rock-active.svg);}
+
+.rps-paper {background-image: url(./images/paper-hover.svg);}
+.rps-paper:hover {background-image: url(./images/paper-active.svg);}
+
+.rps-scissors {background-image: url(./images/scissors-hover.svg);}
+.rps-scissors:hover {background-image: url(./images/scissors-active.svg);}
+
+/* Make choices inactive once an option is selected */
+
+.rps-rock-inactive,
+.rps-paper-inactive,
+.rps-scissors-inactive {
+    height: 8rem;
+    width: 8rem;
+}
+
+.rps-rock-inactive {background-image: url(/images/rock-inactive.svg);}
+.rps-paper-inactive {background-image: url(/images/paper-inactive.svg);}
+.rps-scissors-inactive {background-image: url(/images/scissors-inactive.svg);}
