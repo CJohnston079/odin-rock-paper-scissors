@@ -2,17 +2,17 @@
 My first JavaScript project from scratch. This began as a game to play in the browser console, which took prompts from the player each round and alerted of an overall winner after five rounds. I was then tasked with created a UI for the program, which I decided to add a few additional features to.
 
 <div float="left">
-  <img src="./images/rock-pickme.svg" width="100" />
-  <img src="./images/paper-pickme.svg" width="100" /> 
-  <img src="./images/scissors-pickme.svg" width="100" />
+  <img src="./images/rock-hover.svg" width="100" />
+  <img src="./images/paper-hover.svg" width="100" /> 
+  <img src="./images/scissors-hover.svg" width="100" />
 </div>
 
 ### Site layout
-- At the top of the page, h1 will read: Rock, Paper, Scissors
-- In the centre of the page is the 'arena', where the player choice and the PC choice will face off.
-- The arena will contain two boxes, one for the player choice and one for the PC choice, with space for a countdown timer in between.
-- Beneath the arena should be three images where the player will select their tool.
-- Beneath the tool selection, there should be a scoreboard.
+- ✔️ At the top of the page, h1 will read: Rock, Paper, Scissors
+- ✔️ In the centre of the page is the 'arena', where the player choice and the PC choice will face off.
+- ✔️ The arena will contain two boxes, one for the player choice and one for the PC choice, with space for a countdown timer in between.
+- ✔️ Beneath the arena should be three images where the player will select their tool.
+- ✔️ Beneath the tool selection, there should be a scoreboard.
 
 ### Setting up the game
 - The player should see a pop-up on site load that asks for their name
@@ -22,7 +22,7 @@ My first JavaScript project from scratch. This began as a game to play in the br
 
 ### Choosing a tool
 - Player starts the round by choosing a tool (rock, paper or scissors).
-- Tools should have an effect when hovered over and change to an "active" state when clicked.
+- ✔️ Tools should have an effect when hovered over and change to an "active" state when clicked.
 - The player should be prompted to confirm choice before facing the PC.
 - Upon player choice, the unchosen tools should become greyed out.
 

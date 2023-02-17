@@ -1,29 +1,73 @@
-// const choiceRock = document.getElementById('rps-rock');
-// const choicePaper = document.getElementById('rps-paper');
-// const choiceScissors = document.getElementById('rps-scissors');
+const rpsArray = ['ROCK', 'PAPER', 'SCISSORS']
 
-// function highlightRock () {
-//     choiceRock.src="./images/rock-active.svg";
-// }
-// function highlightPaper () {
-//     choicePaper.src="./images/paper-active.svg";
-// }
-// function highlightScissors () {
-//     choiceScissors.src="./images/scissors-active.svg";
-// }
-// function deactivateChocie () {
-//     choiceRock.src="./images/rock-hover.svg";
-//     choicePaper.src="./images/paper-hover.svg";
-//     choiceScissors.src="./images/scissors-hover.svg"
-// }
+const optionRock = document.querySelector('.rps-rock');
+const optionPaper = document.querySelector('.rps-paper');
+const optionScissors = document.querySelector('.rps-scissors');
 
-// choiceRock.addEventListener('mouseover', highlightRock);
-// choicePaper.addEventListener('mouseover', highlightPaper);
-// choiceScissors.addEventListener('mouseover', highlightScissors);
-// choiceRock.addEventListener('mouseout', deactivateChocie);
-// choicePaper.addEventListener('mouseout', deactivateChocie);
-// choiceScissors.addEventListener('mouseout', deactivateChocie);
+const playerChoiceHeading = document.querySelector('#player-box').firstElementChild;
 
+const playerChoice = document.querySelector('#player-choice');
+const pcChoice = document.querySelector('#pc-choice');
+
+const choiceConfirmation = document.createElement('p');
+choiceConfirmation.textContent = 'Click to confirm choice';
+// choiceConfirmation.style.pointerEvents = none;
+
+
+// Audio files
+const confirmSound = document.getElementById('audio-confirm');
+const blipSound = document.getElementById('audio-blip');
+
+// Play sound & display choice preview on hover
+function rockHover() {
+    blipSound.currentTime = 0;
+    blipSound.play();
+
+    playerChoice.classList.add('preview-rock');
+}
+
+function paperHover() {
+    blipSound.currentTime = 0;
+    blipSound.play();
+
+    playerChoice.classList.add('preview-paper');
+}
+
+function scissorsHover() {
+    blipSound.currentTime = 0;
+    blipSound.play();
+
+    playerChoice.classList.add('preview-scissors');
+}
+
+optionRock.addEventListener('mouseover', rockHover);
+optionPaper.addEventListener('mouseover', paperHover);
+optionScissors.addEventListener('mouseover', paperHover);
+
+// Confirm player choice
+function confirmChoiceRock() {
+    confirmSound.play();
+    playerChoiceHeading.textContent = 'Choose Rock?';
+    optionRock.appendChild(choiceConfirmation);
+    optionRock.classList.remove('rps-rock');
+    optionRock.classList.add('rps-rock-confirm');
+    playerChoice.classList.remove('player-choice-unknown');
+    playerChoice.classList.add('player-choice-rock');
+}
+
+function denyChoiceRock() {
+    blipSound.currentTime = 0;
+    blipSound.play()
+    playerChoiceHeading.textContent = 'Make your choice';
+    optionRock.removeChild(choiceConfirmation);
+    optionRock.classList.add('rps-rock');
+    optionRock.classList.remove('rps-rock-confirm');
+    playerChoice.classList.add('player-choice-unknown');
+    playerChoice.classList.remove('player-choice-rock');
+}
+
+optionRock.addEventListener('click', confirmChoiceRock);
+optionRock.addEventListener('mouseout', denyChoiceRock);
 
 /*
 console.log('Hello, welcome to ROCK, PAPER, SCISSORS');

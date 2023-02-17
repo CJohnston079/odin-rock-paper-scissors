@@ -13,12 +13,12 @@
     <body>
         <h1 class="site-title">Rock, Paper, Scissors</h1>
         <div id="arena">
-            <div id="player-choice" class="rps-image">
-                <img src="./images/unknown-choice.svg">
+            <div id="player-choice" class="player-choice-unknown">
+                <!-- <img src="./images/unknown-choice.svg"> -->
             </div>
             <h1 class="countdown">vs</h1>
-            <div id="pc-choice" class="rps-image">
-                <img src="./images/unknown-choice.svg">
+            <div id="pc-choice" class="pc-choice-unknown">
+                <!-- <img src="./images/unknown-choice.svg"> -->
             </div>
         </div>
         <section id="player-box" class="pixel-border">
@@ -30,7 +30,7 @@
                     <h3>Rock</h3>
                 </div>
                 <div class="tool-choice">
-                    <div class="rps-paper"><p></p></div>
+                    <div class="rps-paper"></div>
                     <!-- <img id="rps-paper" src="./images/paper-hover.svg" alt="Choose Paper"/> -->
                     <h3>Paper</h3>
                 </div>
@@ -49,5 +49,7 @@
                 <p>Rounds played: <strong>0</strong></p>
             </div>
         </section>
+        <audio id="audio-confirm" src="./sounds/rps-confirm.mp3"></audio>
+        <audio id="audio-blip" src="./sounds/rps-hover.mp3"></audio>
     </body>
 </html>
