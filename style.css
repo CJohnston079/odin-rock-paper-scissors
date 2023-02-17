@@ -1,26 +1,20 @@
-/* Element styling */
+* {margin: 0.5rem 0;}
 
-* {
-    margin: 0.5rem 0;
-}
-
-body {
-    background-color: hsla(240,100%,10%,1);
+:root {
+    background-color: var(--dark-blue);
     color: white;
-    text-align: center;
     font-family: 'Silkscreen', cursive;
-}
-
-hr {
-    width: 80%;
-    margin: 2rem auto;
-    border: solid 2px white;
-}
-
-.pixel-border {
-    border: solid 4px white;
-    border-radius: 4px;
-    clip-path: polygon(
+    text-align: center;
+    --dark-blue: hsla(240,100%,10%,1);
+    --grey-blue: hsla(240,10%,50%,1);
+    --light-blue: hsla(50, 100%, 60%, 1);
+    --yellow: hsla(50, 100%, 60%, 1);
+    --green: hsla(50, 100%, 60%, 1);
+    --red: hsla(50, 100%, 60%, 1);
+    --black-trans-100: hsla(0, 0%, 0%, 0.0);
+    --black-trans-50: hsla(0, 0%, 0%, 0.5);
+    --black-trans-40: hsla(0, 0%, 0%, 0.6);
+    --four-px-border: polygon(
         0px 4px,
         4px 4px,
         4px 0px,
@@ -36,8 +30,34 @@ hr {
       );
 }
 
-.reflect {
-    transform: scaleX(-1);
+/* Background image classes */
+
+.rock-light {background-image: url(/images/rock-light.svg);}
+.paper-light {background-image: url(/images/paper-light.svg);}
+.scissors-light {background-image: url(/images/scissors-light.svg);}
+
+.rock-dark {background-image: url(/images/rock-dark.svg);}
+.paper-dark {background-image: url(/images/paper-dark.svg);}
+.scissors-dark {background-image: url(/images/scissors-dark.svg);}
+
+.rock-yellow {background-image: url(/images/rock-yellow.svg);}
+.paper-yellow {background-image: url(/images/paper-yellow.svg);}
+.scissors-yellow {background-image: url(/images/scissors-yellow.svg);}
+
+.rock-red {background-image: url(/images/rock-red.svg);}
+.paper-red {background-image: url(/images/paper-red.svg);}
+.scissors-red {background-image: url(/images/scissors-red.svg);}
+
+.rock-green {background-image: url(/images/rock-green.svg);}
+.paper-green {background-image: url(/images/paper-green.svg);}
+.scissors-green {background-image: url(/images/scissors-green.svg);}
+
+/**/
+
+.pixel-border {
+    border: solid 4px white;
+    border-radius: 4px;
+    clip-path: var(--four-px-border)
 }
 
 .site-title {
@@ -47,38 +67,59 @@ hr {
     line-height: 1.5;
 }
 
+/**/
+
 #arena {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    background-image: linear-gradient(to top, hsla(0, 100%, 0%, 0.6), hsla(0,100%,0%,0));
-    border-bottom: solid 0.5rem hsla(240,10%,50%,1);
+    background-image: linear-gradient(to top, var(--black-trans-40), var(--black-trans-100));
+    border-bottom: solid 0.5rem var(--grey-blue);
 }
+
+#player-choice,
+#pc-choice {
+    height: 12rem;
+    width: 12rem;
+    flex-shrink: 0;
+}
+
+.player-choice-unknown,
+.pc-choice-unknown {
+    background-image: url(./images/unknown-choice.svg);
+}
+
+.preview-rock {background-image: url(./images/rock-dark.svg);}
+.preview-paper {background-image: url(./images/paper-dark.svg);}
+.preview-scissors {background-image: url(./images/scissors-dark.svg);}
+
+.player-choice-rock {background-image: url(./images/rock-yellow.svg);}
+.player-choice-paper {background-image: url(./images/paper-yellow.svg);}
+.player-choice-scissors {background-image: url(./images/scissors-yellow.svg);}
+
+/* Countdown */
+
+.countdown {
+    padding: 2rem 4rem;
+    font-size: 3rem;
+    color: var(--grey-blue);
+    transition: padding 0.5s;
+    /* text-shadow: 0px 0px 10px white; */
+}
+
+.countdown:active {
+    transform: scale(0);
+    padding: 0;
+}
+
+/* Tool chooser and scoreboard container */
 
 #player-box {
     margin: 2rem auto;
     padding: 2rem;
     display: inline-block;
     background-image: linear-gradient(to top, black, #272727);
-}
-
-#arena > .rps-image {
-    height: 12rem;
-    width: 12rem;
-    flex-shrink: 0;
-}
-
-.countdown {
-    padding: 2rem 4rem;
-    font-size: 3rem;
-    transition: padding 0.5s;
-    text-shadow: 0px 0px 10px white;
-}
-
-.countdown:active {
-    transform: scale(0);
-    padding: 0;
 }
 
 /* Tool chooser */
@@ -92,12 +133,7 @@ hr {
 
 .tool-choice {
     line-height: 1;
-    transition: 200ms;
-}
-
-.tool-choice:hover {
-    color: hsla(50, 100%, 60%, 1);
-    text-shadow: 0px 0px 10px white;
+    transition: 100ms;
 }
 
 .scoreboard {
@@ -109,12 +145,17 @@ hr {
 
 /* Hover effect for choice selection */
 
+.tool-choice:hover {
+    color: var(--yellow);
+    text-shadow: 0px 0px 10px white;
+}
+
 .rps-rock,
 .rps-paper,
 .rps-scissors {
     height: 8rem;
     width: 8rem;
-    transition: 200ms;
+    transition: 100ms;
 }
 
 .rps-rock:hover,
@@ -123,14 +164,46 @@ hr {
     transform: scale(1.1);
 }
 
-.rps-rock {background-image: url(./images/rock-hover.svg);}
-.rps-rock:hover {background-image: url(./images/rock-active.svg);}
+.rps-rock {background-image: url(./images/rock-light.svg);}
+.rps-rock:hover {background-image: url(./images/rock-yellow.svg);}
 
-.rps-paper {background-image: url(./images/paper-hover.svg);}
-.rps-paper:hover {background-image: url(./images/paper-active.svg);}
+.rps-paper {background-image: url(./images/paper-light.svg);}
+.rps-paper:hover {background-image: url(./images/paper-yellow.svg);}
 
-.rps-scissors {background-image: url(./images/scissors-hover.svg);}
-.rps-scissors:hover {background-image: url(./images/scissors-active.svg);}
+.rps-scissors {background-image: url(./images/scissors-light.svg);}
+.rps-scissors:hover {background-image: url(./images/scissors-yellow.svg);}
+
+/* Confirm user choice */
+
+.rps-rock-confirm,
+.rps-paper-confirm,
+.rps-scissors-confirm {
+    height: 8rem;
+    width: 8rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.2rem;
+    transform: scale(1.1);
+}
+
+.rps-rock-confirm {
+    background-image:
+        linear-gradient(hsla(0, 0%, 0%, 0.5),hsla(0, 0%, 0%, 0.5)),
+        url(./images/rock-yellow.svg);
+}
+
+.rps-paper-confirm {
+    background-image:
+        linear-gradient(hsla(0, 0%, 0%, 0.5),hsla(0, 0%, 0%, 0.5)),
+        url(./images/paper-yellow.svg);
+}
+
+.rps-scissors-confirm {
+    background-image:
+        linear-gradient(hsla(0, 0%, 0%, 0.5),hsla(0, 0%, 0%, 0.5)),
+        url(./images/scissors-yellow.svg);
+}
 
 /* Make choices inactive once an option is selected */
 
@@ -140,7 +213,3 @@ hr {
     height: 8rem;
     width: 8rem;
 }
-
-.rps-rock-inactive {background-image: url(/images/rock-inactive.svg);}
-.rps-paper-inactive {background-image: url(/images/paper-inactive.svg);}
-.rps-scissors-inactive {background-image: url(/images/scissors-inactive.svg);}
