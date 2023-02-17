@@ -11,32 +11,27 @@
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body>
-        <h1 class="site-title">Rock, Paper, Scissors</h1>
+        <h1 id="site-title">Rock, Paper, Scissors</h1>
         <div id="arena">
-            <div id="player-choice" class="player-choice-unknown">
-                <!-- <img src="./images/unknown-choice.svg"> -->
+            <div id="player-choice" class="unknown-choice">
             </div>
             <h1 class="countdown">vs</h1>
-            <div id="pc-choice" class="pc-choice-unknown">
-                <!-- <img src="./images/unknown-choice.svg"> -->
+            <div id="pc-choice" class="unknown-choice">
             </div>
         </div>
-        <section id="player-box" class="pixel-border">
+        <section id="player-box">
             <h2>Make your choice:</h2>
-            <div class="tool-chooser">
+            <div class="tool-choices">
                 <div class="tool-choice">
-                    <div class="rps-rock"></div>
-                    <!-- <img id="rps-rock" src="./images/rock-hover.svg" alt="Choose Rock"/> -->
+                    <div id="choice-rock" class="rock-light"></div>
                     <h3>Rock</h3>
                 </div>
                 <div class="tool-choice">
-                    <div class="rps-paper"></div>
-                    <!-- <img id="rps-paper" src="./images/paper-hover.svg" alt="Choose Paper"/> -->
+                    <div id="choice-paper" class="paper-light"></div>
                     <h3>Paper</h3>
                 </div>
                 <div class="tool-choice">
-                    <div class="rps-scissors"></div>
-                    <!-- <img id="rps-scissors" src="./images/scissors-hover.svg" alt="Choose Scissors"/> -->
+                    <div id="choice-scissors" class="scissors-light"></div>
                     <h3>Scissors</h3>
                 </div>
             </div>
@@ -49,7 +44,8 @@
                 <p>Rounds played: <strong>0</strong></p>
             </div>
         </section>
-        <audio id="audio-confirm" src="./sounds/rps-confirm.mp3"></audio>
-        <audio id="audio-blip" src="./sounds/rps-hover.mp3"></audio>
+        <audio id="audio-blip" src="./sounds/hover.mp3"></audio>
+        <audio id="audio-get-confirm" src="./sounds/get-confirm.mp3"></audio>
+        <audio id="confirm-true" src="./sounds/confirm-true.mp3"></audio>
     </body>
 </html>
