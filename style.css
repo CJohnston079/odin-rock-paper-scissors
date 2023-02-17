@@ -121,29 +121,28 @@
     clip-path: var(--pixel-border)    
 }
 
-/* Countdown */
-
-.countdown {
+#vs-countdown {
     padding: 2rem 4rem;
     font-size: 3rem;
     color: var(--grey-blue);
 
 }
 
-.countdown:active {
-    transform: scale(0);
-    padding: 0;
-    transition: padding 0.5s;
-}
-
-/* Tool chooser */
-
-.tool-choices {
+#tool-choices {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 0rem 4rem;
 }
+
+#scoreboard {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0rem 2rem;
+}
+
+/* Class styling */
 
 .tool-choice {
     line-height: 1;
@@ -154,13 +153,6 @@
     height: 8rem;
     width: 8rem;
     transition: 100ms;
-}
-
-.scoreboard {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0rem 2rem;
 }
 
 /* Hover effect for choice selection */
