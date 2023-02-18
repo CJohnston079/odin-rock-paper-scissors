@@ -23,7 +23,7 @@ My first JavaScript project from scratch. This began as a game to play in the br
 ### Choosing a tool
 - ✔️ Player starts the round by choosing a tool (rock, paper or scissors).
 - ✔️ Tools should have an effect when hovered over and change to an "active" state when clicked.
-- The player should be prompted to confirm choice before facing the PC.
+- ✔️ The player should be prompted to confirm choice before facing the PC.
 - Upon player choice, the unchosen tools should become greyed out.
 
 ### Facing off

@@ -6,6 +6,8 @@ const optionPaper = document.getElementById('choice-paper');
 const optionScissors = document.getElementById('choice-scissors');
 const playerOptions = [optionRock, optionPaper, optionScissors];
 
+const playerMessage = document.getElementById('player-box').firstElementChild;
+
 const blipSound = document.getElementById('audio-blip');
 const getConfirmSound = document.getElementById('audio-get-confirm');
 const confirmTrue = document.getElementById('confirm-true');
@@ -66,6 +68,58 @@ playerOptions.forEach(option => {
         playBlip(),
         highlightOption(option),
         showPreview(option)
+    });
+})
+
+// On click of player options, ask player to confirm choice and highlight the arena preview
+
+function getConfirmMessage(option) {
+    if (option === optionRock) {
+        playerMessage.textContent = 'Choose Rock?'
+    } else if (option === optionPaper) {
+        playerMessage.textContent = 'Choose Paper?'    
+    } else if (option === optionScissors) {
+        playerMessage.textContent = 'Choose Scissors?'
+    };
+    option.addEventListener('mouseleave', resetPlayerMessage);
+}
+
+function resetPlayerMessage () {
+    playerMessage.textContent = 'Make your choice:';
+}
+
+function getConfirmOption (option) {
+    if (option === optionRock) {
+        optionRock.setAttribute('class', 'rock-yellow-overlay');
+    } else if (option === optionPaper) {
+        optionPaper.setAttribute('class', 'paper-yellow-overlay');        
+    } else if (option === optionScissors) {
+        optionScissors.setAttribute('class', 'scissors-yellow-overlay');
+    }
+}
+
+function getConfirmOptionMessage (option) {
+    option.textContent = 'Click to confirm'
+    option.addEventListener('mouseleave', () => {option.textContent = ''})
+}
+
+function getConfirmPreview (option) {
+    if (option === optionRock) {
+        playerChoice.setAttribute('class', 'rock-yellow');
+    } else if (option === optionPaper) {
+        playerChoice.setAttribute('class', 'paper-yellow');        
+    } else if (option === optionScissors) {
+        playerChoice.setAttribute('class', 'scissors-yellow');
+    }
+}
+
+playerOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        playGetConfirm(),
+        getConfirmMessage(option),
+        getConfirmOption(option),
+        getConfirmOptionMessage(option),
+        getConfirmPreview(option)
     });
 })
 
