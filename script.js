@@ -1,8 +1,73 @@
-// Play sound & display choice preview on hover
-function playSound() {
+const playerChoice = document.getElementById('player-choice')
+const pcChoice = document.getElementById('pc-choice')
+
+const optionRock = document.getElementById('choice-rock');
+const optionPaper = document.getElementById('choice-paper');
+const optionScissors = document.getElementById('choice-scissors');
+const playerOptions = [optionRock, optionPaper, optionScissors];
+
+const blipSound = document.getElementById('audio-blip');
+const getConfirmSound = document.getElementById('audio-get-confirm');
+const confirmTrue = document.getElementById('confirm-true');
+
+// Play sound functions
+
+function playBlip() {
     blipSound.currentTime = 0;
     blipSound.play();
 }
+
+function playGetConfirm() {
+    getConfirmSound.currentTime = 0;
+    getConfirmSound.play();
+}
+
+function playConfirmTrue() {
+    confirmTrue.currentTime = 0;
+    confirmTrue.play();
+}
+
+// For player options, highlight, play a sound and display an arena preview on hover
+
+function highlightOption (option) {
+    if (option === optionRock) {
+        optionRock.setAttribute('class', 'rock-yellow');
+    } else if (option === optionPaper) {
+        optionPaper.setAttribute('class', 'paper-yellow');        
+    } else if (option === optionScissors) {
+        optionScissors.setAttribute('class', 'scissors-yellow');
+    }
+    option.addEventListener('mouseleave', resetOption)
+}
+
+function resetOption () {
+    optionRock.setAttribute('class', 'rock-light');
+    optionPaper.setAttribute('class', 'paper-light');        
+    optionScissors.setAttribute('class', 'scissors-light');
+    }
+
+function showPreview (option) {
+    if (option === optionRock) {
+        playerChoice.setAttribute('class', 'rock-dark');
+    } else if (option === optionPaper) {
+        playerChoice.setAttribute('class', 'paper-dark');        
+    } else if (option === optionScissors) {
+        playerChoice.setAttribute('class', 'scissors-dark');
+    }
+    option.addEventListener('mouseleave', resetPreview);
+}
+
+function resetPreview () {
+    playerChoice.setAttribute('class', 'unknown-choice');
+}
+
+playerOptions.forEach(option => {
+    option.addEventListener('mouseenter', () => {
+        playBlip(),
+        highlightOption(option),
+        showPreview(option)
+    });
+})
 
 /*
 console.log('Hello, welcome to ROCK, PAPER, SCISSORS');

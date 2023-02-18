@@ -3,11 +3,14 @@
 <svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(1,0,0,1,-18,-72)">
         <g transform="matrix(1,0,0,1,-98,72)">
-            <rect id="paper-pcwin" x="116" y="0" width="16" height="16" style="fill:none;"/>
+            <rect id="paper-red" x="116" y="0" width="16" height="16" style="fill:none;"/>
             <clipPath id="_clip1">
-                <rect id="paper-pcwin1" serif:id="paper-pcwin" x="116" y="0" width="16" height="16"/>
+                <rect id="paper-red1" serif:id="paper-red" x="116" y="0" width="16" height="16"/>
             </clipPath>
             <g clip-path="url(#_clip1)">
+                <g transform="matrix(1.19671,0,0,1.31068,114.862,-120.662)">
+                    <rect x="1.487" y="92.55" width="12.299" height="11.229"/>
+                </g>
                 <g transform="matrix(2.42682,0,0,1.20861,66.4457,-1.14311)">
                     <path d="M21.212,5.178L21.212,5.708L20.684,5.708L20.684,9.952L21.212,9.952L21.212,10.483L22.005,10.483L22.005,11.013L24.382,11.013L24.382,10.483L24.911,10.483L24.911,9.952L23.326,9.952L23.326,9.422L25.968,9.422L25.968,8.361L23.59,8.361L23.59,7.83L26.232,7.83L26.232,6.769L23.59,6.769L23.59,6.239L25.703,6.239L25.703,5.178L22.533,5.178L22.533,4.647L23.326,4.647L23.326,4.117L23.59,4.117L23.59,3.056L23.061,3.056L23.061,3.586L22.797,3.586L22.797,4.117L22.269,4.117L22.269,4.647L21.74,4.647L21.74,5.178L21.212,5.178Z" style="fill:rgb(255,153,153);"/>
                 </g>

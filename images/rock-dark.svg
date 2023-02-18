@@ -3,11 +3,14 @@
 <svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(1,0,0,1,0,-18)">
         <g transform="matrix(1,0,0,1,0,18)">
-            <rect id="rock-inactive" x="0" y="0" width="16" height="16" style="fill:none;"/>
+            <rect id="rock-dark" x="0" y="0" width="16" height="16" style="fill:none;"/>
             <clipPath id="_clip1">
-                <rect id="rock-inactive1" serif:id="rock-inactive" x="0" y="0" width="16" height="16"/>
+                <rect id="rock-dark1" serif:id="rock-dark" x="0" y="0" width="16" height="16"/>
             </clipPath>
             <g clip-path="url(#_clip1)">
+                <g transform="matrix(1.19671,0,0,1.31068,-1.13839,-120.662)">
+                    <rect x="1.487" y="92.55" width="12.299" height="11.229"/>
+                </g>
                 <g transform="matrix(1.10816,0,0,1.05551,-1.75498,-0.429381)">
                     <path d="M3.319,5.253L3.319,5.86L2.162,5.86L2.162,10.72L3.319,10.72L3.319,11.327L5.055,11.327L5.055,11.934L8.527,11.934L8.527,11.327L9.105,11.327L9.105,10.72L7.948,10.72L7.948,10.112L10.262,10.112L10.262,8.897L8.527,8.897L8.527,8.29L10.262,8.29L10.262,7.075L8.527,7.075L8.527,6.467L10.262,6.467L10.262,5.253L6.212,5.253L6.212,4.645L7.948,4.645L7.948,4.038L5.634,4.038L5.634,4.645L4.477,4.645L4.477,5.253L3.319,5.253Z" style="fill:rgb(185,185,198);"/>
                 </g>

@@ -3,11 +3,14 @@
 <svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(1,0,0,1,-36,-36)">
         <g transform="matrix(1,0,0,1,-196,36)">
-            <rect id="scissors-active" x="232" y="0" width="16" height="16" style="fill:none;"/>
+            <rect id="scissors-yellow" x="232" y="0" width="16" height="16" style="fill:none;"/>
             <clipPath id="_clip1">
-                <rect id="scissors-active1" serif:id="scissors-active" x="232" y="0" width="16" height="16"/>
+                <rect id="scissors-yellow1" serif:id="scissors-yellow" x="232" y="0" width="16" height="16"/>
             </clipPath>
             <g clip-path="url(#_clip1)">
+                <g transform="matrix(1.19671,0,0,1.31068,230.862,-120.662)">
+                    <rect x="1.487" y="92.55" width="12.299" height="11.229"/>
+                </g>
                 <g transform="matrix(1,0,0,1,195.694,-0.367359)">
                     <path d="M38.23,5.482L38.23,6.123L36.947,6.123L36.947,11.253L38.23,11.253L38.23,11.894L40.153,11.894L40.153,12.535L44,12.535L44,11.894L44.641,11.894L44.641,11.253L43.359,11.253L43.359,10.611L45.283,10.611L45.283,9.329L44,9.329L44,8.688L45.924,8.688L45.924,9.329L47.847,9.329L47.847,9.97L49.771,9.97L49.771,8.688L47.847,8.688L47.847,8.047L45.924,8.047L45.924,7.406L44,7.406L44,6.764L45.924,6.764L45.924,6.123L47.847,6.123L47.847,5.482L49.771,5.482L49.771,4.2L47.847,4.2L47.847,4.841L45.283,4.841L45.283,5.482L41.436,5.482L41.436,4.841L43.359,4.841L43.359,4.2L40.794,4.2L40.794,4.841L39.512,4.841L39.512,5.482L38.23,5.482Z" style="fill:rgb(255,246,204);"/>
                 </g>
