@@ -159,6 +159,8 @@ function enableOptions () {
     playerOptions.forEach(option => {
         option.nextElementSibling.style.color = ('var(--white)')
     });
+    playerMessage.style.color = ('white');
+    playerMessage.textContent = 'Make your choice:';
     optionRock.setAttribute('class', 'rock-light');
     optionPaper.setAttribute('class', 'paper-light');
     optionScissors.setAttribute('class', 'scissors-light');
@@ -166,6 +168,8 @@ function enableOptions () {
     optionPaperDisabled.setAttribute('class', 'disabled');
     optionScissorsDisabled.setAttribute('class', 'disabled');
 }
+
+
 
 // - The player choice should appear in their box in the arena.
 
