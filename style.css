@@ -159,15 +159,16 @@
     color: white;
     font-size: 1.2rem;
     text-shadow: 0px 0px 10px black;
+    border: solid px 0px 0px 0px var(--yellow)
 }
 
 /* Hover effect for choice selection */
 
-.tool-choice:hover {
-    color: var(--yellow);
-    text-shadow: 0px 0px 10px white;
-}
-
 .tool-choice > div:hover {
     transform: scale(1.1);
+}
+
+.tool-choice > div:hover + h3 {
+    color: var(--yellow);
+    text-shadow: 0px 0px 10px white;
 }
