@@ -164,11 +164,21 @@
 
 /* Hover effect for choice selection */
 
-.tool-choice > div:hover {
+#choice-rock:hover,
+#choice-paper:hover,
+#choice-scissors:hover {
     transform: scale(1.1);
 }
 
-.tool-choice > div:hover + h3 {
-    color: var(--yellow);
+#choice-rock:hover + h3,
+#choice-paper:hover + h3,
+#choice-scissors:hover + h3 {
+    color: var(--yellow) !important;
     text-shadow: 0px 0px 10px white;
+}
+
+.disabled {
+    display: none;
+    height: 0rem !important;
+    margin: 0rem !important;
 }

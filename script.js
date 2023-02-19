@@ -1,10 +1,14 @@
 const playerChoice = document.getElementById('player-choice')
 const pcChoice = document.getElementById('pc-choice')
 
-const optionRock = document.getElementById('choice-rock');
-const optionPaper = document.getElementById('choice-paper');
-const optionScissors = document.getElementById('choice-scissors');
+const optionRock = document.querySelector('#choice-rock');
+const optionPaper = document.querySelector('#choice-paper');
+const optionScissors = document.querySelector('#choice-scissors');
 const playerOptions = [optionRock, optionPaper, optionScissors];
+
+const optionRockDisabled = document.querySelector('#choice-rock-disabled');
+const optionPaperDisabled = document.querySelector('#choice-paper-disabled');
+const optionScissorsDisabled = document.querySelector('#choice-scissors-disabled');
 
 const playerMessage = document.getElementById('player-box').firstElementChild;
 
@@ -63,15 +67,29 @@ function resetPreview () {
     playerChoice.setAttribute('class', 'unknown-choice');
 }
 
+// function playerChoiceHover(option) {
+//     playBlip(),
+//     highlightOption(option),
+//     showPreview(option)
+// }
+
+// playerOptions.forEach(option => {
+//     option.addEventListener('mouseenter', playerChoiceHover.bind(null, option))
+// })
+
+// playerOptions.forEach(option => {
+//     option.removeEventListener('mouseenter', playerChoiceHover.bind(null, option))
+// })
+
 playerOptions.forEach(option => {
-    option.addEventListener('mouseenter', () => {
+    option.addEventListener('mouseenter', function eventHandler() {
         playBlip(),
         highlightOption(option),
         showPreview(option)
     });
 })
 
-// On click of player options, ask player to confirm choice and highlight the arena preview
+// When player clicks on an option, ask player to confirm choice and highlight the arena preview
 
 function getConfirmMessage(option) {
     if (option === optionRock) {
@@ -122,6 +140,34 @@ playerOptions.forEach(option => {
         getConfirmPreview(option)
     });
 })
+
+// Disable player choice icons once a selection is made
+
+function disableOptions () {
+    playerOptions.forEach(option => {
+        option.nextElementSibling.style.color = ('var(--grey-blue)')
+    });
+    optionRock.setAttribute('class', 'disabled');
+    optionPaper.setAttribute('class', 'disabled');
+    optionScissors.setAttribute('class', 'disabled');
+    optionRockDisabled.setAttribute('class', 'rock-dark');
+    optionPaperDisabled.setAttribute('class', 'paper-dark');
+    optionScissorsDisabled.setAttribute('class', 'scissors-dark');
+}
+
+function enableOptions () {
+    playerOptions.forEach(option => {
+        option.nextElementSibling.style.color = ('var(--white)')
+    });
+    optionRock.setAttribute('class', 'rock-light');
+    optionPaper.setAttribute('class', 'paper-light');
+    optionScissors.setAttribute('class', 'scissors-light');
+    optionRockDisabled.setAttribute('class', 'disabled');
+    optionPaperDisabled.setAttribute('class', 'disabled');
+    optionScissorsDisabled.setAttribute('class', 'disabled');
+}
+
+// - The player choice should appear in their box in the arena.
 
 /*
 console.log('Hello, welcome to ROCK, PAPER, SCISSORS');
