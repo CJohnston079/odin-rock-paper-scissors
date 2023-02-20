@@ -9,8 +9,9 @@ const playerOptions = [optionRock, optionPaper, optionScissors];
 const optionRockDisabled = document.querySelector('#choice-rock-disabled');
 const optionPaperDisabled = document.querySelector('#choice-paper-disabled');
 const optionScissorsDisabled = document.querySelector('#choice-scissors-disabled');
+const playerOptionsDisabled = [optionRockDisabled, optionPaperDisabled, optionScissorsDisabled];
 
-const playerMessage = document.getElementById('player-box').firstElementChild;
+const infoMessage = document.getElementById('player-box').firstElementChild;
 
 const confirmOverlay = document.createElement('p');
 
@@ -37,7 +38,7 @@ function playConfirmTrue() {
 
 // For player options, highlight, play a sound and display an arena preview on hover
 
-function highlightOption (option) {
+function highlightOption(option) {
     if (option === optionRock) {
         optionRock.setAttribute('class', 'rock-yellow');
     } else if (option === optionPaper) {
@@ -48,13 +49,13 @@ function highlightOption (option) {
     option.addEventListener('mouseleave', resetOption)
 }
 
-function resetOption () {
+function resetOption() {
     optionRock.setAttribute('class', 'rock-light');
     optionPaper.setAttribute('class', 'paper-light');        
     optionScissors.setAttribute('class', 'scissors-light');
     }
 
-function showPreview (option) {
+function showPreview(option) {
     if (option === optionRock) {
         playerChoice.setAttribute('class', 'rock-dark');
     } else if (option === optionPaper) {
@@ -65,8 +66,14 @@ function showPreview (option) {
     option.addEventListener('mouseleave', resetPreview);
 }
 
-function resetPreview () {
+function resetPreview() {
     playerChoice.setAttribute('class', 'unknown-choice');
+}
+
+function resetChoiceDescriptionOpacity() {
+    document.querySelector('#rock-description').style.opacity = 1;
+    document.querySelector('#paper-description').style.opacity = 1;
+    document.querySelector('#scissors-description').style.opacity = 1;
 }
 
 playerOptions.forEach(option => {
@@ -81,31 +88,35 @@ playerOptions.forEach(option => {
 
 function getConfirmMessage(option) {
     if (option === optionRock) {
-        playerMessage.textContent = 'Choose Rock?'
+        infoMessage.textContent = 'Choose Rock?'
     } else if (option === optionPaper) {
-        playerMessage.textContent = 'Choose Paper?'
+        infoMessage.textContent = 'Choose Paper?'
     } else if (option === optionScissors) {
-        playerMessage.textContent = 'Choose Scissors?'
+        infoMessage.textContent = 'Choose Scissors?'
     };
-    option.addEventListener('mouseleave', resetPlayerMessage);
+    option.addEventListener('mouseleave', resetinfoMessage);
+    option.addEventListener('mouseleave', resetChoiceDescriptionOpacity)
 }
 
-function resetPlayerMessage () {
-    playerMessage.style.color = ('white');
-    playerMessage.textContent = 'Make your choice:';
+function resetinfoMessage() {
+    infoMessage.style.color = ('white');
+    infoMessage.textContent = 'Make your choice:';
 }
 
-function getConfirmIcon (option) {
+function getConfirmIcon(option) {
     if (option === optionRock) {
         optionRock.setAttribute('class', 'rock-yellow-overlay');
+        document.querySelector('#rock-description').style.opacity = 0.5;
     } else if (option === optionPaper) {
         optionPaper.setAttribute('class', 'paper-yellow-overlay');
+        document.querySelector('#paper-description').style.opacity = 0.5;
     } else if (option === optionScissors) {
         optionScissors.setAttribute('class', 'scissors-yellow-overlay');
+        document.querySelector('#scissors-description').style.opacity = 0.5
     }
 }
 
-function getConfirmPreview (option) {
+function getConfirmPreview(option) {
     if (option === optionRock) {
         playerChoice.setAttribute('class', 'rock-yellow');
     } else if (option === optionPaper) {
@@ -115,7 +126,7 @@ function getConfirmPreview (option) {
     }
 }
 
-function displayConfirmOverlay (option) {
+function displayConfirmOverlay(option) {
     confirmOverlay.textContent = 'Click to confirm';
     confirmOverlay.setAttribute('class', 'confirm-overlay')
     option.appendChild(confirmOverlay);
@@ -136,11 +147,28 @@ playerOptions.forEach(option => {
 
 // Confirm player choice
 
+function confirmPlayerChoice() {
+    if (playerChoice.classList.contains('rock-yellow')) {
+        playerChoice.setAttribute('class', 'rock-light')
+    } else if (playerChoice.classList.contains('paper-yellow')) {
+        playerChoice.setAttribute('class', 'paper-light')
+    } else if (playerChoice.classList.contains('scissors-yellow')) {
+        playerChoice.setAttribute('class', 'scissors-light')
+    }
+}
+
 confirmOverlay.addEventListener('click', () => {
     confirmOverlay.remove()
-    playerMessage.textContent = 'Good luck!'
     playConfirmTrue()
     disableOptions()
+})
+
+playerOptionsDisabled.forEach(option => {
+    option.addEventListener('mouseenter', () => {
+        confirmPlayerChoice()
+        resetChoiceDescriptionOpacity()
+        infoMessage.textContent = 'Good luck!'
+    });
 })
 
 // Disable/enable player choice buttons

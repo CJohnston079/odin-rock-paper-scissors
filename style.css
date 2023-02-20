@@ -9,6 +9,7 @@
     --grey-blue: hsla(240,10%,50%,1);
     --light-blue: hsla(50, 100%, 60%, 1);
     --yellow: hsla(50, 100%, 60%, 1);
+    --yellow-trans: hsla(50, 100%, 60%, 0.5);
     --green: hsla(50, 100%, 60%, 1);
     --red: hsla(50, 100%, 60%, 1);
     --black-trans-00: hsla(0, 0%, 0%, 0.0);
@@ -183,6 +184,12 @@
 }
 
 /* Confirm chocie icon and text styling*/
+
+#choice-rock-disabled,
+#choice-paper-disabled,
+#choice-scissors-disabled {
+    cursor: not-allowed !important;
+}
 
 #choice-rock-confirm,
 #choice-paper-confirm,
