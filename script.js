@@ -12,6 +12,8 @@ const optionScissorsDisabled = document.querySelector('#choice-scissors-disabled
 
 const playerMessage = document.getElementById('player-box').firstElementChild;
 
+const confirmOverlay = document.createElement('p');
+
 const blipSound = document.getElementById('audio-blip');
 const getConfirmSound = document.getElementById('audio-get-confirm');
 const confirmTrue = document.getElementById('confirm-true');
@@ -67,26 +69,12 @@ function resetPreview () {
     playerChoice.setAttribute('class', 'unknown-choice');
 }
 
-// function playerChoiceHover(option) {
-//     playBlip(),
-//     highlightOption(option),
-//     showPreview(option)
-// }
-
-// playerOptions.forEach(option => {
-//     option.addEventListener('mouseenter', playerChoiceHover.bind(null, option))
-// })
-
-// playerOptions.forEach(option => {
-//     option.removeEventListener('mouseenter', playerChoiceHover.bind(null, option))
-// })
-
 playerOptions.forEach(option => {
-    option.addEventListener('mouseenter', function eventHandler() {
+    option.addEventListener('mouseenter', () => {
         playBlip(),
         highlightOption(option),
         showPreview(option)
-    });
+        });
 })
 
 // When player clicks on an option, ask player to confirm choice and highlight the arena preview
@@ -95,7 +83,7 @@ function getConfirmMessage(option) {
     if (option === optionRock) {
         playerMessage.textContent = 'Choose Rock?'
     } else if (option === optionPaper) {
-        playerMessage.textContent = 'Choose Paper?'    
+        playerMessage.textContent = 'Choose Paper?'
     } else if (option === optionScissors) {
         playerMessage.textContent = 'Choose Scissors?'
     };
@@ -103,22 +91,18 @@ function getConfirmMessage(option) {
 }
 
 function resetPlayerMessage () {
+    playerMessage.style.color = ('white');
     playerMessage.textContent = 'Make your choice:';
 }
 
-function getConfirmOption (option) {
+function getConfirmIcon (option) {
     if (option === optionRock) {
         optionRock.setAttribute('class', 'rock-yellow-overlay');
     } else if (option === optionPaper) {
-        optionPaper.setAttribute('class', 'paper-yellow-overlay');        
+        optionPaper.setAttribute('class', 'paper-yellow-overlay');
     } else if (option === optionScissors) {
         optionScissors.setAttribute('class', 'scissors-yellow-overlay');
     }
-}
-
-function getConfirmOptionMessage (option) {
-    option.textContent = 'Click to confirm'
-    option.addEventListener('mouseleave', () => {option.textContent = ''})
 }
 
 function getConfirmPreview (option) {
@@ -131,37 +115,43 @@ function getConfirmPreview (option) {
     }
 }
 
+function displayConfirmOverlay (option) {
+    confirmOverlay.textContent = 'Click to confirm';
+    confirmOverlay.setAttribute('class', 'confirm-overlay')
+    option.appendChild(confirmOverlay);
+    option.addEventListener('mouseleave', () => {
+        confirmOverlay.remove()
+    });
+}
+
 playerOptions.forEach(option => {
+    option.addEventListener('click', playGetConfirm)
     option.addEventListener('click', () => {
-        playGetConfirm(),   
         getConfirmMessage(option),
-        getConfirmOption(option),
-        getConfirmOptionMessage(option),
-        getConfirmPreview(option)
+        getConfirmIcon(option),
+        getConfirmPreview(option),
+        displayConfirmOverlay(option)
     });
 })
 
-// Get player choice
+// Confirm player choice
 
-function getPlayerChoice() {
-    let playerInput = prompt('Please input rock, paper or scissors').toUpperCase();
-    if (userInput === 'ROCK' || userInput === 'PAPER' || userInput === 'SCISSORS') {
-        return userInput;
-    } else {
-        alert('Error: please input rock, paper or scissors');
-        return getUserChoice();
-    }
-}
+confirmOverlay.addEventListener('click', () => {
+    confirmOverlay.remove()
+    playerMessage.textContent = 'Good luck!'
+    playConfirmTrue()
+    disableOptions()
+})
 
-// Disable player choice icons once a selection is made
+// Disable/enable player choice buttons
 
 function disableOptions () {
     playerOptions.forEach(option => {
         option.nextElementSibling.style.color = ('var(--grey-blue)')
     });
-    optionRock.setAttribute('class', 'disabled');
-    optionPaper.setAttribute('class', 'disabled');
-    optionScissors.setAttribute('class', 'disabled');
+    optionRock.remove()
+    optionPaper.remove()
+    optionScissors.remove()
     optionRockDisabled.setAttribute('class', 'rock-dark');
     optionPaperDisabled.setAttribute('class', 'paper-dark');
     optionScissorsDisabled.setAttribute('class', 'scissors-dark');
@@ -171,8 +161,6 @@ function enableOptions () {
     playerOptions.forEach(option => {
         option.nextElementSibling.style.color = ('var(--white)')
     });
-    playerMessage.style.color = ('white');
-    playerMessage.textContent = 'Make your choice:';
     optionRock.setAttribute('class', 'rock-light');
     optionPaper.setAttribute('class', 'paper-light');
     optionScissors.setAttribute('class', 'scissors-light');
@@ -180,8 +168,6 @@ function enableOptions () {
     optionPaperDisabled.setAttribute('class', 'disabled');
     optionScissorsDisabled.setAttribute('class', 'disabled');
 }
-
-
 
 // - The player choice should appear in their box in the arena.
 

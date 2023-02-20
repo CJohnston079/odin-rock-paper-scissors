@@ -41,7 +41,7 @@
     --rock-red: url(images/rock-red.svg);
     --paper-red: url(images/paper-red.svg);
     --scissors-red: url(images/scissors-red.svg);
-    --rock-red: url(images/rock-green.svg);
+    --rock-green: url(images/rock-green.svg);
     --paper-green: url(images/paper-green.svg);
     --scissors-green: url(images/scissors-green.svg);
     --rock-yellow-overlay:
@@ -153,9 +153,6 @@
     height: 8rem;
     width: 8rem;
     transition: transform 100ms;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: white;
     font-size: 1.2rem;
     text-shadow: 0px 0px 10px black;
@@ -165,7 +162,10 @@
 
 #choice-rock:hover,
 #choice-paper:hover,
-#choice-scissors:hover {
+#choice-scissors:hover,
+#choice-rock-confirm,
+#choice-paper-confirm,
+#choice-scissors-confirm {
     transform: scale(1.1);
 }
 
@@ -180,4 +180,30 @@
     display: none;
     height: 0rem !important;
     margin: 0rem !important;
+}
+
+/* Confirm chocie icon and text styling*/
+
+#choice-rock-confirm,
+#choice-paper-confirm,
+#choice-scissors-confirm {
+    transform: scale(1.1);
+}
+
+#choice-rock-confirm + h3,
+#choice-paper-confirm + h3,
+#choice-scissors-confirm + h3 {
+    opacity: 0.5;
+    color: var(--yellow) !important;
+    text-shadow: 0px 0px 10px white;
+}
+
+.confirm-overlay {
+    margin: 0;
+    height: inherit;
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black-trans-00);
 }
