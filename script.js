@@ -133,13 +133,25 @@ function getConfirmPreview (option) {
 
 playerOptions.forEach(option => {
     option.addEventListener('click', () => {
-        playGetConfirm(),
+        playGetConfirm(),   
         getConfirmMessage(option),
         getConfirmOption(option),
         getConfirmOptionMessage(option),
         getConfirmPreview(option)
     });
 })
+
+// Get player choice
+
+function getPlayerChoice() {
+    let playerInput = prompt('Please input rock, paper or scissors').toUpperCase();
+    if (userInput === 'ROCK' || userInput === 'PAPER' || userInput === 'SCISSORS') {
+        return userInput;
+    } else {
+        alert('Error: please input rock, paper or scissors');
+        return getUserChoice();
+    }
+}
 
 // Disable player choice icons once a selection is made
 
