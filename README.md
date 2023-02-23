@@ -28,7 +28,7 @@ My first JavaScript project from scratch. This began as a game to play in the br
 
 ### Facing off
 - ✔️ The player choice should appear in their box in the arena.
-- A countdown of ...3 ...2 ...1 should appear before the PC choice is revealed.
+- ✔️ countdown of ...3 ...2 ...1 should appear before the PC choice is revealed.
 - Upon revealing the PC choice, the program should wait for one second before declaring a winner.
 
 ### Declaring a winner

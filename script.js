@@ -22,7 +22,9 @@ const confirmOverlay = document.createElement('p');
 
 const blipSound = document.getElementById('audio-blip');
 const getConfirmSound = document.getElementById('audio-get-confirm');
-const confirmTrue = document.getElementById('confirm-true');
+const confirmTrueSound = document.getElementById('confirm-true');
+const countdownSound = document.getElementById('countdown');
+const roundStartSound = document.getElementById('round-start');
 
 let playerChoice = '';
 let pcChocie = '';
@@ -44,8 +46,18 @@ function playGetConfirm() {
 }
 
 function playConfirmTrue() {
-    confirmTrue.currentTime = 0;
-    confirmTrue.play();
+    confirmTrueSound.currentTime = 0;
+    confirmTrueSound.play();
+}
+
+function playCountdown() {
+    countdownSound.currentTime = 0;
+    countdownSound.play();
+}
+
+function playRoundStart() {
+    roundStartSound.currentTime = 0;
+    roundStartSound.play();
 }
 
 // For player options, highlight, play a sound and display an arena preview on hover
@@ -176,16 +188,58 @@ confirmOverlay.addEventListener('mousedown', () => {
     showDisabledOptions()
     hideEnabledOptions()
     resetChoiceDescriptionOpacity()
+    setTimeout(countdown3, 2000)
     playerChoiceHighlight.style.animation = 'highlight-white 2s';
     vsCountdown.style.color = 'white';
-    vsCountdown.style.textShadow = '0px 0px 20px white'
     pcChoiceIcon.style.backgroundImage = 'var(--unknown-choice-light)'
     infoMessage.textContent = 'Good luck!'
+    setTimeout(() => {
+        infoMessage.style.color = 'var(--grey-blue)';
+        infoMessage.textContent = 'Round in progress...'
+      }, 2000);
     playerOptions.forEach(option => {
         option.removeEventListener('click', playGetConfirm);
     })
 
 })
+
+// Countdown to round 3... 2... 1...
+
+function resetAnimation(element) {
+    element.style.animation = '';
+}
+
+function hideCounter(element) {
+    element.style.transition = 'padding 1s ease-out';
+    element.style.padding = 0;
+    element.style.opacity = 0;
+    element.textContent = ''
+}
+
+function countdown3() {
+    vsCountdown.textContent = '3'
+    vsCountdown.style.animation = 'highlight-white-text 1s'
+    playCountdown()
+    setTimeout(resetAnimation, 900, vsCountdown)
+    setTimeout(countdown2, 1000)
+}
+
+function countdown2() {
+    vsCountdown.textContent = '2'
+    vsCountdown.style.animation = 'highlight-white-text 1s'
+    playCountdown()
+    setTimeout(resetAnimation, 900, vsCountdown)
+    setTimeout(countdown1, 1000)
+}
+
+function countdown1() {
+    vsCountdown.textContent = '1'
+    vsCountdown.style.animation = 'highlight-white-text 1s'
+    playCountdown()
+    setTimeout(resetAnimation, 999, vsCountdown)
+    setTimeout(hideCounter, 1000, vsCountdown)
+    setTimeout(playRoundStart, 1000)
+}
 
 // Hide/show enabled/disabled options
 
@@ -223,8 +277,6 @@ function enableOptions() {
     hideDisabledOptions();
     showEnabledOptions();
 }
-
-// - The player choice should appear in their box in the arena.
 
 /*
 console.log('Hello, welcome to ROCK, PAPER, SCISSORS');

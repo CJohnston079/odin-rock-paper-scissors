@@ -119,6 +119,20 @@
     transition: background-image 500ms;
 }
 
+#vs-countdown {
+    width: 6rem;
+    padding: 2rem 4rem;
+    font-size: 3rem;
+    color: var(--grey-blue);
+    transition: color 500ms, text-shadow 500ms;
+}
+
+/* #vs-countdown:active {
+    transition: padding 1s ease-out;
+    padding: 0;
+    opacity: 0;
+} */
+
 #player-box {
     margin: 2rem auto;
     padding: 2rem;
@@ -129,13 +143,6 @@
     border: solid 4px white;
     border-radius: 4px;
     clip-path: var(--pixel-border);
-}
-
-#vs-countdown {
-    padding: 2rem 4rem;
-    font-size: 3rem;
-    color: var(--grey-blue);
-    transition: color 500ms, text-shadow 500ms;
 }
 
 #tool-choices {
@@ -228,6 +235,12 @@
     justify-content: center;
     align-items: center;
     background-color: var(--black-trans-00);
+}
+
+@keyframes highlight-white-text {
+    0% {text-shadow: 0px 0px 0px white;}
+    20% {text-shadow: 0px 0px 20px white;}
+    100% {text-shadow: 0px 0px 0px white;}
 }
 
 @keyframes highlight-white {
