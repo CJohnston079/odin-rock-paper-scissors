@@ -55,6 +55,7 @@
         linear-gradient(hsla(0, 0%, 0%, 0.5),hsla(0, 0%, 0%, 0.5)),
         url(./images/scissors-yellow.svg);
     --unknown-choice: url(images/unknown-choice.svg);
+    --unknown-choice-light: url(images/unknown-choice-light.svg);
 }
 
 /* Background image classes */
@@ -84,6 +85,7 @@
 .scissors-green {background-image: var(--scissors-green);}
 
 .unknown-choice {background-image: var(--unknown-choice);}
+.unknown-choice-light {background-image: var(--unknown-choice-light);}
 
 /* Id styling */
 
@@ -113,6 +115,10 @@
     align-items: center;
 }
 
+#pc-choice {
+    transition: background-image 500ms;
+}
+
 #player-box {
     margin: 2rem auto;
     padding: 2rem;
@@ -129,7 +135,7 @@
     padding: 2rem 4rem;
     font-size: 3rem;
     color: var(--grey-blue);
-
+    transition: color 500ms, text-shadow 500ms;
 }
 
 #tool-choices {
@@ -226,19 +232,19 @@
 
 @keyframes highlight-white {
     0% {box-shadow: 0px 0px 0px white;}
-    20% {box-shadow: 0px 0px 60px white;}
+    20% {box-shadow: 0px 0px 80px white;}
     100% {box-shadow: 0px 0px 0px white;}
 }
 
 @keyframes highlight-green {
     0% {box-shadow: 0px 0px 0px var(--green);}
-    20% {box-shadow: 0px 0px 60px var(--green);}
+    20% {box-shadow: 0px 0px 80px var(--green);}
     100% {box-shadow: 0px 0px 0px var(--green);}
 }
 
 @keyframes highlight-red {
     0% {box-shadow: 0px 0px 0px var(--red);}
-    20% {box-shadow: 0px 0px 60px var(--red);}
+    20% {box-shadow: 0px 0px 80px var(--red);}
     100% {box-shadow: 0px 0px 0px var(--red);}
 }
 

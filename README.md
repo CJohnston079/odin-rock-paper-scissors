@@ -24,10 +24,10 @@ My first JavaScript project from scratch. This began as a game to play in the br
 - ✔️ Player starts the round by choosing a tool (rock, paper or scissors).
 - ✔️ Tools should have an effect when hovered over and change to an "active" state when clicked.
 - ✔️ The player should be prompted to confirm choice before facing the PC.
-- Upon player choice, the unchosen tools should become greyed out.
+- ✔️ Upon player choice, the unchosen tools should become greyed out.
 
 ### Facing off
-- The player choice should appear in their box in the arena.
+- ✔️ The player choice should appear in their box in the arena.
 - A countdown of ...3 ...2 ...1 should appear before the PC choice is revealed.
 - Upon revealing the PC choice, the program should wait for one second before declaring a winner.
 

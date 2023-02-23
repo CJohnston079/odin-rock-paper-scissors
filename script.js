@@ -1,5 +1,10 @@
-const playerChoiceIcon = document.getElementById('player-choice')
-const pcChoiceIcon = document.getElementById('pc-choice')
+const playerChoiceIcon = document.getElementById('player-choice');
+const pcChoiceIcon = document.getElementById('pc-choice');
+
+const playerChoiceHighlight = document.getElementById('player-choice').firstElementChild;
+const pcChoiceHighlight = document.getElementById('pc-choice').firstElementChild;
+
+const vsCountdown = document.getElementById('vs-countdown')
 
 const optionRock = document.querySelector('#choice-rock');
 const optionPaper = document.querySelector('#choice-paper');
@@ -171,6 +176,10 @@ confirmOverlay.addEventListener('mousedown', () => {
     showDisabledOptions()
     hideEnabledOptions()
     resetChoiceDescriptionOpacity()
+    playerChoiceHighlight.style.animation = 'highlight-white 2s';
+    vsCountdown.style.color = 'white';
+    vsCountdown.style.textShadow = '0px 0px 20px white'
+    pcChoiceIcon.style.backgroundImage = 'var(--unknown-choice-light)'
     infoMessage.textContent = 'Good luck!'
     playerOptions.forEach(option => {
         option.removeEventListener('click', playGetConfirm);
