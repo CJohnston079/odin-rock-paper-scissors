@@ -1,5 +1,5 @@
-const playerChoice = document.getElementById('player-choice')
-const pcChoice = document.getElementById('pc-choice')
+const playerChoiceIcon = document.getElementById('player-choice')
+const pcChoiceIcon = document.getElementById('pc-choice')
 
 const optionRock = document.querySelector('#choice-rock');
 const optionPaper = document.querySelector('#choice-paper');
@@ -18,6 +18,13 @@ const confirmOverlay = document.createElement('p');
 const blipSound = document.getElementById('audio-blip');
 const getConfirmSound = document.getElementById('audio-get-confirm');
 const confirmTrue = document.getElementById('confirm-true');
+
+let playerChoice = '';
+let pcChocie = '';
+
+function test() {
+    alert('test');
+}
 
 // Play sound functions
 
@@ -57,17 +64,17 @@ function resetOption() {
 
 function showPreview(option) {
     if (option === optionRock) {
-        playerChoice.setAttribute('class', 'rock-dark');
+        playerChoiceIcon.setAttribute('class', 'rock-dark');
     } else if (option === optionPaper) {
-        playerChoice.setAttribute('class', 'paper-dark');        
+        playerChoiceIcon.setAttribute('class', 'paper-dark');        
     } else if (option === optionScissors) {
-        playerChoice.setAttribute('class', 'scissors-dark');
+        playerChoiceIcon.setAttribute('class', 'scissors-dark');
     }
     option.addEventListener('mouseleave', resetPreview);
 }
 
 function resetPreview() {
-    playerChoice.setAttribute('class', 'unknown-choice');
+    playerChoiceIcon.setAttribute('class', 'unknown-choice');
 }
 
 function resetChoiceDescriptionOpacity() {
@@ -94,11 +101,11 @@ function getConfirmMessage(option) {
     } else if (option === optionScissors) {
         infoMessage.textContent = 'Choose Scissors?'
     };
-    option.addEventListener('mouseleave', resetinfoMessage);
+    option.addEventListener('mouseleave', resetInfoMessage);
     option.addEventListener('mouseleave', resetChoiceDescriptionOpacity)
 }
 
-function resetinfoMessage() {
+function resetInfoMessage() {
     infoMessage.style.color = ('white');
     infoMessage.textContent = 'Make your choice:';
 }
@@ -118,11 +125,11 @@ function getConfirmIcon(option) {
 
 function getConfirmPreview(option) {
     if (option === optionRock) {
-        playerChoice.setAttribute('class', 'rock-yellow');
+        playerChoiceIcon.setAttribute('class', 'rock-yellow');
     } else if (option === optionPaper) {
-        playerChoice.setAttribute('class', 'paper-yellow');        
+        playerChoiceIcon.setAttribute('class', 'paper-yellow');        
     } else if (option === optionScissors) {
-        playerChoice.setAttribute('class', 'scissors-yellow');
+        playerChoiceIcon.setAttribute('class', 'scissors-yellow');
     }
 }
 
@@ -147,33 +154,28 @@ playerOptions.forEach(option => {
 
 // Confirm player choice
 
-function confirmPlayerChoice() {
-    if (playerChoice.classList.contains('rock-yellow')) {
-        playerChoice.setAttribute('class', 'rock-light')
-    } else if (playerChoice.classList.contains('paper-yellow')) {
-        playerChoice.setAttribute('class', 'paper-light')
-    } else if (playerChoice.classList.contains('scissors-yellow')) {
-        playerChoice.setAttribute('class', 'scissors-light')
+function confirmplayerChoiceIcon() {
+    if (playerChoiceIcon.getAttribute('class') === 'rock-yellow') {
+        playerChoiceIcon.setAttribute('class', 'rock-light')
+    } else if (playerChoiceIcon.getAttribute('class') === 'paper-yellow') {
+        playerChoiceIcon.setAttribute('class', 'paper-light')
+    } else if (playerChoiceIcon.getAttribute('class') === 'scissors-yellow') {
+        playerChoiceIcon.setAttribute('class', 'scissors-light')
     }
 }
 
-confirmOverlay.addEventListener('click', () => {
+confirmOverlay.addEventListener('mousedown', () => {
     confirmOverlay.remove()
+    confirmplayerChoiceIcon()
     playConfirmTrue()
     showDisabledOptions()
+    hideEnabledOptions()
+    resetChoiceDescriptionOpacity()
+    infoMessage.textContent = 'Good luck!'
     playerOptions.forEach(option => {
         option.removeEventListener('click', playGetConfirm);
     })
 
-})
-
-playerOptionsDisabled.forEach(option => {
-    option.addEventListener('mouseenter', () => {
-        confirmPlayerChoice()
-        resetChoiceDescriptionOpacity()
-        hideEnabledOptions()
-        infoMessage.textContent = 'Good luck!'
-    });
 })
 
 // Hide/show enabled/disabled options
@@ -206,6 +208,11 @@ function showEnabledOptions() {
     optionRock.setAttribute('class', 'rock-light');
     optionPaper.setAttribute('class', 'paper-light');
     optionScissors.setAttribute('class', 'scissors-light');
+}
+
+function enableOptions() {
+    hideDisabledOptions();
+    showEnabledOptions();
 }
 
 // - The player choice should appear in their box in the arena.
