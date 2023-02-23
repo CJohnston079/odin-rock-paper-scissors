@@ -7,11 +7,11 @@
     text-align: center;
     --dark-blue: hsla(240,100%,10%,1);
     --grey-blue: hsla(240,10%,50%,1);
-    --light-blue: hsla(50, 100%, 60%, 1);
+    --light-blue: hsla(240,40%,80%, 1);
     --yellow: hsla(50, 100%, 60%, 1);
     --yellow-trans: hsla(50, 100%, 60%, 0.5);
-    --green: hsla(50, 100%, 60%, 1);
-    --red: hsla(50, 100%, 60%, 1);
+    --green: hsla(160, 100%, 40%, 1);
+    --red: hsla(0, 100%, 40%, 1);
     --black-trans-00: hsla(0, 0%, 0%, 0.0);
     --black-trans-50: hsla(0, 0%, 0%, 0.5);
     --black-trans-60: hsla(0, 0%, 0%, 0.6);
@@ -108,6 +108,9 @@
     height: 12rem;
     width: 12rem;
     flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #player-box {
@@ -119,7 +122,7 @@
     border-radius: 4px;
     border: solid 4px white;
     border-radius: 4px;
-    clip-path: var(--pixel-border)    
+    clip-path: var(--pixel-border);
 }
 
 #vs-countdown {
@@ -134,6 +137,11 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 0rem 4rem;
+}
+
+.highlight {
+    height: 11rem;
+    width: 11rem;
 }
 
 #scoreboard {
@@ -168,6 +176,7 @@
 #choice-paper-confirm,
 #choice-scissors-confirm {
     transform: scale(1.1);
+    cursor: pointer;
 }
 
 #choice-rock:hover + h3,
@@ -213,4 +222,28 @@
     justify-content: center;
     align-items: center;
     background-color: var(--black-trans-00);
+}
+
+@keyframes highlight-white {
+    0% {box-shadow: 0px 0px 0px white;}
+    20% {box-shadow: 0px 0px 60px white;}
+    100% {box-shadow: 0px 0px 0px white;}
+}
+
+@keyframes highlight-green {
+    0% {box-shadow: 0px 0px 0px var(--green);}
+    20% {box-shadow: 0px 0px 60px var(--green);}
+    100% {box-shadow: 0px 0px 0px var(--green);}
+}
+
+@keyframes highlight-red {
+    0% {box-shadow: 0px 0px 0px var(--red);}
+    20% {box-shadow: 0px 0px 60px var(--red);}
+    100% {box-shadow: 0px 0px 0px var(--red);}
+}
+
+@keyframes grow-shrink {
+    0% {scale: 1}
+    10% {scale: 1.1}
+    100% {scale: 1}
 }
