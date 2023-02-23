@@ -160,41 +160,52 @@ function confirmPlayerChoice() {
 confirmOverlay.addEventListener('click', () => {
     confirmOverlay.remove()
     playConfirmTrue()
-    disableOptions()
+    showDisabledOptions()
+    playerOptions.forEach(option => {
+        option.removeEventListener('click', playGetConfirm);
+    })
+
 })
 
 playerOptionsDisabled.forEach(option => {
     option.addEventListener('mouseenter', () => {
         confirmPlayerChoice()
         resetChoiceDescriptionOpacity()
+        hideEnabledOptions()
         infoMessage.textContent = 'Good luck!'
     });
 })
 
-// Disable/enable player choice buttons
+// Hide/show enabled/disabled options
 
-function disableOptions () {
+function hideEnabledOptions() {
+    optionRock.setAttribute('class', 'disabled')
+    optionPaper.setAttribute('class', 'disabled')
+    optionScissors.setAttribute('class', 'disabled')
+}
+
+function showDisabledOptions() {
     playerOptions.forEach(option => {
         option.nextElementSibling.style.color = ('var(--grey-blue)')
     });
-    optionRock.remove()
-    optionPaper.remove()
-    optionScissors.remove()
     optionRockDisabled.setAttribute('class', 'rock-dark');
     optionPaperDisabled.setAttribute('class', 'paper-dark');
     optionScissorsDisabled.setAttribute('class', 'scissors-dark');
 }
 
-function enableOptions () {
+function hideDisabledOptions() {
+    optionRockDisabled.setAttribute('class', 'disabled');
+    optionPaperDisabled.setAttribute('class', 'disabled');
+    optionScissorsDisabled.setAttribute('class', 'disabled');
+}
+
+function showEnabledOptions() {
     playerOptions.forEach(option => {
         option.nextElementSibling.style.color = ('var(--white)')
     });
     optionRock.setAttribute('class', 'rock-light');
     optionPaper.setAttribute('class', 'paper-light');
     optionScissors.setAttribute('class', 'scissors-light');
-    optionRockDisabled.setAttribute('class', 'disabled');
-    optionPaperDisabled.setAttribute('class', 'disabled');
-    optionScissorsDisabled.setAttribute('class', 'disabled');
 }
 
 // - The player choice should appear in their box in the arena.
