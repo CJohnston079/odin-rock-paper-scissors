@@ -4,7 +4,8 @@ const pcChoiceIcon = document.getElementById('pc-choice');
 const playerChoiceHighlight = document.getElementById('player-choice').firstElementChild;
 const pcChoiceHighlight = document.getElementById('pc-choice').firstElementChild;
 
-const vsCountdown = document.getElementById('vs-countdown')
+const vsCountdown = document.getElementById('vs-countdown');
+const infoMessage = document.getElementById('player-box').firstElementChild;
 
 const optionRock = document.querySelector('#choice-rock');
 const optionPaper = document.querySelector('#choice-paper');
@@ -15,8 +16,6 @@ const optionRockDisabled = document.querySelector('#choice-rock-disabled');
 const optionPaperDisabled = document.querySelector('#choice-paper-disabled');
 const optionScissorsDisabled = document.querySelector('#choice-scissors-disabled');
 const playerOptionsDisabled = [optionRockDisabled, optionPaperDisabled, optionScissorsDisabled];
-
-const infoMessage = document.getElementById('player-box').firstElementChild;
 
 const confirmOverlay = document.createElement('p');
 
@@ -29,33 +28,36 @@ const roundStartSound = document.getElementById('round-start');
 let playerChoice = '';
 let pcChocie = '';
 
+let playerWins = 0;
+let pcWins = 0;
+let draws = 0;
+let roundsPlayed = 0;
+
 function test() {
     alert('test');
 }
 
-// Play sound functions
-
-function playBlip() {
+function playBlipSound() {
     blipSound.currentTime = 0;
     blipSound.play();
 }
 
-function playGetConfirm() {
+function playGetConfirmSound() {
     getConfirmSound.currentTime = 0;
     getConfirmSound.play();
 }
 
-function playConfirmTrue() {
+function playConfirmTrueSound() {
     confirmTrueSound.currentTime = 0;
     confirmTrueSound.play();
 }
 
-function playCountdown() {
+function playCountdownSound() {
     countdownSound.currentTime = 0;
     countdownSound.play();
 }
 
-function playRoundStart() {
+function playRoundStartSound() {
     roundStartSound.currentTime = 0;
     roundStartSound.play();
 }
@@ -102,7 +104,7 @@ function resetChoiceDescriptionOpacity() {
 
 playerOptions.forEach(option => {
     option.addEventListener('mouseenter', () => {
-        playBlip(),
+        playBlipSound(),
         highlightOption(option),
         showPreview(option)
         });
@@ -160,7 +162,7 @@ function displayConfirmOverlay(option) {
 }
 
 playerOptions.forEach(option => {
-    option.addEventListener('click', playGetConfirm)
+    option.addEventListener('click', playGetConfirmSound)
     option.addEventListener('click', () => {
         getConfirmMessage(option),
         getConfirmIcon(option),
@@ -169,7 +171,7 @@ playerOptions.forEach(option => {
     });
 })
 
-// Confirm player choice
+// Confirm player choice and activate arena
 
 function confirmplayerChoiceIcon() {
     if (playerChoiceIcon.getAttribute('class') === 'rock-yellow') {
@@ -181,24 +183,33 @@ function confirmplayerChoiceIcon() {
     }
 }
 
+function activateArena() {
+    playerChoiceHighlight.style.animation = 'highlight-white 2s';
+    pcChoiceIcon.style.backgroundImage = 'var(--unknown-choice-light)'
+    vsCountdown.style.color = 'white';
+}
+
+function roundStartInfoMessage() {
+    infoMessage.textContent = 'Good luck!'
+    infoMessage.style.animation = 'flicker 200ms steps(5, start) 1200ms 4'
+}
+
 confirmOverlay.addEventListener('mousedown', () => {
     confirmOverlay.remove()
     confirmplayerChoiceIcon()
-    playConfirmTrue()
-    showDisabledOptions()
+    playConfirmTrueSound()
     hideEnabledOptions()
+    showDisabledOptions()
     resetChoiceDescriptionOpacity()
+    activateArena()
+    roundStartInfoMessage()
     setTimeout(countdown3, 2000)
-    playerChoiceHighlight.style.animation = 'highlight-white 2s';
-    vsCountdown.style.color = 'white';
-    pcChoiceIcon.style.backgroundImage = 'var(--unknown-choice-light)'
-    infoMessage.textContent = 'Good luck!'
     setTimeout(() => {
         infoMessage.style.color = 'var(--grey-blue)';
         infoMessage.textContent = 'Round in progress...'
       }, 2000);
     playerOptions.forEach(option => {
-        option.removeEventListener('click', playGetConfirm);
+        option.removeEventListener('click', playGetConfirmSound);
     })
 
 })
@@ -218,27 +229,26 @@ function hideCounter(element) {
 
 function countdown3() {
     vsCountdown.textContent = '3'
-    vsCountdown.style.animation = 'highlight-white-text 1s'
-    playCountdown()
+    vsCountdown.style.animation = 'highlight-white-text 1s, grow-shrink 1s'
+    playCountdownSound()
     setTimeout(resetAnimation, 900, vsCountdown)
     setTimeout(countdown2, 1000)
 }
 
 function countdown2() {
     vsCountdown.textContent = '2'
-    vsCountdown.style.animation = 'highlight-white-text 1s'
-    playCountdown()
+    vsCountdown.style.animation = 'highlight-white-text 1s, grow-shrink 1s'
+    playCountdownSound()
     setTimeout(resetAnimation, 900, vsCountdown)
     setTimeout(countdown1, 1000)
 }
 
 function countdown1() {
     vsCountdown.textContent = '1'
-    vsCountdown.style.animation = 'highlight-white-text 1s'
-    playCountdown()
-    setTimeout(resetAnimation, 999, vsCountdown)
+    vsCountdown.style.animation = 'highlight-white-text 1s, grow-shrink 1s'
+    playCountdownSound()
     setTimeout(hideCounter, 1000, vsCountdown)
-    setTimeout(playRoundStart, 1000)
+    setTimeout(playRoundStartSound, 1000)
 }
 
 // Hide/show enabled/disabled options

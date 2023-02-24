@@ -266,3 +266,18 @@
     10% {scale: 1.1}
     100% {scale: 1}
 }
+
+@keyframes fade-out {
+    0% {opacity: 100}
+    50% {opacity: 75;}
+    100% {opacity: 0}
+}
+
+@keyframes flicker {
+    from {visibility: visible;}
+    to {visibility: hidden;}
+}
+
+/* .flicker-example {
+    animation: flicker 125ms steps(2, start) 4;
+} */
