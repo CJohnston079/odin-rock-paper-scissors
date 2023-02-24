@@ -94,10 +94,11 @@
 /* Id styling */
 
 #site-title {
-    padding: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     font-family: 'Press Start 2P', cursive;
     font-size: 3rem;
-    line-height: 1.5;
+    line-height: 1;
 }
 
 #arena {
