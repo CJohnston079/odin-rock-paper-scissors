@@ -33,9 +33,6 @@
     --rock-light: url(images/rock-light.svg);
     --paper-light: url(images/paper-light.svg);
     --scissors-light: url(images/scissors-light.svg);
-    --rock-light-flipped: url(images/rock-light-flipped.svg);
-    --paper-light-flipped: url(images/paper-light-flipped.svg);
-    --scissors-light-flipped: url(images/scissors-light-flipped.svg);
     --rock-dark: url(images/rock-dark.svg);
     --paper-dark: url(images/paper-dark.svg);
     --scissors-dark: url(images/scissors-dark.svg);
@@ -59,6 +56,8 @@
         url(./images/scissors-yellow.svg);
     --unknown-choice: url(images/unknown-choice.svg);
     --unknown-choice-light: url(images/unknown-choice-light.svg);
+    --unknown-choice-flipped: url(images/unknown-choice-flipped.svg);
+    --unknown-choice-light-flipped: url(images/unknown-choice-light-flipped.svg);
 }
 
 /* Background image classes */
@@ -89,6 +88,8 @@
 
 .unknown-choice {background-image: var(--unknown-choice);}
 .unknown-choice-light {background-image: var(--unknown-choice-light);}
+.unknown-choice-flipped {background-image: var(--unknown-choice-flipped);}
+.unknown-choice-light-flipped {background-image: var(--unknown-choice-light-flipped);}
 
 /* Id styling */
 
@@ -119,6 +120,7 @@
 }
 
 #pc-choice {
+    transform: scaleX(-1);
     transition: background-image 500ms;
 }
 

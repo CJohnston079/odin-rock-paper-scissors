@@ -185,7 +185,7 @@ function confirmplayerChoiceIcon() {
 
 function activateArena() {
     playerChoiceHighlight.style.animation = 'highlight-white 2s';
-    pcChoiceIcon.style.backgroundImage = 'var(--unknown-choice-light)'
+    pcChoiceIcon.style.backgroundImage = 'var(--unknown-choice-light-flipped)'
     vsCountdown.style.color = 'white';
 }
 
@@ -278,8 +278,6 @@ function displayPcChoice() {
         pcChoiceIcon.style.backgroundImage = 'var(--scissors-light)';
     }
 }
-
-
 
 // Hide/show enabled/disabled options
 
