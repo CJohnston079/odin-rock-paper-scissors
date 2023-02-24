@@ -33,6 +33,9 @@
     --rock-light: url(images/rock-light.svg);
     --paper-light: url(images/paper-light.svg);
     --scissors-light: url(images/scissors-light.svg);
+    --rock-light-flipped: url(images/rock-light-flipped.svg);
+    --paper-light-flipped: url(images/paper-light-flipped.svg);
+    --scissors-light-flipped: url(images/scissors-light-flipped.svg);
     --rock-dark: url(images/rock-dark.svg);
     --paper-dark: url(images/paper-dark.svg);
     --scissors-dark: url(images/scissors-dark.svg);

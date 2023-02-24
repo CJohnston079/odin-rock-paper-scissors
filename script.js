@@ -26,7 +26,7 @@ const countdownSound = document.getElementById('countdown');
 const roundStartSound = document.getElementById('round-start');
 
 let playerChoice = '';
-let pcChocie = '';
+let pcChoice = '';
 
 let playerWins = 0;
 let pcWins = 0;
@@ -197,6 +197,7 @@ function roundStartInfoMessage() {
 confirmOverlay.addEventListener('mousedown', () => {
     confirmOverlay.remove()
     confirmplayerChoiceIcon()
+    getPcChoice()
     playConfirmTrueSound()
     hideEnabledOptions()
     showDisabledOptions()
@@ -249,7 +250,36 @@ function countdown1() {
     playCountdownSound()
     setTimeout(hideCounter, 1000, vsCountdown)
     setTimeout(playRoundStartSound, 1000)
+    setTimeout(displayPcChoice, 1000)
 }
+
+// Get pc choice and reveal it to player
+
+function getPcChoice () {
+    function randomNumber() {
+        return Math.floor(Math.random() * 3)
+    }
+    if (randomNumber() === 1) {
+        pcChoice = 'ROCK';
+    } else if (randomNumber() === 2) {
+        pcChoice = 'PAPER';
+    } else {
+        pcChoice = 'SCISSORS';
+    }
+}
+
+function displayPcChoice() {
+    pcChoiceIcon.style.transition = 'background-image transform 1s';
+    if (pcChoice === 'ROCK') {
+        pcChoiceIcon.style.backgroundImage = 'var(--rock-light)';
+    } else if (pcChoice === 'PAPER') {
+        pcChoiceIcon.style.backgroundImage = 'var(--paper-light)';
+    } else if (pcChoice === 'SCISSORS') {
+        pcChoiceIcon.style.backgroundImage = 'var(--scissors-light)';
+    }
+}
+
+
 
 // Hide/show enabled/disabled options
 
