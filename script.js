@@ -24,6 +24,8 @@ const getConfirmSound = document.getElementById('audio-get-confirm');
 const confirmTrueSound = document.getElementById('confirm-true');
 const countdownSound = document.getElementById('countdown');
 const roundStartSound = document.getElementById('round-start');
+const roundWinSound = document.getElementById('round-win');
+const roundLossSound = document.getElementById('round-loss');
 
 let playerChoice = '';
 let pcChoice = '';
@@ -60,6 +62,16 @@ function playCountdownSound() {
 function playRoundStartSound() {
     roundStartSound.currentTime = 0;
     roundStartSound.play();
+}
+
+function playRoundWinSound() {
+    roundWinSound.currentTime = 0;
+    roundWinSound.play();
+}
+
+function playRoundLossSound() {
+    roundLossSound.currentTime = 0;
+    roundLossSound.play();
 }
 
 // For player options, highlight, play a sound and display an arena preview on hover
@@ -173,37 +185,40 @@ playerOptions.forEach(option => {
 
 // Confirm player choice and activate arena
 
-function confirmplayerChoiceIcon() {
+function confirmplayerChoice() {
     if (playerChoiceIcon.getAttribute('class') === 'rock-yellow') {
-        playerChoiceIcon.setAttribute('class', 'rock-light')
+        playerChoiceIcon.setAttribute('class', 'rock-light');
+        playerChoice = 'ROCK'
     } else if (playerChoiceIcon.getAttribute('class') === 'paper-yellow') {
         playerChoiceIcon.setAttribute('class', 'paper-light')
+        playerChoice = 'PAPER'
     } else if (playerChoiceIcon.getAttribute('class') === 'scissors-yellow') {
         playerChoiceIcon.setAttribute('class', 'scissors-light')
+        playerChoice = 'SCISSORS'
     }
 }
 
 function activateArena() {
     playerChoiceHighlight.style.animation = 'highlight-white 2s';
-    pcChoiceIcon.style.backgroundImage = 'var(--unknown-choice-light-flipped)'
+    pcChoiceIcon.setAttribute('class', 'unknown-choice-light-flipped');
     vsCountdown.style.color = 'white';
 }
 
 function roundStartInfoMessage() {
     infoMessage.textContent = 'Good luck!'
-    infoMessage.style.animation = 'flicker 200ms steps(5, start) 1200ms 4'
+    infoMessage.style.animation = 'flicker 150ms steps(3, start) 1100ms 6'
 }
 
 confirmOverlay.addEventListener('mousedown', () => {
     confirmOverlay.remove()
-    confirmplayerChoiceIcon()
+    confirmplayerChoice()
     getPcChoice()
     playConfirmTrueSound()
     hideEnabledOptions()
     showDisabledOptions()
     resetChoiceDescriptionOpacity()
-    activateArena()
     roundStartInfoMessage()
+    activateArena()
     setTimeout(countdown3, 2000)
     setTimeout(() => {
         infoMessage.style.color = 'var(--grey-blue)';
@@ -222,10 +237,11 @@ function resetAnimation(element) {
 }
 
 function hideCounter(element) {
-    element.style.transition = 'padding 1s ease-out';
+    element.style.transition = 'padding 1s ease-out, width 1s ease-out';
+    element.style.width = '4rem';
     element.style.padding = 0;
     element.style.opacity = 0;
-    element.textContent = ''
+    element.textContent = '';
 }
 
 function countdown3() {
@@ -251,6 +267,7 @@ function countdown1() {
     setTimeout(hideCounter, 1000, vsCountdown)
     setTimeout(playRoundStartSound, 1000)
     setTimeout(displayPcChoice, 1000)
+    setTimeout(determineWinner, 2500)
 }
 
 // Get pc choice and reveal it to player
@@ -271,12 +288,105 @@ function getPcChoice () {
 function displayPcChoice() {
     pcChoiceIcon.style.transition = 'background-image transform 1s';
     if (pcChoice === 'ROCK') {
-        pcChoiceIcon.style.backgroundImage = 'var(--rock-light)';
+        pcChoiceIcon.setAttribute('class', 'rock-light');
     } else if (pcChoice === 'PAPER') {
-        pcChoiceIcon.style.backgroundImage = 'var(--paper-light)';
+        pcChoiceIcon.setAttribute('class', 'paper-light');
     } else if (pcChoice === 'SCISSORS') {
-        pcChoiceIcon.style.backgroundImage = 'var(--scissors-light)';
+        pcChoiceIcon.setAttribute('class', 'scissors-light');
     }
+}
+
+// Determine winner
+
+function determineWinner() {
+    if (playerChoice === pcChoice) {
+        alert('draw')
+        return
+    }
+    if (playerChoice === 'ROCK') {
+        if (pcChoice === 'SCISSORS') {
+            winningIcon(playerChoiceIcon)
+            losingIcon(pcChoiceIcon)
+            playRoundWinSound()
+        } else {
+            winningIcon(pcChoiceIcon)
+            losingIcon(playerChoiceIcon)
+            playRoundLossSound()
+        }
+    }
+    if (playerChoice === 'PAPER') {
+        if (pcChoice === 'ROCK') {
+            winningIcon(playerChoiceIcon)
+            losingIcon(pcChoiceIcon)
+            playRoundWinSound()
+        } else {
+            winningIcon(pcChoiceIcon)
+            losingIcon(playerChoiceIcon)
+            playRoundLossSound()
+        }
+    }
+    if (playerChoice === 'SCISSORS') {
+        if (pcChoice === 'PAPER') {
+            winningIcon(playerChoiceIcon)
+            losingIcon(pcChoiceIcon)
+            playRoundWinSound()
+        } else {
+            winningIcon(pcChoiceIcon)
+            losingIcon(playerChoiceIcon)
+            playRoundLossSound()
+        }
+    }
+}
+
+function losingIcon(icon) {
+    if (icon.getAttribute('class') === 'rock-light') {
+        icon.setAttribute('class', 'rock-dark');
+    } else if (icon.getAttribute('class') === 'paper-light' === true) {
+        icon.setAttribute('class', 'paper-dark');
+    } else if (icon.getAttribute('class') === 'scissors-light' === true) {
+        icon.setAttribute('class', 'scissors-dark');
+    }
+    icon.style.transition = 'background-image 200ms'
+    icon.style.animation = 'flicker 200ms steps(4, start) 400ms 3'
+    setTimeout(() => {
+        icon.style.width = '0'
+        icon.style.visibility = 'hidden'
+        icon.style.transition = 'width 1s'
+    }, 1000)
+}
+
+function winningIcon(icon) {
+    if (icon.getAttribute('class') === 'rock-light' && icon.getAttribute('id') === 'player-choice') {
+        icon.setAttribute('class', 'rock-green');
+    } else if (icon.getAttribute('class') === 'paper-light' && icon.getAttribute('id') === 'player-choice') {
+        icon.setAttribute('class', 'paper-green');
+    } else if (icon.getAttribute('class') === 'scissors-light' && icon.getAttribute('id') === 'player-choice') {
+        icon.setAttribute('class', 'scissors-green');
+    } else if (icon.getAttribute('class') === 'rock-light' && icon.getAttribute('id') === 'pc-choice') {
+        icon.setAttribute('class', 'rock-red');
+    } else if (icon.getAttribute('class') === 'paper-light' && icon.getAttribute('id') === 'pc-choice') {
+        icon.setAttribute('class', 'paper-red');
+    } else if (icon.getAttribute('class') === 'scissors-light' && icon.getAttribute('id') === 'pc-choice') {
+        icon.setAttribute('class', 'scissors-red');
+    }
+    if (icon.getAttribute('id') === 'player-choice') {
+        playerChoiceHighlight.style.animation = 'highlight-green 2s';
+        setTimeout(() => {
+            icon.style.transform = 'scale(1.2) translateY(-0.4rem)'
+            icon.style.transition = 'transform 1s'
+            playerChoiceHighlight.style.animation = 'highlight-green 4s linear infinite';
+        }, 1000)
+    } else if (icon.getAttribute('id') === 'pc-choice') {
+        pcChoiceHighlight.style.animation = 'highlight-red 2s';
+        setTimeout(() => {
+            icon.style.transform = 'scaleX(-1.2) scaleY(1.2) translateY(-0.4rem)'
+            icon.style.transition = 'transform 1s'
+            pcChoiceHighlight.style.animation = 'highlight-red 4s linear infinite';
+        }, 1000)
+    }
+    icon.style.transition = 'background-image 200ms'
+    icon.style.animation = 'grow-shrink 1s'
+    setTimeout(() => {vsCountdown.style.width = '0rem';}, 1000)
 }
 
 // Hide/show enabled/disabled options
