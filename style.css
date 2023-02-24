@@ -48,10 +48,10 @@
     --rock-yellow-overlay:
         linear-gradient(hsla(0, 0%, 0%, 0.5),hsla(0, 0%, 0%, 0.5)),
         url(./images/rock-yellow.svg);
-    --scissors-yellow-overlay:
+    --paper-yellow-overlay:
         linear-gradient(hsla(0, 0%, 0%, 0.5),hsla(0, 0%, 0%, 0.5)),
         url(./images/paper-yellow.svg);
-    --paper-yellow-overlay:
+    --scissors-yellow-overlay:
         linear-gradient(hsla(0, 0%, 0%, 0.5),hsla(0, 0%, 0%, 0.5)),
         url(./images/scissors-yellow.svg);
     --unknown-choice: url(images/unknown-choice.svg);
