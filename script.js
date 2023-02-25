@@ -26,6 +26,7 @@ const countdownSound = document.getElementById('countdown');
 const roundStartSound = document.getElementById('round-start');
 const roundWinSound = document.getElementById('round-win');
 const roundLossSound = document.getElementById('round-loss');
+const roundDrawSound = document.getElementById('round-draw');
 
 let playerChoice = '';
 let pcChoice = '';
@@ -72,6 +73,11 @@ function playRoundWinSound() {
 function playRoundLossSound() {
     roundLossSound.currentTime = 0;
     roundLossSound.play();
+}
+
+function playRoundDrawSound() {
+    roundDrawSound.currentTime = 0;
+    roundDrawSound.play();
 }
 
 // For player options, highlight, play a sound and display an arena preview on hover
@@ -300,7 +306,8 @@ function displayPcChoice() {
 
 function determineWinner() {
     if (playerChoice === pcChoice) {
-        alert('draw')
+        drawIcon(playerChoiceIcon)
+        playRoundDrawSound()
         return
     }
     if (playerChoice === 'ROCK') {
@@ -389,11 +396,17 @@ function winningIcon(icon) {
     setTimeout(() => {vsCountdown.style.width = '0rem';}, 1000)
 }
 
-function drawIcon() {
-    if (playerChoice.getAttribute('class') === 'rock-light') {
+function drawIcon(icon) {
+    if (icon.getAttribute('class') === 'rock-light') {
         playerChoiceIcon.style.animation = 'draw-rock 1s, player-wobble 400ms linear 200ms 1 normal';
         pcChoiceIcon.style.animation = 'draw-rock 1s, pc-wobble 400ms linear 200ms 1 reverse';
-}
+    } else if (icon.getAttribute('class') === 'paper-light') {
+        playerChoiceIcon.style.animation = 'draw-paper 1s, player-wobble 400ms linear 200ms 1 normal';
+        pcChoiceIcon.style.animation = 'draw-paper 1s, pc-wobble 400ms linear 200ms 1 reverse';
+    } else if (icon.getAttribute('class') === 'scissors-light') {
+        playerChoiceIcon.style.animation = 'draw-scissors 1s, player-wobble 400ms linear 200ms 1 normal';
+        pcChoiceIcon.style.animation = 'draw-scissors 1s, pc-wobble 400ms linear 200ms 1 reverse';
+    }
 }
 
 // Hide/show enabled/disabled options

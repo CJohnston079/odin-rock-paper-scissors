@@ -294,8 +294,20 @@
 
 @keyframes draw-rock {
     0% {}
-    20% {background-image: var(--rock-yellow);}
+    20% {background-image: var(--rock-dark);}
     100% {background-image: var(--rock-light);}
+}
+
+@keyframes draw-paper {
+    0% {}
+    20% {background-image: var(--paper-dark);}
+    100% {background-image: var(--paper-light);}
+}
+
+@keyframes draw-scissors {
+    0% {}
+    20% {background-image: var(--scissors-dark);}
+    100% {background-image: var(--scissors-light);}
 }
 
 @keyframes player-wobble {
