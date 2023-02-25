@@ -141,7 +141,7 @@
 
 #player-box {
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 1.2rem 2rem 2rem;
     display: inline-block;
     background-image: linear-gradient(to top, black, #272727);
     border: solid 4px white;
@@ -149,6 +149,10 @@
     border: solid 4px white;
     border-radius: 4px;
     clip-path: var(--pixel-border);
+}
+
+#player-box h2:first-of-type {
+    padding-bottom: 1rem;
 }
 
 #tool-choices {
@@ -287,3 +291,27 @@
 /* .flicker-example {
     animation: flicker 125ms steps(2, start) 4;
 } */
+
+@keyframes draw-rock {
+    0% {}
+    20% {background-image: var(--rock-yellow);}
+    100% {background-image: var(--rock-light);}
+}
+
+@keyframes player-wobble {
+    0% {}
+    20% {transform: translateX(2px);}
+    40% {transform: translateX(-2px);}
+    60% {transform: translateX(2px);}
+    80% {transform: translateX(-2px);}
+    100% {transform: translateX(0);}
+}
+
+@keyframes pc-wobble {
+    0% {}
+    20% {transform: translateX(2px) scaleX(-1);}
+    40% {transform: translateX(-2px) scaleX(-1);}
+    60% {transform: translateX(2px) scaleX(-1);}
+    80% {transform: translateX(-2px) scaleX(-1);}
+    100% {transform: translateX(0) scaleX(-1);}
+}

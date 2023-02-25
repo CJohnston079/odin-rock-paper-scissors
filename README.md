@@ -32,8 +32,8 @@ My first JavaScript project from scratch. This began as a game to play in the br
 - Upon revealing the PC choice, the program should wait for one second before declaring a winner.
 
 ### Declaring a winner
-- The winning tool should change colour, grow and move to the centre of the arena. The losing tool should disappear.
-- If the player wins, the tool should change colour to green, if the PC wins, red.
+- ✔️ The winning tool should change colour, grow and move to the centre of the arena. The losing tool should disappear.
+- ✔️ If the player wins, the tool should change colour to green, if the PC wins, red.
 - The player should be promtped to start the next round.
 
 ### Keeping score

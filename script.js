@@ -389,6 +389,13 @@ function winningIcon(icon) {
     setTimeout(() => {vsCountdown.style.width = '0rem';}, 1000)
 }
 
+function drawIcon() {
+    if (playerChoice.getAttribute('class') === 'rock-light') {
+        playerChoiceIcon.style.animation = 'draw-rock 1s, player-wobble 400ms linear 200ms 1 normal';
+        pcChoiceIcon.style.animation = 'draw-rock 1s, pc-wobble 400ms linear 200ms 1 reverse';
+}
+}
+
 // Hide/show enabled/disabled options
 
 function hideEnabledOptions() {
