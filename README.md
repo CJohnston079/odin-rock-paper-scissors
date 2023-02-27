@@ -29,7 +29,7 @@ My first JavaScript project from scratch. This began as a game to play in the br
 ### Facing off
 - ✔️ The player choice should appear in their box in the arena.
 - ✔️ Countdown of ...3 ...2 ...1 should appear before the PC choice is revealed.
-- Upon revealing the PC choice, the program should wait for one second before declaring a winner.
+- ✔️ Upon revealing the PC choice, the program should wait for one second before declaring a winner.
 
 ### Declaring a winner
 - ✔️ The winning tool should change colour, grow and move to the centre of the arena. The losing tool should disappear.
@@ -37,8 +37,8 @@ My first JavaScript project from scratch. This began as a game to play in the br
 - The player should be promtped to start the next round.
 
 ### Keeping score
-- The score should keep track of player wins, PC wins, draws and the number of rounds played.
-- The score should update at the end of each round.
+- ✔️ The score should keep track of player wins, PC wins, draws and the number of rounds played.
+- ✔️ The score should update at the end of each round.
 
 ### Ending the game
 - Once either side has met the win condition of 5 wins (or the player-specified win condition), a pop-up declaring the overall winner should display.

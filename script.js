@@ -321,6 +321,8 @@ function determineWinner() {
     if (playerChoice === pcChoice) {
         drawIcon(playerChoiceIcon)
         playRoundDrawSound()
+        setTimeout(addDraw, 1000)
+        declareDraw()
         return
     }
     if (playerChoice === 'ROCK') {
@@ -328,10 +330,14 @@ function determineWinner() {
             winningIcon(playerChoiceIcon)
             losingIcon(pcChoiceIcon)
             playRoundWinSound()
+            setTimeout(addPlayerWin, 1000)
+            declarePlayerWin()
         } else {
             winningIcon(pcChoiceIcon)
             losingIcon(playerChoiceIcon)
             playRoundLossSound()
+            setTimeout(addPcWin, 1000)
+            declarePcWin()
         }
     }
     if (playerChoice === 'PAPER') {
@@ -339,10 +345,14 @@ function determineWinner() {
             winningIcon(playerChoiceIcon)
             losingIcon(pcChoiceIcon)
             playRoundWinSound()
+            setTimeout(addPlayerWin, 1000)
+            declarePlayerWin()
         } else {
             winningIcon(pcChoiceIcon)
             losingIcon(playerChoiceIcon)
             playRoundLossSound()
+            setTimeout(addPcWin, 1000)
+            declarePcWin()
         }
     }
     if (playerChoice === 'SCISSORS') {
@@ -350,10 +360,14 @@ function determineWinner() {
             winningIcon(playerChoiceIcon)
             losingIcon(pcChoiceIcon)
             playRoundWinSound()
+            setTimeout(addPlayerWin, 1000)
+            declarePlayerWin()
         } else {
             winningIcon(pcChoiceIcon)
             losingIcon(playerChoiceIcon)
             playRoundLossSound()
+            setTimeout(addPcWin, 1000)
+            declarePcWin()
         }
     }
 }
@@ -411,6 +425,24 @@ function winningIcon(icon) {
     setTimeout(() => {vsCountdown.style.width = '0rem';}, 1000)
 }
 
+function declarePlayerWin() {
+    infoMessage.style.color = 'white';
+    infoMessage.style.animation = 'player-score-increase 1s, flicker 200ms steps(4, start) 0s 2';
+    infoMessage.textContent = 'Player wins the round!';
+}
+
+function declarePcWin() {
+    infoMessage.style.color = 'white';
+    infoMessage.style.animation = 'pc-score-increase 1s, flicker 200ms steps(4, start) 0s 2';
+    infoMessage.textContent = 'Opponent wins the round!';
+}
+
+function declareDraw() {
+    infoMessage.style.color = 'white';
+    infoMessage.style.animation = 'neutral-score-increase 1s';
+    infoMessage.textContent = 'The round is a draw...';
+}
+
 function drawIcon(icon) {
     if (icon.getAttribute('class') === 'rock-light') {
         playerChoiceIcon.style.animation = 'draw-rock 1s, player-wobble 400ms linear 200ms 1 normal';
@@ -422,6 +454,35 @@ function drawIcon(icon) {
         playerChoiceIcon.style.animation = 'draw-scissors 1s, player-wobble 400ms linear 200ms 1 normal';
         pcChoiceIcon.style.animation = 'draw-scissors 1s, pc-wobble 400ms linear 200ms 1 reverse';
     }
+}
+
+// Display players wins, opponent wins, draws and rounds played
+
+function addPlayerWin() {
+    playerWins ++
+    roundsPlayed ++
+    counterRoundsPlayed.textContent = roundsPlayed;
+    counterPlayerWins.textContent = playerWins;
+    counterPlayerWins.style.animation = 'player-score-increase 1s';
+    setTimeout(resetAnimation, 2000, counterPlayerWins)
+}
+
+function addPcWin() {
+    pcWins ++
+    roundsPlayed ++
+    counterRoundsPlayed.textContent = roundsPlayed;
+    counterPcWins.textContent = pcWins;
+    counterPcWins.style.animation = 'pc-score-increase 1s';
+    setTimeout(resetAnimation, 2000, counterPcWins)
+}
+
+function addDraw() {
+    draws ++
+    roundsPlayed ++
+    counterRoundsPlayed.textContent = roundsPlayed;
+    counterDraws.textContent = draws;
+    counterDraws.style.animation = 'neutral-score-increase 1s';
+    setTimeout(resetAnimation, 2000, counterDraws)
 }
 
 // Hide/show enabled/disabled options

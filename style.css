@@ -148,7 +148,7 @@
 
 #player-box {
     margin: 2rem auto;
-    padding: 1.2rem 2rem 2rem;
+    padding: 1.2rem 2rem 0.8rem;
     display: inline-block;
     background-image: linear-gradient(to top, black, #272727);
     border: solid 4px white;
@@ -186,6 +186,8 @@
 #score-neutral,
 #score-rounds {
     font-weight: 700;
+    display: inline-block;
+    min-width: 1rem;
 }
 
 /* Class styling */
@@ -328,16 +330,19 @@
 
 @keyframes player-score-increase {
     0% {color: var(--green)}
+    50% {color: var(--green)}
     100% {color: white;}
 }
 
 @keyframes pc-score-increase {
     0% {color: var(--red)}
+    50% {color: var(--red)}
     100% {color: white;}
 }
 
 @keyframes neutral-score-increase {
-    0% {color: var(--light-blue)}
+    0% {color: var(--grey-blue)}
+    50% {color: var(--light-blue)}
     100% {color: white;}
 }
 
