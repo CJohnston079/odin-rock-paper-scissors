@@ -129,7 +129,6 @@
 
 #pc-choice {
     transform: scaleX(-1);
-    transition: background-image 500ms;
 }
 
 #vs-countdown {
@@ -169,11 +168,6 @@
     gap: 0rem 4rem;
 }
 
-.highlight {
-    height: 11rem;
-    width: 11rem;
-}
-
 #scoreboard {
     display: flex;
     justify-content: center;
@@ -191,6 +185,11 @@
 }
 
 /* Class styling */
+
+.highlight {
+    height: 11rem;
+    width: 11rem;
+}
 
 .tool-choice {
     line-height: 1;

@@ -217,6 +217,7 @@ function confirmplayerChoice() {
 
 function activateArena() {
     playerChoiceHighlight.style.animation = 'highlight-white 2s';
+    pcChoiceIcon.style.transition = 'background-image 500ms';
     pcChoiceIcon.setAttribute('class', 'unknown-choice-light-flipped');
     vsCountdown.style.color = 'white';
 }
@@ -242,17 +243,10 @@ confirmOverlay.addEventListener('mousedown', () => {
         infoMessage.style.animation = '';
         infoMessage.textContent = 'Round in progress...'
       }, 2000);
-    playerOptions.forEach(option => {
-        option.removeEventListener('click', playGetConfirmSound);
-    })
 
 })
 
 // Countdown to round 3... 2... 1...
-
-function resetAnimation(element) {
-    element.style.animation = '';
-}
 
 function hideCounter(element) {
     element.style.transition = 'padding 1s ease-out, width 1s ease-out';
@@ -305,7 +299,7 @@ function getPcChoice () {
 }
 
 function displayPcChoice() {
-    pcChoiceIcon.style.transition = 'background-image transform 1s';
+    pcChoiceIcon.style.transition = 'background-image 500ms, transform 1s';
     if (pcChoice === 'ROCK') {
         pcChoiceIcon.setAttribute('class', 'rock-light');
     } else if (pcChoice === 'PAPER') {
@@ -425,6 +419,19 @@ function winningIcon(icon) {
     setTimeout(() => {vsCountdown.style.width = '0rem';}, 1000)
 }
 
+function drawIcon(icon) {
+    if (icon.getAttribute('class') === 'rock-light') {
+        playerChoiceIcon.style.animation = 'draw-rock 1s, player-wobble 400ms linear 200ms 1 normal';
+        pcChoiceIcon.style.animation = 'draw-rock 1s, pc-wobble 400ms linear 200ms 1 reverse';
+    } else if (icon.getAttribute('class') === 'paper-light') {
+        playerChoiceIcon.style.animation = 'draw-paper 1s, player-wobble 400ms linear 200ms 1 normal';
+        pcChoiceIcon.style.animation = 'draw-paper 1s, pc-wobble 400ms linear 200ms 1 reverse';
+    } else if (icon.getAttribute('class') === 'scissors-light') {
+        playerChoiceIcon.style.animation = 'draw-scissors 1s, player-wobble 400ms linear 200ms 1 normal';
+        pcChoiceIcon.style.animation = 'draw-scissors 1s, pc-wobble 400ms linear 200ms 1 reverse';
+    }
+}
+
 function declarePlayerWin() {
     infoMessage.style.color = 'white';
     infoMessage.style.animation = 'player-score-increase 1s, flicker 200ms steps(4, start) 0s 2';
@@ -441,19 +448,6 @@ function declareDraw() {
     infoMessage.style.color = 'white';
     infoMessage.style.animation = 'neutral-score-increase 1s';
     infoMessage.textContent = 'The round is a draw...';
-}
-
-function drawIcon(icon) {
-    if (icon.getAttribute('class') === 'rock-light') {
-        playerChoiceIcon.style.animation = 'draw-rock 1s, player-wobble 400ms linear 200ms 1 normal';
-        pcChoiceIcon.style.animation = 'draw-rock 1s, pc-wobble 400ms linear 200ms 1 reverse';
-    } else if (icon.getAttribute('class') === 'paper-light') {
-        playerChoiceIcon.style.animation = 'draw-paper 1s, player-wobble 400ms linear 200ms 1 normal';
-        pcChoiceIcon.style.animation = 'draw-paper 1s, pc-wobble 400ms linear 200ms 1 reverse';
-    } else if (icon.getAttribute('class') === 'scissors-light') {
-        playerChoiceIcon.style.animation = 'draw-scissors 1s, player-wobble 400ms linear 200ms 1 normal';
-        pcChoiceIcon.style.animation = 'draw-scissors 1s, pc-wobble 400ms linear 200ms 1 reverse';
-    }
 }
 
 // Display players wins, opponent wins, draws and rounds played
@@ -517,9 +511,37 @@ function showEnabledOptions() {
     optionScissors.setAttribute('class', 'scissors-light');
 }
 
-function enableOptions() {
+// Reset functons
+
+function resetOptions() {
     hideDisabledOptions();
     showEnabledOptions();
+}
+
+function resetAnimation(element) {
+    element.style.animation = '';
+}
+
+function resetInlineStyles(element) {
+    element.style = '';
+}
+
+function resetArena() {
+    resetInlineStyles(playerChoiceIcon)
+    resetInlineStyles(pcChoiceIcon)
+    resetInlineStyles(vsCountdown)
+    resetAnimation(playerChoiceIcon)
+    resetAnimation(pcChoiceIcon)
+    resetAnimation(playerChoiceHighlight)
+    resetAnimation(pcChoiceHighlight)
+    playerChoiceIcon.setAttribute('class', 'unknown-choice');
+    pcChoiceIcon.setAttribute('class', 'unknown-choice-flipped');
+    vsCountdown.textContent = 'vs'
+}
+
+function nextRound() {
+    resetOptions()
+    resetArena()
 }
 
 /*
