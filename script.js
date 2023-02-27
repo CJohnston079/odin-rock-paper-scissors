@@ -32,10 +32,20 @@ const roundDrawSound = document.getElementById('round-draw');
 let playerChoice = '';
 let pcChoice = '';
 
+let counterPlayerWins = document.getElementById('score-player');
+let counterPcWins = document.getElementById('score-pc');
+let counterDraws = document.getElementById('score-neutral');
+let counterRoundsPlayed = document.getElementById('score-rounds');
+
 let playerWins = 0;
 let pcWins = 0;
 let draws = 0;
 let roundsPlayed = 0;
+
+counterPlayerWins.textContent = playerWins;
+counterPcWins.textContent = pcWins;
+counterDraws.textContent = draws;
+counterRoundsPlayed.textContent = roundsPlayed
 
 function test() {
     alert('test');
@@ -229,6 +239,7 @@ confirmOverlay.addEventListener('mousedown', () => {
     setTimeout(countdown3, 2000)
     setTimeout(() => {
         infoMessage.style.color = 'var(--grey-blue)';
+        infoMessage.style.animation = '';
         infoMessage.textContent = 'Round in progress...'
       }, 2000);
     playerOptions.forEach(option => {
@@ -271,6 +282,7 @@ function countdown1() {
     vsCountdown.textContent = '1'
     vsCountdown.style.animation = 'highlight-white-text 1s, grow-shrink 1s'
     playCountdownSound()
+    setTimeout(resetAnimation, 900, vsCountdown)
     setTimeout(hideCounter, 1000, vsCountdown)
     setTimeout(playRoundStartSound, 1000)
     setTimeout(displayPcChoice, 1000)
@@ -379,15 +391,15 @@ function winningIcon(icon) {
     }
     if (icon.getAttribute('id') === 'player-choice') {
         playerChoiceHighlight.style.animation = 'highlight-green 2s';
-        browserWindow.style.animation = 'highlight-green-window 6s'
+        // browserWindow.style.animation = 'highlight-green-window 6s'
         setTimeout(() => {
             icon.style.transform = 'scale(1.2) translateY(-0.4rem)'
             icon.style.transition = 'transform 1s'
             playerChoiceHighlight.style.animation = 'highlight-green 4s linear infinite';
         }, 1000)
     } else if (icon.getAttribute('id') === 'pc-choice') {
-        pcChoiceHighlight.style.animation = 'highlight-red 4s';
-        browserWindow.style.animation = 'highlight-red-window 6s'
+        pcChoiceHighlight.style.animation = 'highlight-red 2s linear infinite';
+        // browserWindow.style.animation = 'highlight-red-window 6s'
         setTimeout(() => {
             icon.style.transform = 'scaleX(-1.2) scaleY(1.2) translateY(-0.4rem)'
             icon.style.transition = 'transform 1s'

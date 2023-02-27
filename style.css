@@ -93,11 +93,12 @@
 
 /* Id styling */
 
-#window {
+/* #window {
     position: fixed;
     inset: 0;
     margin: 0;
-}
+    z-index: -1;
+} */
 
 #site-title {
     padding-top: 2rem;
@@ -178,6 +179,13 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 0rem 2rem;
+}
+
+#score-player,
+#score-pc,
+#score-neutral,
+#score-rounds {
+    font-weight: 700;
 }
 
 /* Class styling */
@@ -277,13 +285,16 @@
     100% {box-shadow: 0px 0px 0px var(--red);}
 }
 
-@keyframes highlight-green-window {
+/* @keyframes highlight-green-window {
     0% {box-shadow: inset 0 0 0px 0px var(--green)}
     20% {
         box-shadow: inset 0 0 100px 0px var(--green);
         z-index: 1;
     }
-    100% {box-shadow: inset 0 0 0px 0px var(--green)}
+    100% {
+        box-shadow: inset 0 0 0px 0px var(--green);
+        z-index: -1;
+    }
 }
 
 @keyframes highlight-red-window {
@@ -292,8 +303,11 @@
         box-shadow: inset 0 0 100px 0px var(--red);
         z-index: 1;
 }
-    100% {box-shadow: inset 0 0 0px 0px var(--red)}
-}
+    100% {
+        box-shadow: inset 0 0 0px 0px var(--red);
+        z-index: -1;
+    }
+} */
 
 @keyframes grow-shrink {
     0% {scale: 1}
@@ -304,12 +318,27 @@
 @keyframes fade-out {
     0% {opacity: 100}
     50% {opacity: 75;}
-    100% {opacity: 0}
+    100% {opacity: 0;}
 }
 
 @keyframes flicker {
     from {visibility: visible;}
     to {visibility: hidden;}
+}
+
+@keyframes player-score-increase {
+    0% {color: var(--green)}
+    100% {color: white;}
+}
+
+@keyframes pc-score-increase {
+    0% {color: var(--red)}
+    100% {color: white;}
+}
+
+@keyframes neutral-score-increase {
+    0% {color: var(--light-blue)}
+    100% {color: white;}
 }
 
 /* .flicker-example {
