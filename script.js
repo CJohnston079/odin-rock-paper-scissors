@@ -17,6 +17,7 @@ const optionPaperDisabled = document.querySelector('#choice-paper-disabled');
 const optionScissorsDisabled = document.querySelector('#choice-scissors-disabled');
 const playerOptionsDisabled = [optionRockDisabled, optionPaperDisabled, optionScissorsDisabled];
 
+const browserWindow = document.getElementById('window');
 const confirmOverlay = document.createElement('p');
 
 const blipSound = document.getElementById('audio-blip');
@@ -378,13 +379,15 @@ function winningIcon(icon) {
     }
     if (icon.getAttribute('id') === 'player-choice') {
         playerChoiceHighlight.style.animation = 'highlight-green 2s';
+        browserWindow.style.animation = 'highlight-green-window 6s'
         setTimeout(() => {
             icon.style.transform = 'scale(1.2) translateY(-0.4rem)'
             icon.style.transition = 'transform 1s'
             playerChoiceHighlight.style.animation = 'highlight-green 4s linear infinite';
         }, 1000)
     } else if (icon.getAttribute('id') === 'pc-choice') {
-        pcChoiceHighlight.style.animation = 'highlight-red 2s';
+        pcChoiceHighlight.style.animation = 'highlight-red 4s';
+        browserWindow.style.animation = 'highlight-red-window 6s'
         setTimeout(() => {
             icon.style.transform = 'scaleX(-1.2) scaleY(1.2) translateY(-0.4rem)'
             icon.style.transition = 'transform 1s'
