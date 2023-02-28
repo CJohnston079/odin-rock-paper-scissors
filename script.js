@@ -19,6 +19,7 @@ const playerOptionsDisabled = [optionRockDisabled, optionPaperDisabled, optionSc
 
 const browserWindow = document.getElementById('window');
 const confirmOverlay = document.createElement('p');
+const nextRoundOption = document.getElementById('next-round')
 
 const blipSound = document.getElementById('audio-blip');
 const getConfirmSound = document.getElementById('audio-get-confirm');
@@ -28,6 +29,7 @@ const roundStartSound = document.getElementById('round-start');
 const roundWinSound = document.getElementById('round-win');
 const roundLossSound = document.getElementById('round-loss');
 const roundDrawSound = document.getElementById('round-draw');
+const nextRoundSound = document.getElementById('next-round-sound');
 
 let playerChoice = '';
 let pcChoice = '';
@@ -89,6 +91,11 @@ function playRoundLossSound() {
 function playRoundDrawSound() {
     roundDrawSound.currentTime = 0;
     roundDrawSound.play();
+}
+
+function playNextRoundSound() {
+    nextRoundSound.currentTime = 0;
+    nextRoundSound.play();
 }
 
 // For player options, highlight, play a sound and display an arena preview on hover
@@ -317,6 +324,7 @@ function determineWinner() {
         playRoundDrawSound()
         setTimeout(addDraw, 1000)
         declareDraw()
+        setTimeout(showNextRoundOption, 1000)
         return
     }
     if (playerChoice === 'ROCK') {
@@ -364,6 +372,7 @@ function determineWinner() {
             declarePcWin()
         }
     }
+    setTimeout(showNextRoundOption, 2000)
 }
 
 function losingIcon(icon) {
@@ -434,19 +443,21 @@ function drawIcon(icon) {
 
 function declarePlayerWin() {
     infoMessage.style.color = 'white';
-    infoMessage.style.animation = 'player-score-increase 1s, flicker 200ms steps(4, start) 0s 2';
+    infoMessage.style.animation = 'player-score-increase 2s';
+    // , flicker 200ms steps(4, start) 0s 2';
     infoMessage.textContent = 'Player wins the round!';
 }
 
 function declarePcWin() {
     infoMessage.style.color = 'white';
-    infoMessage.style.animation = 'pc-score-increase 1s, flicker 200ms steps(4, start) 0s 2';
+    infoMessage.style.animation = 'pc-score-increase 2s';
+    // , flicker 200ms steps(4, start) 0s 2';
     infoMessage.textContent = 'Opponent wins the round!';
 }
 
 function declareDraw() {
     infoMessage.style.color = 'white';
-    infoMessage.style.animation = 'neutral-score-increase 1s';
+    infoMessage.style.animation = 'neutral-score-increase 2s';
     infoMessage.textContent = 'The round is a draw...';
 }
 
@@ -477,6 +488,31 @@ function addDraw() {
     counterDraws.textContent = draws;
     counterDraws.style.animation = 'neutral-score-increase 1s';
     setTimeout(resetAnimation, 2000, counterDraws)
+}
+
+// Show options to progress to the next round once results has been declared
+
+nextRoundOption.addEventListener('mousedown', nextRound)
+
+function showNextRoundOption() {
+    document.querySelectorAll('.tool-choice')[0].style.opacity = 0.5;
+    document.querySelectorAll('.tool-choice')[1].style.opacity = 0.5;
+    document.querySelectorAll('.tool-choice')[2].style.opacity = 0.5;
+    nextRoundOption.removeAttribute('class')
+    nextRoundOption.textContent = 'Begin next round';
+    nextRoundOption.style.animation = 'fade-in 2s, grow-shrink-gentle 2s linear 0s infinite';
+}
+
+function hideNextRoundOption() {
+    document.querySelectorAll('.tool-choice')[0].style.opacity = ''
+    document.querySelectorAll('.tool-choice')[1].style.opacity = ''
+    document.querySelectorAll('.tool-choice')[2].style.opacity = ''
+    nextRoundOption.style.animation = 'zoom-out 500ms';
+    setTimeout(() => {
+        nextRoundOption.setAttribute('class', 'disabled');
+        nextRoundOption.textContent = '';
+        nextRoundOption.style.animation = '';
+    }, 500)
 }
 
 // Hide/show enabled/disabled options
@@ -551,6 +587,8 @@ function resetScoreboard() {
 function nextRound() {
     resetOptions()
     resetArena()
+    hideNextRoundOption()
+    playNextRoundSound()
 }
 
 function resetGame() {

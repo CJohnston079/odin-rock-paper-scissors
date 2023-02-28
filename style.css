@@ -91,6 +91,12 @@
 .unknown-choice-flipped {background-image: var(--unknown-choice-flipped);}
 .unknown-choice-light-flipped {background-image: var(--unknown-choice-light-flipped);}
 
+.disabled {
+    display: none;
+    height: 0rem !important;
+    margin: 0rem !important;
+}
+
 /* Id styling */
 
 /* #window {
@@ -164,6 +170,7 @@
 
 #next-round {
     position: absolute;
+    z-index: 1;
     height: 8rem;
     width: 30rem;
     display: flex;
@@ -172,16 +179,7 @@
     font-size: 2rem;
     text-shadow: 0px 0px 10px black;
     cursor: pointer;
-    transition: text-shadow 500ms;
-}
-
-#next-round:hover {
-    animation: grow-shrink-gentle 2s linear 0s infinite;
-    text-shadow: 0px 0px 10px black, 0px 0px 10px black;
-}
-
-#next-round:active {
-    animation: grow-shrink 200ms;
+    transition: transform 500ms, opacity 1s;
 }
 
 #scoreboard {
@@ -209,6 +207,7 @@
 
 .tool-choice {
     line-height: 1;
+    transition: opacity 1s;
 }
 
 .tool-choice > div {
@@ -238,12 +237,6 @@
 #choice-scissors:hover + h3 {
     color: var(--yellow) !important;
     text-shadow: 0px 0px 10px white;
-}
-
-.disabled {
-    display: none;
-    height: 0rem !important;
-    margin: 0rem !important;
 }
 
 /* Confirm chocie icon and text styling*/
@@ -338,10 +331,29 @@
     0% {scale: 1}
 }
 
+@keyframes fade-in {
+    0% {opacity: 0}
+    100% {opacity: 100;}
+}
+
 @keyframes fade-out {
     0% {opacity: 100}
     50% {opacity: 75;}
     100% {opacity: 0;}
+}
+
+@keyframes zoom-out {
+    0% {
+        opacity: 100;
+        transform: scale(1);
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
 }
 
 @keyframes flicker {
