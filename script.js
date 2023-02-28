@@ -554,6 +554,7 @@ function resetOptions() {
     showEnabledOptions();
     infoMessage.style.animation = 'flicker 150ms steps(3, start) 250ms 3'
     setTimeout(resetInfoMessage, 700)
+    setTimeout(resetAnimation, 700, infoMessage)
 }
 
 function resetAnimation(element) {
