@@ -530,8 +530,6 @@ function resetArena() {
     resetInlineStyles(playerChoiceIcon)
     resetInlineStyles(pcChoiceIcon)
     resetInlineStyles(vsCountdown)
-    resetAnimation(playerChoiceIcon)
-    resetAnimation(pcChoiceIcon)
     resetAnimation(playerChoiceHighlight)
     resetAnimation(pcChoiceHighlight)
     playerChoiceIcon.setAttribute('class', 'unknown-choice');
@@ -539,9 +537,26 @@ function resetArena() {
     vsCountdown.textContent = 'vs'
 }
 
+function resetScoreboard() {
+    playerWins = 0
+    pcWins = 0
+    draws = 0
+    roundsPlayed = 0
+    counterPlayerWins.textContent = playerWins;
+    counterPcWins.textContent = pcWins;
+    counterDraws.textContent = draws;
+    counterRoundsPlayed.textContent = roundsPlayed;
+}
+
 function nextRound() {
     resetOptions()
     resetArena()
+}
+
+function resetGame() {
+    resetOptions()
+    resetArena()
+    resetScoreboard()
 }
 
 /*
