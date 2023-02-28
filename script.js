@@ -450,14 +450,14 @@ function declarePlayerWin() {
 
 function declarePcWin() {
     infoMessage.style.color = 'white';
-    infoMessage.style.animation = 'pc-score-increase 2s';
+    infoMessage.style.animation = 'pc-score-increase 1s';
     // , flicker 200ms steps(4, start) 0s 2';
     infoMessage.textContent = 'Opponent wins the round!';
 }
 
 function declareDraw() {
     infoMessage.style.color = 'white';
-    infoMessage.style.animation = 'neutral-score-increase 2s';
+    infoMessage.style.animation = 'neutral-score-increase 1s';
     infoMessage.textContent = 'The round is a draw...';
 }
 
@@ -552,6 +552,8 @@ function showEnabledOptions() {
 function resetOptions() {
     hideDisabledOptions();
     showEnabledOptions();
+    infoMessage.style.animation = 'flicker 150ms steps(3, start) 250ms 3'
+    setTimeout(resetInfoMessage, 700)
 }
 
 function resetAnimation(element) {
