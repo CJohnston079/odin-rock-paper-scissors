@@ -162,6 +162,28 @@
     gap: 0rem 4rem;
 }
 
+#next-round {
+    position: absolute;
+    height: 8rem;
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    text-shadow: 0px 0px 10px black;
+    cursor: pointer;
+    transition: text-shadow 500ms;
+}
+
+#next-round:hover {
+    animation: grow-shrink-gentle 2s linear 0s infinite;
+    text-shadow: 0px 0px 10px black, 0px 0px 10px black;
+}
+
+#next-round:active {
+    animation: grow-shrink 200ms;
+}
+
 #scoreboard {
     display: flex;
     justify-content: center;
@@ -308,6 +330,12 @@
     0% {scale: 1}
     10% {scale: 1.1}
     100% {scale: 1}
+}
+
+@keyframes grow-shrink-gentle {
+    0% {scale: 1}
+    50% {scale: 1.05}
+    0% {scale: 1}
 }
 
 @keyframes fade-out {
