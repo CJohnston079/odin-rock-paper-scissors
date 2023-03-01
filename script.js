@@ -341,6 +341,7 @@ function determineWinner() {
             setTimeout(addPcWin, 1000)
             declarePcWin()
         }
+        numPlayerRockChoices ++
     }
     if (playerChoice === 'PAPER') {
         if (pcChoice === 'ROCK') {
@@ -356,6 +357,7 @@ function determineWinner() {
             setTimeout(addPcWin, 1000)
             declarePcWin()
         }
+        numPlayerPaperChoices ++
     }
     if (playerChoice === 'SCISSORS') {
         if (pcChoice === 'PAPER') {
@@ -371,6 +373,7 @@ function determineWinner() {
             setTimeout(addPcWin, 1000)
             declarePcWin()
         }
+        numPlayerScissorsChoices ++
     }
     setTimeout(showNextRoundOption, 2000)
 }
@@ -514,6 +517,35 @@ function hideNextRoundOption() {
         nextRoundOption.style.animation = '';
     }, 500)
 }
+
+// Show end game screen once an overall winner is determined
+
+let winningScore = 1;
+
+function checkForWinner() {
+    if (playerWins === winningScore) {
+        alert('player wins!')
+    } else if (pcWins === winningScore) {
+        alert('pc wins!')
+    } else return
+}
+
+// Game statistics
+
+let numPlayerRockChoices = 0;
+let numPlayerPaperChoices = 0;
+let numPlayerScissorsChoices = 0;
+
+function favouritePlayerChoice() {
+    if (numPlayerRockChoices > numPlayerPaperChoices && numPlayerRockChoices > numPlayerScissorsChoices) {
+        return 'ROCK';
+    } else if (numPlayerPaperChoices > numPlayerScissorsChoices && numPlayerPaperChoices > numPlayerRockChoices) {
+        return 'PAPER';
+    } else if (numPlayerScissorsChoices > numPlayerRockChoices && numPlayerScissorsChoices > numPlayerPaperChoices) {
+        return 'SCISSORS';
+    }
+}
+
 
 // Hide/show enabled/disabled options
 
