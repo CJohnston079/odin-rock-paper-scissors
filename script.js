@@ -546,6 +546,23 @@ function favouritePlayerChoice() {
     }
 }
 
+let playerWinPercentage = '';
+let pcWinPercentage = '';
+let drawPercentage = '';
+
+function calcWinPercentage(statistic) {
+    let percentage = 100 / roundsPlayed * statistic;
+    if (statistic === playerWins) {
+        playerWinPercentage = Math.floor(percentage);
+        return playerWinPercentage;
+    } else if (statistic === pcWins) {
+        pcWinPercentage = Math.floor(percentage)
+        return pcWinPercentage
+    } else {
+        drawPercentage = Math.floor(percentage);
+        return drawPercentage;
+    }
+}
 
 // Hide/show enabled/disabled options
 
