@@ -536,14 +536,29 @@ let numPlayerRockChoices = 0;
 let numPlayerPaperChoices = 0;
 let numPlayerScissorsChoices = 0;
 
-function favouritePlayerChoice() {
+let favouritePlayerChoice = '';
+let favouriteChoicePercentage = '';
+
+function calcFavouritePlayerChoice() {
     if (numPlayerRockChoices > numPlayerPaperChoices && numPlayerRockChoices > numPlayerScissorsChoices) {
-        return 'ROCK';
+        favouritePlayerChoice = 'ROCK';
     } else if (numPlayerPaperChoices > numPlayerScissorsChoices && numPlayerPaperChoices > numPlayerRockChoices) {
-        return 'PAPER';
+        favouritePlayerChoice = 'PAPER';
     } else if (numPlayerScissorsChoices > numPlayerRockChoices && numPlayerScissorsChoices > numPlayerPaperChoices) {
-        return 'SCISSORS';
+        favouritePlayerChoice = 'SCISSORS';
     }
+    return favouritePlayerChoice;
+}
+
+function calcFavouriteChoicePercentage() {
+    if (numPlayerRockChoices > numPlayerPaperChoices && numPlayerRockChoices > numPlayerScissorsChoices) {
+        favouriteChoicePercentage = 100 / roundsPlayed * numPlayerRockChoices;
+    } else if (numPlayerPaperChoices > numPlayerScissorsChoices && numPlayerPaperChoices > numPlayerRockChoices) {
+        favouriteChoicePercentage = 100 / roundsPlayed * numPlayerPaperChoices;
+    } else if (numPlayerScissorsChoices > numPlayerRockChoices && numPlayerScissorsChoices > numPlayerPaperChoices) {
+        favouriteChoicePercentage = 100 / roundsPlayed * numPlayerScissorsChoices;
+    }
+    return favouriteChoicePercentage;
 }
 
 let playerWinPercentage = '';
