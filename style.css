@@ -284,7 +284,7 @@ li {
     justify-content: center;
     align-items: center;
     background-color: hsla(0, 0%, 0%, 0.8);
-    backdrop-filter: grayscale(100%) blur(2px);
+    /* backdrop-filter: grayscale(100%) blur(2px); */
 }
 
 #popup {

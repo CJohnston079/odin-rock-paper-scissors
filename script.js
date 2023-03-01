@@ -17,7 +17,7 @@ const optionPaperDisabled = document.querySelector('#choice-paper-disabled');
 const optionScissorsDisabled = document.querySelector('#choice-scissors-disabled');
 const playerOptionsDisabled = [optionRockDisabled, optionPaperDisabled, optionScissorsDisabled];
 
-const browserWindow = document.getElementById('window');
+const popupOverlay = document.getElementById('popup-overlay');
 const confirmOverlay = document.createElement('p');
 const nextRoundOption = document.getElementById('next-round')
 
@@ -375,7 +375,13 @@ function determineWinner() {
         }
         numPlayerScissorsChoices ++
     }
-    setTimeout(showNextRoundOption, 2000)
+    setTimeout(() => {
+        if (playerWins !== winningScore && pcWins !== winningScore) {
+            setTimeout(showNextRoundOption, 2000)
+        } else {
+            checkForWinner()
+        }
+    }, 2000)
 }
 
 function losingIcon(icon) {
@@ -524,9 +530,13 @@ let winningScore = 1;
 
 function checkForWinner() {
     if (playerWins === winningScore) {
-        alert('player wins!')
+        popupOverlay.removeAttribute('class')
+        popupOverlay.style.animation = 'fade-in 2s'
+        return
     } else if (pcWins === winningScore) {
-        alert('pc wins!')
+        popupOverlay.removeAttribute('class')
+        popupOverlay.style.animation = 'fade-in 2s'
+        return
     } else return
 }
 
