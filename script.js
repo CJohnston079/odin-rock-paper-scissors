@@ -18,6 +18,7 @@ const optionScissorsDisabled = document.querySelector('#choice-scissors-disabled
 const playerOptionsDisabled = [optionRockDisabled, optionPaperDisabled, optionScissorsDisabled];
 
 const popupOverlay = document.getElementById('popup-overlay');
+const gameOverScreen = document.getElementById('game-over-screen');
 const confirmOverlay = document.createElement('p');
 const nextRoundOption = document.getElementById('next-round')
 
@@ -540,6 +541,7 @@ function checkForWinner() {
 function showGameOver() {
     if (playerWins === winningScore) {
         popupOverlay.removeAttribute('class')
+        gameOverScreen.removeAttribute('class')
         popupOverlay.style.animation = 'fade-in 2s'
         displayGameStatistics()
         return
