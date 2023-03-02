@@ -55,6 +55,10 @@ function test() {
     alert('test');
 }
 
+function checkPlayerChoices() {
+    console.log(`Chose ROCK ${numPlayerRockChoices} times, chose PAPER ${numPlayerPaperChoices} times, chose SCISSORS ${numPlayerScissorsChoices} times.`)
+}
+
 function playBlipSound() {
     blipSound.currentTime = 0;
     blipSound.play();
@@ -322,11 +326,14 @@ function displayPcChoice() {
 
 function determineWinner() {
     if (playerChoice === pcChoice) {
-        drawIcon(playerChoiceIcon)
-        playRoundDrawSound()
-        setTimeout(addDraw, 1000)
-        declareDraw()
-        setTimeout(showNextRoundOption, 1000)
+        drawIcon(playerChoiceIcon);
+        playRoundDrawSound();
+        setTimeout(addDraw, 1000);
+        declareDraw();
+        setTimeout(showNextRoundOption, 1000);
+        (playerChoice === 'ROCK') ? numPlayerRockChoices ++ :
+        (playerChoice === 'PAPER') ? numPlayerPaperChoices ++ :
+        numPlayerScissorsChoices ++ ;
         return
     }
     if (playerChoice === 'ROCK') {
