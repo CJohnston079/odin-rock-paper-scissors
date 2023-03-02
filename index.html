@@ -13,25 +13,31 @@
     </head>
     <body>
         <div id="popup-overlay" class="disabled">
+            <div></div>
             <div id="popup">
-                <h1>Player wins the game!</h1>
-                <div class="results-container">
-                    <ul style="text-align: right;">
-                        <h3>Final scores</h3>
-                        <li>Player score: <span class="result-number">0</span></li>
-                        <li>Opponent score: <span class="result-number">0</span></li>
-                        <li>Number of draws: <span class="result-number">0</span></li>
-                        <li>Rounds played: <span class="result-number">0</span></li>
-                    </ul>
-                    <ul>
-                        <h3>Statistics</h3>
-                        <li>Player win percentage: <span class="result-number">0</span>%</li>
-                        <li>Opponent win percentage: <span class="result-number">0</span>%</li>
-                        <li>Draw percentage: <span class="result-number">0</span>%</li>
-                        <li>Favourite choice: <span class="result-number"></span> (<span class="result-number" style="font-weight: 300;"></span>%)</li>
-                    </ul>
+                <div id="game-start-screen">
+
                 </div>
-                <button id="play-again-button">Start new game</button>
+                <div id="game-over-screen">
+                    <h1><span>player</span> wins the game!</h1>
+                    <div class="results-container">
+                        <ul style="text-align: right;">
+                            <h3>Final scores</h3>
+                            <li>Player score: <span class="result-number">0</span></li>
+                            <li>Opponent score: <span class="result-number">0</span></li>
+                            <li>Number of draws: <span class="result-number">0</span></li>
+                            <li>Rounds played: <span class="result-number">0</span></li>
+                        </ul>
+                        <ul>
+                            <h3>Statistics</h3>
+                            <li>Player win percentage: <span class="result-number">0</span>%</li>
+                            <li>Opponent win percentage: <span class="result-number">0</span>%</li>
+                            <li>Draw percentage: <span class="result-number">0</span>%</li>
+                            <li>Favourite choice: <span class="result-number"></span> (<span class="result-number" style="font-weight: 300;"></span>%)</li>
+                        </ul>
+                    </div>
+                    <button id="play-again-button">Start new game</button>
+                </div>
             </div>
         </div>
         <h1 id="site-title">Rock, Paper, Scissors</h1>

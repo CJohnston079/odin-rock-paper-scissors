@@ -582,25 +582,25 @@ let numPlayerPaperChoices = 0;
 let numPlayerScissorsChoices = 0;
 
 let favouritePlayerChoice = '';
-let favouriteChoicePercentage = '';
+let favouriteChoicePercentage = 0;
 
 function calcFavouritePlayerChoice() {
-    if (numPlayerRockChoices > numPlayerPaperChoices && numPlayerRockChoices > numPlayerScissorsChoices) {
+    if (numPlayerRockChoices >= numPlayerPaperChoices && numPlayerRockChoices >= numPlayerScissorsChoices) {
         favouritePlayerChoice = 'ROCK';
-    } else if (numPlayerPaperChoices > numPlayerScissorsChoices && numPlayerPaperChoices > numPlayerRockChoices) {
+    } else if (numPlayerPaperChoices >= numPlayerScissorsChoices && numPlayerPaperChoices >= numPlayerRockChoices) {
         favouritePlayerChoice = 'PAPER';
-    } else if (numPlayerScissorsChoices > numPlayerRockChoices && numPlayerScissorsChoices > numPlayerPaperChoices) {
+    } else if (numPlayerScissorsChoices >= numPlayerRockChoices && numPlayerScissorsChoices >= numPlayerPaperChoices) {
         favouritePlayerChoice = 'SCISSORS';
     }
     return favouritePlayerChoice;
 }
 
 function calcFavouriteChoicePercentage() {
-    if (numPlayerRockChoices > numPlayerPaperChoices && numPlayerRockChoices > numPlayerScissorsChoices) {
+    if (numPlayerRockChoices >= numPlayerPaperChoices && numPlayerRockChoices >= numPlayerScissorsChoices) {
         favouriteChoicePercentage = 100 / roundsPlayed * numPlayerRockChoices;
-    } else if (numPlayerPaperChoices > numPlayerScissorsChoices && numPlayerPaperChoices > numPlayerRockChoices) {
+    } else if (numPlayerPaperChoices >= numPlayerScissorsChoices && numPlayerPaperChoices >= numPlayerRockChoices) {
         favouriteChoicePercentage = 100 / roundsPlayed * numPlayerPaperChoices;
-    } else if (numPlayerScissorsChoices > numPlayerRockChoices && numPlayerScissorsChoices > numPlayerPaperChoices) {
+    } else if (numPlayerScissorsChoices >= numPlayerRockChoices && numPlayerScissorsChoices >= numPlayerPaperChoices) {
         favouriteChoicePercentage = 100 / roundsPlayed * numPlayerScissorsChoices;
     }
     favouriteChoicePercentage = Math.floor(favouriteChoicePercentage);
