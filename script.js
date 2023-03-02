@@ -547,6 +547,7 @@ function showGameOver() {
         return
     } else if (pcWins === winningScore) {
         popupOverlay.removeAttribute('class')
+        gameOverScreen.removeAttribute('class')
         popupOverlay.style.animation = 'fade-in 2s'
         displayGameStatistics()
         return
