@@ -39,6 +39,8 @@ let counterPcWins = document.getElementById('score-pc');
 let counterDraws = document.getElementById('score-neutral');
 let counterRoundsPlayed = document.getElementById('score-rounds');
 
+let winningScore = 5;
+
 let playerWins = 0;
 let pcWins = 0;
 let draws = 0;
@@ -520,26 +522,50 @@ function hideNextRoundOption() {
 
 // Show end game screen once an overall winner is determined
 
-let winningScore = 3;
+function checkForWinner() {
+    if (playerWins !== winningScore && pcWins !== winningScore) {
+        showNextRoundOption()
+    } else {
+        showGameOver()
+    }
+}
 
 function showGameOver() {
     if (playerWins === winningScore) {
         popupOverlay.removeAttribute('class')
         popupOverlay.style.animation = 'fade-in 2s'
+        displayGameStatistics()
         return
     } else if (pcWins === winningScore) {
         popupOverlay.removeAttribute('class')
         popupOverlay.style.animation = 'fade-in 2s'
+        displayGameStatistics()
         return
     } else return
 }
 
-function checkForWinner() {
-    if (playerWins !== winningScore && pcWins !== winningScore) {
-        setTimeout(showNextRoundOption, 2000)
-    } else {
-        showGameOver()
-    }
+function calcGameStatistics() {
+    calcPercentage(playerWins);
+    calcPercentage(pcWins);
+    calcDrawerPercentage()
+    calcFavouritePlayerChoice();
+    calcFavouriteChoicePercentage()
+    console.log(playerWinPercentage)
+    console.log(pcWins)
+    console.log(drawPercentage)
+}
+
+function displayGameStatistics() {
+    calcGameStatistics()
+    document.querySelectorAll('.result-number')[0].textContent = playerWins;
+    document.querySelectorAll('.result-number')[1].textContent = pcWins;
+    document.querySelectorAll('.result-number')[2].textContent = draws;
+    document.querySelectorAll('.result-number')[3].textContent = roundsPlayed;
+    document.querySelectorAll('.result-number')[4].textContent = playerWinPercentage;
+    document.querySelectorAll('.result-number')[5].textContent = pcWinPercentage;
+    document.querySelectorAll('.result-number')[6].textContent = drawPercentage;
+    document.querySelectorAll('.result-number')[7].textContent = favouritePlayerChoice;
+    document.querySelectorAll('.result-number')[8].textContent = favouriteChoicePercentage;
 }
 
 // Game statistics
@@ -570,6 +596,7 @@ function calcFavouriteChoicePercentage() {
     } else if (numPlayerScissorsChoices > numPlayerRockChoices && numPlayerScissorsChoices > numPlayerPaperChoices) {
         favouriteChoicePercentage = 100 / roundsPlayed * numPlayerScissorsChoices;
     }
+    favouriteChoicePercentage = Math.floor(favouriteChoicePercentage);
     return favouriteChoicePercentage;
 }
 
@@ -577,18 +604,22 @@ let playerWinPercentage = '';
 let pcWinPercentage = '';
 let drawPercentage = '';
 
-function calcWinPercentage(statistic) {
-    let percentage = 100 / roundsPlayed * statistic;
-    if (statistic === playerWins) {
+function calcPercentage(score) {
+    let percentage = 100 / roundsPlayed * score;
+    if (score === playerWins) {
         playerWinPercentage = Math.floor(percentage);
         return playerWinPercentage;
-    } else if (statistic === pcWins) {
-        pcWinPercentage = Math.floor(percentage)
-        return pcWinPercentage
-    } else {
-        drawPercentage = Math.floor(percentage);
-        return drawPercentage;
     }
+    if (score === pcWins) {
+        pcWinPercentage = Math.floor(percentage)
+        return pcWinPercentage;
+    }
+}
+
+function calcDrawerPercentage() {
+    let percentage = 100 / roundsPlayed * draws;
+    drawPercentage = Math.floor(percentage);
+    return drawPercentage;
 }
 
 // Hide/show enabled/disabled options
