@@ -375,13 +375,7 @@ function determineWinner() {
         }
         numPlayerScissorsChoices ++
     }
-    setTimeout(() => {
-        if (playerWins !== winningScore && pcWins !== winningScore) {
-            setTimeout(showNextRoundOption, 2000)
-        } else {
-            checkForWinner()
-        }
-    }, 2000)
+    setTimeout(checkForWinner, 2000)
 }
 
 function losingIcon(icon) {
@@ -526,9 +520,9 @@ function hideNextRoundOption() {
 
 // Show end game screen once an overall winner is determined
 
-let winningScore = 1;
+let winningScore = 3;
 
-function checkForWinner() {
+function showGameOver() {
     if (playerWins === winningScore) {
         popupOverlay.removeAttribute('class')
         popupOverlay.style.animation = 'fade-in 2s'
@@ -538,6 +532,14 @@ function checkForWinner() {
         popupOverlay.style.animation = 'fade-in 2s'
         return
     } else return
+}
+
+function checkForWinner() {
+    if (playerWins !== winningScore && pcWins !== winningScore) {
+        setTimeout(showNextRoundOption, 2000)
+    } else {
+        showGameOver()
+    }
 }
 
 // Game statistics
