@@ -17,7 +17,7 @@ const optionPaperDisabled = document.querySelector('#choice-paper-disabled');
 const optionScissorsDisabled = document.querySelector('#choice-scissors-disabled');
 const playerOptionsDisabled = [optionRockDisabled, optionPaperDisabled, optionScissorsDisabled];
 
-const popupOverlay = document.getElementById('popup-overlay');
+const overlay = document.getElementById('overlay');
 const gameOverScreen = document.getElementById('game-over-screen');
 const confirmOverlay = document.createElement('p');
 const nextRoundOption = document.getElementById('next-round')
@@ -40,7 +40,7 @@ let counterPcWins = document.getElementById('score-pc');
 let counterDraws = document.getElementById('score-neutral');
 let counterRoundsPlayed = document.getElementById('score-rounds');
 
-let winningScore = 5;
+let winningScore = 1;
 
 let playerWins = 0;
 let pcWins = 0;
@@ -540,15 +540,15 @@ function checkForWinner() {
 
 function showGameOver() {
     if (playerWins === winningScore) {
-        popupOverlay.removeAttribute('class')
+        overlay.removeAttribute('class')
         gameOverScreen.removeAttribute('class')
-        popupOverlay.style.animation = 'fade-in 2s'
+        overlay.style.animation = 'fade-in 2s'
         displayGameStatistics()
         return
     } else if (pcWins === winningScore) {
-        popupOverlay.removeAttribute('class')
+        overlay.removeAttribute('class')
         gameOverScreen.removeAttribute('class')
-        popupOverlay.style.animation = 'fade-in 2s'
+        overlay.style.animation = 'fade-in 2s'
         displayGameStatistics()
         return
     } else return

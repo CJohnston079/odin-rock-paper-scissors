@@ -12,31 +12,53 @@
         <link rel="shortcut icon" href="./images/rock-light.svg"> 
     </head>
     <body>
-        <div id="popup-overlay" class="disabled">
+        <div id="overlay" class="">
             <div></div>
-            <div id="popup">
-                <div id="game-start-screen">
-
+            <div id="home-screen">
+                <div id="game-start-screen" class="">
+                    <h2>Enter player name:</h2>
+                    <input type="text" id="player-name-input">
+                    <br>
+                    <h3>Game options</h3>
+                    <div class="game-options-container">
+                        <ul>
+                            <li>Winning score:         
+                            <li>Game style:
+                        </ul>
+                        <ul>
+                            <li>
+                                <span id="rounds-descrease" class="side-arrow">&lt;</span>
+                                <span id="winning-score-selector">3</span>
+                                <span id="rounds-increase" class="side-arrow">&gt;</span>
+                            </li>
+                            <li>
+                                <span id="rounds-descrease" class="side-arrow">&lt;</span>
+                                <span id="winning-score-selector">CLASSIC</span>
+                                <span id="rounds-increase" class="side-arrow">&gt;</span>
+                            </li>    
+                        </ul>
+                    </div>
+                    <button id="start-game-button" class="button">Start Game</button>
                 </div>
                 <div id="game-over-screen" class="disabled">
-                    <h1><span>player</span> wins the game!</h1>
-                    <div class="results-container">
-                        <ul style="text-align: right;">
+                    <h2 id="game-over-announcement">playerName wins the game!</h2>
+                    <div class="game-options-container" style="gap: 4rem;">
+                        <ul>
                             <h3>Final scores</h3>
                             <li>Player score: <span class="result-number">0</span></li>
-                            <li>Opponent score: <span class="result-number">0</span></li>
+                            <li>Computer score: <span class="result-number">0</span></li>
                             <li>Number of draws: <span class="result-number">0</span></li>
                             <li>Rounds played: <span class="result-number">0</span></li>
                         </ul>
                         <ul>
                             <h3>Statistics</h3>
                             <li>Player win percentage: <span class="result-number">0</span>%</li>
-                            <li>Opponent win percentage: <span class="result-number">0</span>%</li>
+                            <li>Computer win percentage: <span class="result-number">0</span>%</li>
                             <li>Draw percentage: <span class="result-number">0</span>%</li>
-                            <li>Favourite choice: <span class="result-number"></span> (<span class="result-number" style="font-weight: 300;"></span>%)</li>
+                            <li>Favourite choice: <span class="result-number">ROCK</span> (<span class="result-number">0</span>%)</li>
                         </ul>
                     </div>
-                    <button id="play-again-button">Start new game</button>
+                    <button id="play-again-button" class="button">Start new game</button>
                 </div>
             </div>
         </div>

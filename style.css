@@ -270,16 +270,15 @@ li {
     background-color: var(--black-trans-00);
 }
 
-/* Popup styling */
+/* Game overlay styling */
 
-#popup-overlay {
-    position: fixed;
+#overlay {
     z-index: 1;
+    position: fixed;
     inset: 0;
     margin: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -287,27 +286,80 @@ li {
     /* backdrop-filter: grayscale(100%) blur(2px); */
 }
 
-#popup {
+#home-screen {
     flex-grow: 1;
     max-width: 80%;
     padding: 2rem;
 }
 
-#game-over-screen > h1 {
-    display: inline-block;
-    padding: 1.5rem;
-    border-bottom: solid 0.125rem white;
-}
-
-.results-container {
+.game-options-container {
     display: flex;
-    gap: 4rem;
+    gap: 2rem;
     text-align: left;
 }
 
-.results-container > * {
-    flex: 1;
+.game-options-container > ul:first-child {
+    text-align: right;
+}
+
+.button {
+    display: inline-block;
+    margin: 1rem;
+    border: solid 4px white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    font-family: 'Silkscreen', cursive;
+    background-color: black;
+    clip-path: var(--pixel-border);
+    transition: 200ms;
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: var(--yellow);
+    color: var(--yellow);
+    transform: scale(1.1);
+}
+
+/* Game start screen */
+
+#game-start-screen > h2 {
+    font-weight: 300;
+    font-size: 2rem;
+}
+
+#player-name-input {
+    margin-bottom: 2rem;
+    border: 0;
+    border-bottom: solid 0.25rem white;
+    padding-bottom: 0.25rem;
+    background-color: var(--black-trans-00);
+    color: white;
+    font-size: 2rem;
+    font-family: 'Silkscreen', cursive;
+    font-weight: 700;
+    text-align: center;
+}
+
+#player-name-input:focus-visible {
+    outline: 0;
+}
+
+.game-options-container > ul {
     padding: 0;
+    flex: 1;
+    font-size: 1.2rem;
+}
+
+/* Game over screen */
+
+#game-over-screen > h2 {
+    display: inline-block;
+    padding: 1.5rem;
+    font-size: 2rem;
+    border-bottom: solid 0.125rem white;
 }
 
 .result-number {
@@ -315,25 +367,8 @@ li {
     min-width: 2rem;
 }
 
-#play-again-button {
-    display: inline-block;
-    margin: 1rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    font-weight: 700;
-    color: white;
-    font-family: 'Silkscreen', cursive;
-    background-color: black;
-    border: solid 4px white;
-    clip-path: var(--pixel-border);
-    transition: 200ms;
-    cursor: pointer;
-}
-
-#play-again-button:hover {
-    transform: scale(1.1);
-    color: var(--yellow);
-    border-color: var(--yellow);
+.result-number:last-child {
+    font-weight: 300;
 }
 
 /* glowing animations */
