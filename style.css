@@ -298,6 +298,12 @@ li {
     text-align: left;
 }
 
+.game-options-container > ul {
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
 .game-options-container > ul:first-child {
     text-align: right;
 }
@@ -330,6 +336,11 @@ button:hover {
     font-size: 2rem;
 }
 
+#game-start-screen > h3 {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
 #player-name-input {
     margin-bottom: 2rem;
     border: 0;
@@ -347,10 +358,33 @@ button:hover {
     outline: 0;
 }
 
-.game-options-container > ul {
-    padding: 0;
-    flex: 1;
+.game-options {
     font-size: 1.2rem;
+}
+
+.game-options:last-child > li {
+    font-weight: 700;
+    cursor: alias;
+}
+
+.side-arrow {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-weight: 300;
+    transition: 100ms;
+    min-width: 1rem;
+}
+
+.side-arrow:hover {
+    font-weight: 700;
+    transform: scale(1.2);
+    color: var(--yellow);
+    cursor: pointer;
+}
+
+.side-arrow:active {
+    transform: scale(1.5);
 }
 
 /* Game over screen */
