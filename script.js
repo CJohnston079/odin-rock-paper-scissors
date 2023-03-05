@@ -40,8 +40,6 @@ let counterPcWins = document.getElementById('score-pc');
 let counterDraws = document.getElementById('score-neutral');
 let counterRoundsPlayed = document.getElementById('score-rounds');
 
-let winningScore = 1;
-
 let playerWins = 0;
 let pcWins = 0;
 let draws = 0;
@@ -50,7 +48,18 @@ let roundsPlayed = 0;
 counterPlayerWins.textContent = playerWins;
 counterPcWins.textContent = pcWins;
 counterDraws.textContent = draws;
-counterRoundsPlayed.textContent = roundsPlayed
+counterRoundsPlayed.textContent = roundsPlayed;
+
+let playerName = 'Player';
+let winningScore = 3;
+let roundsRemaining = 3;
+let gameMode = 'first-to';
+let gameSpeed = 'normal';
+
+function setPlayerName() {
+    playerName = document.getElementById("player-name-input").value;
+    return playerName
+}
 
 function test() {
     alert('test');

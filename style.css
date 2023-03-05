@@ -19,6 +19,7 @@ li {
     --black-trans-00: hsla(0, 0%, 0%, 0.0);
     --black-trans-50: hsla(0, 0%, 0%, 0.5);
     --black-trans-60: hsla(0, 0%, 0%, 0.6);
+    --black-trans-80: hsla(0, 0%, 0%, 0.8);
     --shadow-white: 0px 0px 10px white;
     --pixel-border: polygon(
         0px 4px,
@@ -109,7 +110,7 @@ li {
     padding-bottom: 1rem;
     font-family: 'Press Start 2P', cursive;
     font-size: 3rem;
-    line-height: 1;
+    line-height: 1.5;
     z-index: 1;
 }
 
@@ -270,10 +271,11 @@ li {
     background-color: var(--black-trans-00);
 }
 
-/* Game overlay styling */
+/* Home screen styling */
 
 #overlay {
     z-index: 1;
+    overflow: hidden;
     position: fixed;
     inset: 0;
     margin: 0;
@@ -282,7 +284,7 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: hsla(0, 0%, 0%, 0.8);
+    background-color: black;
     /* backdrop-filter: grayscale(100%) blur(2px); */
 }
 
@@ -294,7 +296,7 @@ li {
 
 .game-options-container {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     text-align: left;
 }
 
@@ -344,7 +346,7 @@ button:hover {
 #player-name-input {
     margin-bottom: 2rem;
     border: 0;
-    border-bottom: solid 0.25rem white;
+    border-bottom: solid 0.125rem white;
     padding-bottom: 0.25rem;
     background-color: var(--black-trans-00);
     color: white;
@@ -372,6 +374,7 @@ button:hover {
     padding: 0;
     margin: 0;
     font-weight: 300;
+    text-align: center;
     transition: 100ms;
     min-width: 1rem;
 }
