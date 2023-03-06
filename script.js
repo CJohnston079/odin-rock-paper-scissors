@@ -19,18 +19,9 @@ const playerOptionsDisabled = [optionRockDisabled, optionPaperDisabled, optionSc
 
 const overlay = document.getElementById('overlay');
 const gameOverScreen = document.getElementById('game-over-screen');
+const gameStartScreen = document.getElementById('game-start-screen');
 const confirmOverlay = document.createElement('p');
 const nextRoundOption = document.getElementById('next-round')
-
-const blipSound = document.getElementById('audio-blip');
-const getConfirmSound = document.getElementById('audio-get-confirm');
-const confirmTrueSound = document.getElementById('confirm-true');
-const countdownSound = document.getElementById('countdown');
-const roundStartSound = document.getElementById('round-start');
-const roundWinSound = document.getElementById('round-win');
-const roundLossSound = document.getElementById('round-loss');
-const roundDrawSound = document.getElementById('round-draw');
-const nextRoundSound = document.getElementById('next-round-sound');
 
 let playerChoice = '';
 let pcChoice = '';
@@ -56,63 +47,67 @@ let roundsRemaining = 3;
 let gameMode = 'first-to';
 let gameSpeed = 'normal';
 
+const startGameButton = document.querySelector('#start-game-button');
+const playAgainButton = document.querySelector('#play-again-button');
+
+function startGame() {
+    overlay.style.animation = 'fade-in 1s reverse'
+    setTimeout(() => {
+        overlay.setAttribute('class', 'disabled');
+        gameStartScreen.setAttribute('class', 'disabled');
+    }, 1000)
+    playRoundStartSound();
+}
+
+
+startGameButton.addEventListener('mousedown', startGame)
+// document.getElementById("player-name-input").addEventListener('keydown', startGame)
+
 function setPlayerName() {
     playerName = document.getElementById("player-name-input").value;
     return playerName
-}
-
-function test() {
-    alert('test');
 }
 
 function checkPlayerChoices() {
     console.log(`Chose ROCK ${numPlayerRockChoices} times, chose PAPER ${numPlayerPaperChoices} times, chose SCISSORS ${numPlayerScissorsChoices} times.`)
 }
 
-function playBlipSound() {
+// Play sound functions
+
+const gameOptionSound = document.getElementById('audio-option');
+const blipSound = document.getElementById('audio-blip');
+const getConfirmSound = document.getElementById('audio-get-confirm');
+const confirmTrueSound = document.getElementById('confirm-true');
+const countdownSound = document.getElementById('countdown');
+const roundStartSound = document.getElementById('round-start');
+const roundWinSound = document.getElementById('round-win');
+const roundLossSound = document.getElementById('round-loss');
+const roundDrawSound = document.getElementById('round-draw');
+const nextRoundSound = document.getElementById('next-round-sound');
+
+
+const playGameOptionSound = () => {
+    gameOptionSound.currentTime = 0;
+    gameOptionSound.play();
+}
+const playBlipSound = () => {
     blipSound.currentTime = 0;
     blipSound.play();
 }
-
-function playGetConfirmSound() {
+const playGetConfirmSound = () => {
     getConfirmSound.currentTime = 0;
     getConfirmSound.play();
 }
-
-function playConfirmTrueSound() {
-    confirmTrueSound.currentTime = 0;
-    confirmTrueSound.play();
-}
-
-function playCountdownSound() {
+const playCountdownSound = () => {
     countdownSound.currentTime = 0;
     countdownSound.play();
 }
-
-function playRoundStartSound() {
-    roundStartSound.currentTime = 0;
-    roundStartSound.play();
-}
-
-function playRoundWinSound() {
-    roundWinSound.currentTime = 0;
-    roundWinSound.play();
-}
-
-function playRoundLossSound() {
-    roundLossSound.currentTime = 0;
-    roundLossSound.play();
-}
-
-function playRoundDrawSound() {
-    roundDrawSound.currentTime = 0;
-    roundDrawSound.play();
-}
-
-function playNextRoundSound() {
-    nextRoundSound.currentTime = 0;
-    nextRoundSound.play();
-}
+const playConfirmTrueSound =() => confirmTrueSound.play();
+const playRoundStartSound = () => roundStartSound.play();
+const playRoundWinSound = () => roundWinSound.play();
+const playRoundLossSound = () => roundLossSound.play();
+const playRoundDrawSound = () => roundDrawSound.play();
+const playNextRoundSound = () => nextRoundSound.play();
 
 // For player options, highlight, play a sound and display an arena preview on hover
 
