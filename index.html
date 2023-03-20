@@ -17,7 +17,7 @@
             <div id="home-screen">
                 <div id="game-start-screen" class="">
                     <h2>Enter player name:</h2>
-                    <input type="text" id="player-name-input">
+                    <input type="text" id="player-name-input" autocomplete="off" autocapitalize="on">
                     <br>
                     <h3>Game options</h3>
                     <div class="game-options-container">
@@ -28,7 +28,7 @@
                         </ul>
                         <ul class="game-options">
                             <li>
-                                <span id="rounds-descrease" class="side-arrow">&lt;</span>
+                                <span id="rounds-decrease" class="side-arrow">&lt;</span>
                                 <span id="score-selector">3</span>
                                 <span id="rounds-increase" class="side-arrow">&gt;</span>
                             </li>
@@ -107,6 +107,8 @@
                 <p>Rounds played: <span id="score-rounds">0</span></p>
             </div>
         </section>
+        <audio id="audio-option" src="./sounds/options.mp3"></audio>
+        <audio id="audio-start-game" src="./sounds/start-game.mp3"></audio>
         <audio id="audio-blip" src="./sounds/hover.mp3"></audio>
         <audio id="audio-get-confirm" src="./sounds/get-confirm.mp3"></audio>
         <audio id="confirm-true" src="./sounds/confirm-true.mp3"></audio>

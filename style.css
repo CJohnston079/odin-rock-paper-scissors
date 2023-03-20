@@ -331,6 +331,10 @@ button:hover {
     transform: scale(1.1);
 }
 
+button:active {
+    transform: scale(1.5);
+}
+
 /* Game start screen */
 
 #game-start-screen > h2 {
@@ -388,6 +392,14 @@ button:hover {
 
 .side-arrow:active {
     transform: scale(1.5);
+}
+
+#score-selector {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    min-width: 1.5rem;
+    text-align: center;
 }
 
 /* Game over screen */
@@ -519,6 +531,12 @@ button:hover {
 @keyframes neutral-score-increase {
     0% {color: var(--grey-blue)}
     50% {color: var(--grey-blue)}
+    100% {color: white;}
+}
+
+@keyframes option-change {
+    0% {color: var(--yellow)}
+    50% {color: var(--yellow)}
     100% {color: white;}
 }
 

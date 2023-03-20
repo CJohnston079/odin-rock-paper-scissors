@@ -1,11 +1,21 @@
+let playerChoice = '';
+let pcChoice = '';
+
+let playerWins = 0;
+let pcWins = 0;
+let draws = 0;
+let roundsPlayed = 0;
+
+let playerName = 'Player';
+let winningScore = 3;
+let roundsRemaining = 3;
+let gameMode = 'first-to';
+let gameSpeed = 'normal';
+
 const playerChoiceIcon = document.getElementById('player-choice');
 const pcChoiceIcon = document.getElementById('pc-choice');
-
 const playerChoiceHighlight = document.getElementById('player-choice').firstElementChild;
 const pcChoiceHighlight = document.getElementById('pc-choice').firstElementChild;
-
-const vsCountdown = document.getElementById('vs-countdown');
-const infoMessage = document.getElementById('player-box').firstElementChild;
 
 const optionRock = document.querySelector('#choice-rock');
 const optionPaper = document.querySelector('#choice-paper');
@@ -17,60 +27,32 @@ const optionPaperDisabled = document.querySelector('#choice-paper-disabled');
 const optionScissorsDisabled = document.querySelector('#choice-scissors-disabled');
 const playerOptionsDisabled = [optionRockDisabled, optionPaperDisabled, optionScissorsDisabled];
 
+const infoMessage = document.getElementById('player-box').firstElementChild;
+const confirmOverlay = document.createElement('p');
+const vsCountdown = document.getElementById('vs-countdown');
+const nextRoundOption = document.getElementById('next-round')
+
 const overlay = document.getElementById('overlay');
 const gameOverScreen = document.getElementById('game-over-screen');
 const gameStartScreen = document.getElementById('game-start-screen');
-const confirmOverlay = document.createElement('p');
-const nextRoundOption = document.getElementById('next-round')
 
-let playerChoice = '';
-let pcChoice = '';
-
-let counterPlayerWins = document.getElementById('score-player');
-let counterPcWins = document.getElementById('score-pc');
-let counterDraws = document.getElementById('score-neutral');
-let counterRoundsPlayed = document.getElementById('score-rounds');
-
-let playerWins = 0;
-let pcWins = 0;
-let draws = 0;
-let roundsPlayed = 0;
-
+const counterPlayerWins = document.getElementById('score-player');
+const counterPcWins = document.getElementById('score-pc');
+const counterDraws = document.getElementById('score-neutral');
+const counterRoundsPlayed = document.getElementById('score-rounds');
 counterPlayerWins.textContent = playerWins;
 counterPcWins.textContent = pcWins;
 counterDraws.textContent = draws;
 counterRoundsPlayed.textContent = roundsPlayed;
 
-let playerName = 'Player';
-let winningScore = 3;
-let roundsRemaining = 3;
-let gameMode = 'first-to';
-let gameSpeed = 'normal';
-
 const startGameButton = document.querySelector('#start-game-button');
 const playAgainButton = document.querySelector('#play-again-button');
 
-function startGame() {
-    overlay.style.animation = 'fade-in 1s reverse'
-    setTimeout(() => {
-        overlay.setAttribute('class', 'disabled');
-        gameStartScreen.setAttribute('class', 'disabled');
-    }, 1000)
-    playRoundStartSound();
-}
+const optionArrows = document.querySelectorAll('.side-arrow');
 
-
-startGameButton.addEventListener('mousedown', startGame)
-// document.getElementById("player-name-input").addEventListener('keydown', startGame)
-
-function setPlayerName() {
-    playerName = document.getElementById("player-name-input").value;
-    return playerName
-}
-
-function checkPlayerChoices() {
-    console.log(`Chose ROCK ${numPlayerRockChoices} times, chose PAPER ${numPlayerPaperChoices} times, chose SCISSORS ${numPlayerScissorsChoices} times.`)
-}
+const scoreSelector = document.querySelector('#score-selector');
+const increaseWinningScoreSelector = document.querySelector('#rounds-increase');
+const decreaseWinningScoreSelector = document.querySelector('#rounds-decrease');
 
 // Play sound functions
 
@@ -84,7 +66,6 @@ const roundWinSound = document.getElementById('round-win');
 const roundLossSound = document.getElementById('round-loss');
 const roundDrawSound = document.getElementById('round-draw');
 const nextRoundSound = document.getElementById('next-round-sound');
-
 
 const playGameOptionSound = () => {
     gameOptionSound.currentTime = 0;
@@ -108,6 +89,57 @@ const playRoundWinSound = () => roundWinSound.play();
 const playRoundLossSound = () => roundLossSound.play();
 const playRoundDrawSound = () => roundDrawSound.play();
 const playNextRoundSound = () => nextRoundSound.play();
+
+// Menu screen
+
+for (let i = 0; i < optionArrows.length; i++) {
+    optionArrows[i].addEventListener('mousedown', playCountdownSound);
+}
+
+const updateScoreSelectorDisplay = () => scoreSelector.textContent = winningScore;
+
+function increaseWinningScore() {
+    resetAnimation(scoreSelector)
+    if (winningScore < 9) {
+        winningScore++;
+        updateScoreSelectorDisplay();
+        scoreSelector.style.animation = 'option-change 500ms';
+    }
+}
+
+function descreaseWinningScore() {
+    if (winningScore > 1) {
+        winningScore--;
+        updateScoreSelectorDisplay()
+        scoreSelector.style.animation = 'option-change 500ms';
+    }
+}
+
+increaseWinningScoreSelector.addEventListener('mousedown', () => {
+    increaseWinningScore()
+    setTimeout(resetAnimation, 500, scoreSelector)
+});
+decreaseWinningScoreSelector.addEventListener('mousedown', () => {
+    descreaseWinningScore()
+    setTimeout(resetAnimation, 500, scoreSelector)
+});
+
+function startGame() {
+    overlay.style.animation = 'fade-in 1s reverse'
+    setTimeout(() => {
+        overlay.setAttribute('class', 'disabled');
+        gameStartScreen.setAttribute('class', 'disabled');
+    }, 1000)
+    playRoundStartSound();
+}
+
+startGameButton.addEventListener('mousedown', startGame)
+// document.getElementById("player-name-input").addEventListener('keydown', startGame)
+
+function setPlayerName() {
+    playerName = document.getElementById("player-name-input").value;
+    return playerName
+}
 
 // For player options, highlight, play a sound and display an arena preview on hover
 
@@ -266,7 +298,7 @@ confirmOverlay.addEventListener('mousedown', () => {
 
 // Countdown to round 3... 2... 1...
 
-function hideCounter(element) {
+function hideVsCountdown(element) {
     element.style.transition = 'padding 1s ease-out, width 1s ease-out';
     element.style.width = '4rem';
     element.style.padding = 0;
@@ -295,7 +327,7 @@ function countdown1() {
     vsCountdown.style.animation = 'highlight-white-text 1s, grow-shrink 1s'
     playCountdownSound()
     setTimeout(resetAnimation, 900, vsCountdown)
-    setTimeout(hideCounter, 1000, vsCountdown)
+    setTimeout(hideVsCountdown, 1000, vsCountdown)
     setTimeout(playRoundStartSound, 1000)
     setTimeout(displayPcChoice, 1000)
     setTimeout(determineWinner, 2500)
@@ -590,6 +622,10 @@ let numPlayerScissorsChoices = 0;
 
 let favouritePlayerChoice = '';
 let favouriteChoicePercentage = 0;
+
+function checkPlayerChoices() {
+    console.log(`Chose ROCK ${numPlayerRockChoices} times, chose PAPER ${numPlayerPaperChoices} times, chose SCISSORS ${numPlayerScissorsChoices} times.`)
+}
 
 function calcFavouritePlayerChoice() {
     if (numPlayerRockChoices >= numPlayerPaperChoices && numPlayerRockChoices >= numPlayerScissorsChoices) {
