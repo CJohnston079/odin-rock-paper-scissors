@@ -104,6 +104,8 @@ function increaseWinningScore() {
         winningScore++;
         updateScoreSelectorDisplay();
         scoreSelector.style.animation = 'option-change 500ms';
+    } else {
+        scoreSelector.style.animation = 'player-wobble 500ms';
     }
 }
 
@@ -112,6 +114,8 @@ function descreaseWinningScore() {
         winningScore--;
         updateScoreSelectorDisplay()
         scoreSelector.style.animation = 'option-change 500ms';
+    } else {
+        scoreSelector.style.animation = 'player-wobble 500ms reverse';
     }
 }
 
