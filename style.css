@@ -403,6 +403,15 @@ button:active {
     text-align: center;
 }
 
+#game-mode,
+#game-speed {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    min-width: 7.5rem;
+    text-align: center;
+}
+
 /* Game over screen */
 
 #game-over-screen > h2 {

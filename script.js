@@ -58,6 +58,13 @@ const scoreSelector = document.querySelector('#score-selector');
 const increaseWinningScoreSelector = document.querySelector('#rounds-increase');
 const decreaseWinningScoreSelector = document.querySelector('#rounds-decrease');
 
+const gameModeSelector = document.querySelector('#game-mode');
+const gameModeSelectorArrows = [optionArrows[2], optionArrows[3]]
+const gameModeDisplay = document.querySelectorAll('.game-options')[0].firstElementChild;
+
+const gameSpeedSelector = document.querySelector('#game-speed')
+const gameSpeedSelectorArrows = [optionArrows[4], optionArrows[5]]
+
 // Play sound functions
 
 const gameOptionSound = document.getElementById('audio-option');
@@ -131,6 +138,46 @@ decreaseWinningScoreSelector.addEventListener('mousedown', () => {
     descreaseWinningScore()
     setTimeout(resetAnimation, 500, scoreSelector)
 });
+
+function changeGameMode() {
+    gameModeSelector.style.animation = 'option-change 500ms';
+    if (gameMode === 'first-to') {
+        gameMode = 'best-of';
+        gameModeSelector.textContent = 'Best of';
+        gameModeDisplay.textContent = 'Number of rounds:'
+    } else if (gameMode === 'best-of') {
+        gameMode = 'first-to';
+        gameModeSelector.textContent = 'First to';
+        gameModeDisplay.textContent = 'Winning score:';
+    }
+}
+
+gameModeSelectorArrows.forEach(option => {
+    option.addEventListener('mousedown', () => {
+        changeGameMode();
+        setTimeout(resetAnimation, 500, gameModeSelector)
+        });
+});
+
+function changeGameSpeed() {
+    gameSpeedSelector.style.animation = 'option-change 500ms';
+    if (gameSpeed === 'normal') {
+        gameSpeed = 'speedy';
+        gameSpeedSelector.textContent = 'Speedy';
+    } else if (gameSpeed === 'speedy') {
+        gameSpeed = 'normal';
+        gameSpeedSelector.textContent = 'Classic';
+    }
+}
+
+gameSpeedSelectorArrows.forEach(option => {
+    option.addEventListener('mousedown', () => {
+        changeGameSpeed();
+        setTimeout(resetAnimation, 500, gameSpeedSelector)
+        });
+});
+
+// Start game
 
 function startGame() {
     overlay.style.animation = 'fade-in 1100ms reverse';
@@ -213,7 +260,7 @@ playerOptions.forEach(option => {
         highlightOption(option),
         showPreview(option)
         });
-})
+});
 
 // When player clicks on an option, ask player to confirm choice and highlight the arena preview
 
