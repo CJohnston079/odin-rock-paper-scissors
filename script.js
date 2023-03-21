@@ -608,7 +608,10 @@ function declareWinner() {
     } else if (pcWins === winningScore) {
         gameOverAnnouncement.textContent = `Computer wins the game!`;
         return
-    } else return
+    } else if (playerWins === pcWins) {
+        gameOverAnnouncement.textContent = `It's a draw...`;
+        return
+    }
 }
 
 function showGameOverScreen() {
@@ -647,6 +650,7 @@ function displayGameStatistics() {
 function showGameStartScreen() {
     gameOverScreen.setAttribute('class', 'disabled')
     resetAnimation(gameStartScreen);
+    resetAnimation(overlay);
     gameStartScreen.removeAttribute('class');
 }
 
