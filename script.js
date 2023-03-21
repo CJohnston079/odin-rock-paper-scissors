@@ -638,6 +638,21 @@ function displayGameStatistics() {
     document.querySelectorAll('.result-number')[8].textContent = favouriteChoicePercentage;
 }
 
+// Start new game
+
+function showGameStartScreen() {
+    gameOverScreen.setAttribute('class', 'disabled')
+    resetAnimation(gameStartScreen);
+    gameStartScreen.removeAttribute('class');
+}
+
+function startNewGame() {
+    showGameStartScreen()
+    resetGame()
+}
+
+playAgainButton.addEventListener('click', startNewGame)
+
 // Game statistics
 
 let numPlayerRockChoices = 0;
@@ -762,6 +777,11 @@ function resetScoreboard() {
     pcWins = 0
     draws = 0
     roundsPlayed = 0
+    numPlayerRockChoices = 0;
+    numPlayerPaperChoices = 0;
+    numPlayerScissorsChoices = 0;
+    favouritePlayerChoice = '';
+    favouriteChoicePercentage = 0;
     counterPlayerWins.textContent = playerWins;
     counterPcWins.textContent = pcWins;
     counterDraws.textContent = draws;
