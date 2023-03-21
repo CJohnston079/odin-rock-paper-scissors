@@ -16,9 +16,9 @@ My first JavaScript project from scratch. This began as a game to play in the br
 
 ### Setting up the game
 - ✔️ The player should see a pop-up on site load that asks for their name
-- ✔️ There should be an option to skip this step and assign a name of "player".
+- ✔️ There should be an option to skip this step and assign a name of "Player".
 - OPTIONAL: there could be an option to generate a random name from an array.
-- OPTIONAL: there could be an option to select game type, e.g. number of rounds to play.
+- ✔️ OPTIONAL: there could be an option to select game type, e.g. number of rounds to play.
 - OPTIONAL: there could be an option to select the speed of gameplay.
 
 ### Choosing a tool
@@ -44,4 +44,4 @@ My first JavaScript project from scratch. This began as a game to play in the br
 ### Ending the game
 - ✔️ Once either side has met the win condition of 5 wins (or the player-specified win condition), a pop-up declaring the overall winner should display.
 - ✔️ OPTIONAL: the pop-up might feature stats about the game, for instance rounds played, % win rate, favourite tool from each side.
-- The player should be invited to play again, taking them back to the initial pop-up.
+- ✔️ The player should be invited to play again, taking them back to the initial pop-up.

@@ -36,6 +36,8 @@ const overlay = document.getElementById('overlay');
 const gameOverScreen = document.getElementById('game-over-screen');
 const gameStartScreen = document.getElementById('game-start-screen');
 
+const gameOverAnnouncement = document.getElementById('game-over-announcement');
+
 const counterPlayerWins = document.getElementById('score-player');
 const counterPcWins = document.getElementById('score-pc');
 const counterDraws = document.getElementById('score-neutral');
@@ -594,24 +596,26 @@ function checkForWinner() {
     if (playerWins !== winningScore && pcWins !== winningScore) {
         showNextRoundOption()
     } else {
-        showGameOver()
+        declareWinner()
     }
 }
 
-function showGameOver() {
+function declareWinner() {
+    showGameOverScreen()
     if (playerWins === winningScore) {
-        overlay.removeAttribute('class')
-        gameOverScreen.removeAttribute('class')
-        overlay.style.animation = 'fade-in 2s'
-        displayGameStatistics()
+        gameOverAnnouncement.textContent = `${playerName} wins the game!`;
         return
     } else if (pcWins === winningScore) {
-        overlay.removeAttribute('class')
-        gameOverScreen.removeAttribute('class')
-        overlay.style.animation = 'fade-in 2s'
-        displayGameStatistics()
+        gameOverAnnouncement.textContent = `Computer wins the game!`;
         return
     } else return
+}
+
+function showGameOverScreen() {
+    overlay.removeAttribute('class')
+    gameOverScreen.removeAttribute('class')
+    overlay.style.animation = 'fade-in 2s'
+    displayGameStatistics()
 }
 
 function calcGameStatistics() {
