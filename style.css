@@ -413,11 +413,6 @@ button:active {
 
 .result-number {
     font-weight: 700;
-    min-width: 2rem;
-}
-
-.result-number:nth-child(2) {
-    font-weight: 300;
 }
 
 /* glowing animations */

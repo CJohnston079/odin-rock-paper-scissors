@@ -47,21 +47,21 @@
                     <button id="start-game-button" class="button">Start Game</button>
                 </div>
                 <div id="game-over-screen" class="disabled">
-                    <h2 id="game-over-announcement">playerName wins the game!</h2>
+                    <h2 id="game-over-announcement"><span class="player-name">Player</span> wins the game!</h2>
                     <div class="game-options-container" style="gap: 4rem;">
                         <ul>
                             <h3>Final scores</h3>
-                            <li>Player score: <span class="result-number">0</span></li>
+                            <li><span class="player-name">Player</span>'s score: <span class="result-number">0</span></li>
                             <li>Computer score: <span class="result-number">0</span></li>
                             <li>Number of draws: <span class="result-number">0</span></li>
                             <li>Rounds played: <span class="result-number">0</span></li>
                         </ul>
                         <ul>
                             <h3>Statistics</h3>
-                            <li>Player win percentage: <span class="result-number">0</span>%</li>
+                            <li><span class="player-name">Player</span> win percentage: <span class="result-number">0</span>%</li>
                             <li>Computer win percentage: <span class="result-number">0</span>%</li>
                             <li>Draw percentage: <span class="result-number">0</span>%</li>
-                            <li>Favourite choice: <span class="result-number">ROCK</span> (<span class="result-number">0</span>%)</li>
+                            <li>Favourite choice: <span class="result-number">ROCK</span> (<span class="result-number" style="font-weight: 300;">0</span>%)</li>
                         </ul>
                     </div>
                     <button id="play-again-button" class="button">Start new game</button>
@@ -101,8 +101,8 @@
             <hr>
             <h2>Scoreboard</h2>
             <div id="scoreboard">
-                <p>Player: <span id="score-player">0</span></p>
-                <p>Opponent: <span id="score-pc">0</span></p>
+                <p><span class="player-name">Player</span>: <span id="score-player">0</span></p>
+                <p>Computer: <span id="score-pc">0</span></p>
                 <p>Draws: <span id="score-neutral">0</span></p>
                 <p>Rounds played: <span id="score-rounds">0</span></p>
             </div>
