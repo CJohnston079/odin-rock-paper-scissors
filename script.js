@@ -48,6 +48,8 @@ counterRoundsPlayed.textContent = roundsPlayed;
 const startGameButton = document.querySelector('#start-game-button');
 const playAgainButton = document.querySelector('#play-again-button');
 
+const playerNameElements = document.querySelectorAll('.player-name')
+
 const optionArrows = document.querySelectorAll('.side-arrow');
 
 const scoreSelector = document.querySelector('#score-selector');
@@ -129,20 +131,38 @@ decreaseWinningScoreSelector.addEventListener('mousedown', () => {
 });
 
 function startGame() {
-    overlay.style.animation = 'fade-in 1s reverse'
+    overlay.style.animation = 'fade-in 1100ms reverse';
+    playRoundStartSound();
+    setPlayerName()
+    updatePlayerName()
     setTimeout(() => {
         overlay.setAttribute('class', 'disabled');
         gameStartScreen.setAttribute('class', 'disabled');
+        resetAnimation(overlay);
     }, 1000)
-    playRoundStartSound();
+}
+
+function startGameOnEnter(e) {
+    if (e.keyCode === 13) {
+        startGame()
+    }
 }
 
 startGameButton.addEventListener('mousedown', startGame)
-// document.getElementById("player-name-input").addEventListener('keydown', startGame)
+document.getElementById("player-name-input").addEventListener('keydown', startGameOnEnter)
 
 function setPlayerName() {
     playerName = document.getElementById("player-name-input").value;
+    if (playerName === '') {
+        playerName = 'Player'
+    }
     return playerName
+}
+
+function updatePlayerName() {
+    for (let i = 0; i < playerNameElements.length; i++) {
+        playerNameElements[i].textContent = playerName;
+    }
 }
 
 // For player options, highlight, play a sound and display an arena preview on hover
@@ -498,14 +518,14 @@ function declarePlayerWin() {
     infoMessage.style.color = 'white';
     infoMessage.style.animation = 'player-score-increase 2s';
     // , flicker 200ms steps(4, start) 0s 2';
-    infoMessage.textContent = 'Player wins the round!';
+    infoMessage.textContent = `${playerName} wins the round!`;
 }
 
 function declarePcWin() {
     infoMessage.style.color = 'white';
     infoMessage.style.animation = 'pc-score-increase 1s';
     // , flicker 200ms steps(4, start) 0s 2';
-    infoMessage.textContent = 'Opponent wins the round!';
+    infoMessage.textContent = 'Computer wins the round!';
 }
 
 function declareDraw() {
