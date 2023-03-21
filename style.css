@@ -285,6 +285,7 @@ li {
     justify-content: center;
     align-items: center;
     background-color: black;
+    transition: background-color 2s;
     /* backdrop-filter: grayscale(100%) blur(2px); */
 }
 

@@ -616,8 +616,10 @@ function declareWinner() {
 
 function showGameOverScreen() {
     overlay.removeAttribute('class')
-    gameOverScreen.removeAttribute('class')
+    overlay.style.backgroundColor = 'var(--black-trans-80)'
     overlay.style.animation = 'fade-in 2s'
+    gameOverScreen.removeAttribute('class')
+    resetInlineStyles(gameOverScreen);
     displayGameStatistics()
 }
 
@@ -651,14 +653,14 @@ function showGameStartScreen() {
     gameOverScreen.setAttribute('class', 'disabled')
     gameStartScreen.removeAttribute('class');
     resetAnimation(gameStartScreen);
-    resetAnimation(overlay);
 }
 
 function startNewGame() {
-    playConfirmTrueSound()
-    gameOverScreen.style.animation = 'flicker 250ms steps(4, start) 3';
-    setTimeout(showGameStartScreen, 750)
-    resetGame()
+    playGetConfirmSound()
+    gameOverScreen.style.animation = 'flicker 200ms steps(4, start) 4';
+    resetInlineStyles(overlay);
+    setTimeout(showGameStartScreen, 1000)
+    setTimeout(resetGame, 1000)
 }
 
 playAgainButton.addEventListener('click', startNewGame)
