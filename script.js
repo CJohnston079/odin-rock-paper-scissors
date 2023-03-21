@@ -649,13 +649,15 @@ function displayGameStatistics() {
 
 function showGameStartScreen() {
     gameOverScreen.setAttribute('class', 'disabled')
+    gameStartScreen.removeAttribute('class');
     resetAnimation(gameStartScreen);
     resetAnimation(overlay);
-    gameStartScreen.removeAttribute('class');
 }
 
 function startNewGame() {
-    showGameStartScreen()
+    playConfirmTrueSound()
+    gameOverScreen.style.animation = 'flicker 250ms steps(4, start) 3';
+    setTimeout(showGameStartScreen, 750)
     resetGame()
 }
 
