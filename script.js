@@ -42,6 +42,7 @@ const counterPlayerWins = document.getElementById('score-player');
 const counterPcWins = document.getElementById('score-pc');
 const counterDraws = document.getElementById('score-neutral');
 const counterRoundsPlayed = document.getElementById('score-rounds');
+const gameModeScoreboardDisplay = document.querySelector('#scoreboard').lastElementChild.firstElementChild;
 counterPlayerWins.textContent = playerWins;
 counterPcWins.textContent = pcWins;
 counterDraws.textContent = draws;
@@ -113,6 +114,7 @@ function increaseWinningScore() {
     resetAnimation(scoreSelector)
     if (winningScore < 9) {
         winningScore++;
+        roundsRemaining++;
         updateScoreSelectorDisplay();
         scoreSelector.style.animation = 'option-change 500ms';
     } else {
@@ -123,6 +125,7 @@ function increaseWinningScore() {
 function descreaseWinningScore() {
     if (winningScore > 1) {
         winningScore--;
+        roundsRemaining--;
         updateScoreSelectorDisplay()
         scoreSelector.style.animation = 'option-change 500ms';
     } else {
@@ -189,6 +192,13 @@ function startGame() {
         gameStartScreen.setAttribute('class', 'disabled');
         resetAnimation(overlay);
     }, 1000)
+    if (gameMode === 'first-to') {
+        gameModeScoreboardDisplay.textContent = 'Rounds played';
+        counterRoundsPlayed.textContent = roundsPlayed;
+    } else if (gameMode === 'best-of') {
+        gameModeScoreboardDisplay.textContent = 'Rounds remaining';
+        counterRoundsPlayed.textContent = roundsRemaining;
+    }
 }
 
 function startGameOnEnter(e) {
@@ -588,7 +598,12 @@ function declareDraw() {
 function addPlayerWin() {
     playerWins ++
     roundsPlayed ++
-    counterRoundsPlayed.textContent = roundsPlayed;
+    roundsRemaining --
+    if (gameMode === 'first-to') {
+        counterRoundsPlayed.textContent = roundsPlayed;
+    } else if (gameMode === 'best-of') {
+        counterRoundsPlayed.textContent = roundsRemaining;
+    }
     counterPlayerWins.textContent = playerWins;
     counterPlayerWins.style.animation = 'player-score-increase 1s';
     setTimeout(resetAnimation, 2000, counterPlayerWins)
@@ -597,7 +612,12 @@ function addPlayerWin() {
 function addPcWin() {
     pcWins ++
     roundsPlayed ++
-    counterRoundsPlayed.textContent = roundsPlayed;
+    roundsRemaining --
+    if (gameMode === 'first-to') {
+        counterRoundsPlayed.textContent = roundsPlayed;
+    } else if (gameMode === 'best-of') {
+        counterRoundsPlayed.textContent = roundsRemaining;
+    }
     counterPcWins.textContent = pcWins;
     counterPcWins.style.animation = 'pc-score-increase 1s';
     setTimeout(resetAnimation, 2000, counterPcWins)
@@ -606,7 +626,12 @@ function addPcWin() {
 function addDraw() {
     draws ++
     roundsPlayed ++
-    counterRoundsPlayed.textContent = roundsPlayed;
+    roundsRemaining --
+    if (gameMode === 'first-to') {
+        counterRoundsPlayed.textContent = roundsPlayed;
+    } else if (gameMode === 'best-of') {
+        counterRoundsPlayed.textContent = roundsRemaining;
+    }
     counterDraws.textContent = draws;
     counterDraws.style.animation = 'neutral-score-increase 1s';
     setTimeout(resetAnimation, 2000, counterDraws)
@@ -640,10 +665,17 @@ function hideNextRoundOption() {
 // Show end game screen once an overall winner is determined
 
 function checkForWinner() {
-    if (playerWins !== winningScore && pcWins !== winningScore) {
-        showNextRoundOption()
-    } else {
-        declareWinner()
+    if (gameMode === 'first-to') {
+        if (playerWins !== winningScore && pcWins !== winningScore) {
+            showNextRoundOption()
+        } else {
+            declareWinner()
+        }
+    }
+    if (gameMode === 'best-of') {
+        if (roundsRemaining === 0) {
+            declareWinner()
+        }
     }
 }
 
