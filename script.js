@@ -31,18 +31,18 @@ const infoMessage = document.getElementById('player-box').firstElementChild;
 const confirmOverlay = document.createElement('p');
 const vsCountdown = document.getElementById('vs-countdown');
 const nextRoundOption = document.getElementById('next-round')
+const gameOverAnnouncement = document.getElementById('game-over-announcement');
 
 const overlay = document.getElementById('overlay');
 const gameOverScreen = document.getElementById('game-over-screen');
 const gameStartScreen = document.getElementById('game-start-screen');
-
-const gameOverAnnouncement = document.getElementById('game-over-announcement');
 
 const counterPlayerWins = document.getElementById('score-player');
 const counterPcWins = document.getElementById('score-pc');
 const counterDraws = document.getElementById('score-neutral');
 const counterRoundsPlayed = document.getElementById('score-rounds');
 const gameModeScoreboardDisplay = document.querySelector('#scoreboard').lastElementChild.firstElementChild;
+
 counterPlayerWins.textContent = playerWins;
 counterPcWins.textContent = pcWins;
 counterDraws.textContent = draws;
@@ -108,39 +108,40 @@ for (let i = 0; i < optionArrows.length; i++) {
     optionArrows[i].addEventListener('mousedown', playCountdownSound);
 }
 
-const updateScoreSelectorDisplay = () => scoreSelector.textContent = winningScore;
+function updateScoreSelectorDisplay() {
+    scoreSelector.textContent = winningScore;
+    scoreSelector.style.animation = 'option-change 500ms';
+    setTimeout(resetAnimation, 500, scoreSelector)
+}
 
-function increaseWinningScore() {
-    resetAnimation(scoreSelector)
+function displayScoreLimitAnimation() {
+    scoreSelector.style.animation = 'player-wobble 500ms reverse';
+    setTimeout(resetAnimation, 500, scoreSelector)
+}
+
+
+function increaseRounds() {
     if (winningScore < 9) {
         winningScore++;
         roundsRemaining++;
-        updateScoreSelectorDisplay();
-        scoreSelector.style.animation = 'option-change 500ms';
+        updateScoreSelectorDisplay()
     } else {
-        scoreSelector.style.animation = 'player-wobble 500ms';
+        displayScoreLimitAnimation()
     }
 }
 
-function descreaseWinningScore() {
+function decreaseRounds() {
     if (winningScore > 1) {
         winningScore--;
         roundsRemaining--;
         updateScoreSelectorDisplay()
-        scoreSelector.style.animation = 'option-change 500ms';
     } else {
-        scoreSelector.style.animation = 'player-wobble 500ms reverse';
+        displayScoreLimitAnimation()
     }
 }
 
-increaseWinningScoreSelector.addEventListener('mousedown', () => {
-    increaseWinningScore()
-    setTimeout(resetAnimation, 500, scoreSelector)
-});
-decreaseWinningScoreSelector.addEventListener('mousedown', () => {
-    descreaseWinningScore()
-    setTimeout(resetAnimation, 500, scoreSelector)
-});
+increaseWinningScoreSelector.addEventListener('mousedown', increaseRounds);
+decreaseWinningScoreSelector.addEventListener('mousedown', decreaseRounds)
 
 function changeGameMode() {
     gameModeSelector.style.animation = 'option-change 500ms';
