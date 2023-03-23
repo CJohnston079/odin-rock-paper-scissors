@@ -673,7 +673,9 @@ function checkForWinner() {
         }
     }
     if (gameMode === 'best-of') {
-        if (roundsRemaining === 0) {
+        if (roundsRemaining > 0) {
+            showNextRoundOption()
+        } else {
             declareWinner()
         }
     }
@@ -868,6 +870,7 @@ function resetScoreboard() {
     pcWins = 0
     draws = 0
     roundsPlayed = 0
+    roundsRemaining = scoreSelector.textContent;
     numPlayerRockChoices = 0;
     numPlayerPaperChoices = 0;
     numPlayerScissorsChoices = 0;
