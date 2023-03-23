@@ -56,8 +56,8 @@ const playerNameElements = document.querySelectorAll('.player-name')
 const optionArrows = document.querySelectorAll('.side-arrow');
 
 const scoreSelector = document.querySelector('#score-selector');
-const increaseWinningScoreSelector = document.querySelector('#rounds-increase');
-const decreaseWinningScoreSelector = document.querySelector('#rounds-decrease');
+const increaseWinningScoreSelector = optionArrows[1];
+const decreaseWinningScoreSelector = optionArrows[0];
 
 const gameModeSelector = document.querySelector('#game-mode');
 const gameModeSelectorArrows = [optionArrows[2], optionArrows[3]]
@@ -110,13 +110,17 @@ for (let i = 0; i < optionArrows.length; i++) {
 
 function updateScoreSelectorDisplay() {
     scoreSelector.textContent = winningScore;
-    scoreSelector.style.animation = 'option-change 500ms';
-    setTimeout(resetAnimation, 500, scoreSelector)
+    scoreSelector.style.color = 'var(--yellow)';
+    setTimeout(() => {
+        scoreSelector.style.transition = '400ms';
+        scoreSelector.style.color = 'white';
+    }, 100);
+    setTimeout(resetInlineStyles, 500, scoreSelector);
 }
 
 function displayScoreLimitAnimation() {
     scoreSelector.style.animation = 'player-wobble 500ms reverse';
-    setTimeout(resetAnimation, 500, scoreSelector)
+    setTimeout(resetAnimation, 500, scoreSelector);
 }
 
 
@@ -140,8 +144,8 @@ function decreaseRounds() {
     }
 }
 
-increaseWinningScoreSelector.addEventListener('mousedown', increaseRounds);
-decreaseWinningScoreSelector.addEventListener('mousedown', decreaseRounds)
+increaseWinningScoreSelector.addEventListener('click', increaseRounds);
+decreaseWinningScoreSelector.addEventListener('click', decreaseRounds);
 
 function changeGameMode() {
     gameModeSelector.style.animation = 'option-change 500ms';
