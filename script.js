@@ -420,7 +420,7 @@ function countdown1() {
 
 function getPcChoice () {
     function randomNumber() {
-        return Math.floor(Math.random() * 3)
+        return Math.floor(Math.random() * 1)
     }
     if (randomNumber() === 1) {
         pcChoice = 'ROCK';
@@ -450,7 +450,7 @@ function determineWinner() {
         playRoundDrawSound();
         setTimeout(addDraw, 1000);
         declareDraw();
-        setTimeout(showNextRoundOption, 1000);
+        setTimeout(checkForWinner, 1000)
         (playerChoice === 'ROCK') ? numPlayerRockChoices ++ :
         (playerChoice === 'PAPER') ? numPlayerPaperChoices ++ :
         numPlayerScissorsChoices ++ ;
