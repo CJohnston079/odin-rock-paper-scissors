@@ -88,7 +88,7 @@ const playCountdownSound = () => {
     countdownSound.currentTime = 0;
     countdownSound.play();
 }
-const playConfirmTrueSound = () => confirmTrueSound.play();
+const playConfirmSound = () => confirmTrueSound.play();
 const playRoundStartSound = () => roundStartSound.play();
 const playRoundWinSound = () => roundWinSound.play();
 const playRoundLossSound = () => roundLossSound.play();
@@ -175,9 +175,9 @@ function changeGameSpeed() {
     }
 }
 
+const startGameOnEnter = (e) => (e.keyCode === 13) ? startGame() : {};
 startGameButton.addEventListener('mousedown', startGame);
 document.getElementById("player-name-input").addEventListener('keydown', startGameOnEnter);
-const startGameOnEnter = (e) => (e.keyCode === 13) ? startGame() : {};
 
 function startGame() {
     applyGameMode();
@@ -220,7 +220,24 @@ function hideGameStartScreen() {
     }, 1000);
 }
 
-// For player options, highlight, play a sound and display an arena preview on hover
+playerOptions.forEach(option => {
+    option.addEventListener('mouseenter', () => {
+        playBlipSound(),
+        highlightOption(option),
+        showPreview(option)
+        });
+    option.addEventListener('mouseleave', () => {
+        resetOption(),
+        resetPreview()
+    });
+    option.addEventListener('click', () => {
+        playGetConfirmSound(),
+        showConfirmMessage(option),
+        showConfirmIcon(option),
+        showConfirmPreview(option),
+        showConfirmOverlay(option)
+    });
+});
 
 function highlightOption(option) {
     if (option === optionRock) {
@@ -230,14 +247,7 @@ function highlightOption(option) {
     } else if (option === optionScissors) {
         optionScissors.setAttribute('class', 'scissors-yellow');
     }
-    option.addEventListener('mouseleave', resetOption)
 }
-
-function resetOption() {
-    optionRock.setAttribute('class', 'rock-light');
-    optionPaper.setAttribute('class', 'paper-light');        
-    optionScissors.setAttribute('class', 'scissors-light');
-    }
 
 function showPreview(option) {
     if (option === optionRock) {
@@ -247,12 +257,15 @@ function showPreview(option) {
     } else if (option === optionScissors) {
         playerChoiceIcon.setAttribute('class', 'scissors-dark');
     }
-    option.addEventListener('mouseleave', resetPreview);
 }
 
-function resetPreview() {
-    playerChoiceIcon.setAttribute('class', 'unknown-choice');
-}
+function resetOption() {
+    optionRock.setAttribute('class', 'rock-light');
+    optionPaper.setAttribute('class', 'paper-light');        
+    optionScissors.setAttribute('class', 'scissors-light');
+    }
+
+const resetPreview = () => playerChoiceIcon.setAttribute('class', 'unknown-choice');
 
 function resetChoiceDescriptionOpacity() {
     document.querySelector('#rock-description').style.opacity = 1;
@@ -260,17 +273,7 @@ function resetChoiceDescriptionOpacity() {
     document.querySelector('#scissors-description').style.opacity = 1;
 }
 
-playerOptions.forEach(option => {
-    option.addEventListener('mouseenter', () => {
-        playBlipSound(),
-        highlightOption(option),
-        showPreview(option)
-        });
-});
-
-// When player clicks on an option, ask player to confirm choice and highlight the arena preview
-
-function getConfirmMessage(option) {
+function showConfirmMessage(option) {
     if (option === optionRock) {
         infoMessage.textContent = 'Choose Rock?'
     } else if (option === optionPaper) {
@@ -282,12 +285,7 @@ function getConfirmMessage(option) {
     option.addEventListener('mouseleave', resetChoiceDescriptionOpacity)
 }
 
-function resetInfoMessage() {
-    infoMessage.style.color = ('white');
-    infoMessage.textContent = 'Make your choice:';
-}
-
-function getConfirmIcon(option) {
+function showConfirmIcon(option) {
     if (option === optionRock) {
         optionRock.setAttribute('class', 'rock-yellow-overlay');
         document.querySelector('#rock-description').style.opacity = 0.5;
@@ -300,7 +298,7 @@ function getConfirmIcon(option) {
     }
 }
 
-function getConfirmPreview(option) {
+function showConfirmPreview(option) {
     if (option === optionRock) {
         playerChoiceIcon.setAttribute('class', 'rock-yellow');
     } else if (option === optionPaper) {
@@ -310,7 +308,7 @@ function getConfirmPreview(option) {
     }
 }
 
-function displayConfirmOverlay(option) {
+function showConfirmOverlay(option) {
     confirmOverlay.textContent = 'Click to confirm';
     confirmOverlay.setAttribute('class', 'confirm-overlay')
     option.appendChild(confirmOverlay);
@@ -319,29 +317,43 @@ function displayConfirmOverlay(option) {
     });
 }
 
-playerOptions.forEach(option => {
-    option.addEventListener('click', playGetConfirmSound)
-    option.addEventListener('click', () => {
-        getConfirmMessage(option),
-        getConfirmIcon(option),
-        getConfirmPreview(option),
-        displayConfirmOverlay(option)
-    });
-})
-
 // Confirm player choice and activate arena
 
-function confirmplayerChoice() {
+confirmOverlay.addEventListener('mousedown', () => {
+    confirmOverlay.remove()
+    playConfirmSound()
+    confirmPlayerChoice()
+    getPcChoice()
+    hideEnabledOptions()
+    showDisabledOptions()
+    resetChoiceDescriptionOpacity()
+    roundStartInfoMessage()
+    activateArena()
+    setTimeout(roundProgressInfoMessage, 2000);
+    setTimeout(countdown3, 2000)
+})
+
+function confirmPlayerChoice() {
     if (playerChoiceIcon.getAttribute('class') === 'rock-yellow') {
         playerChoiceIcon.setAttribute('class', 'rock-light');
         playerChoice = 'ROCK'
+        numPlayerRockChoices++;
     } else if (playerChoiceIcon.getAttribute('class') === 'paper-yellow') {
         playerChoiceIcon.setAttribute('class', 'paper-light')
         playerChoice = 'PAPER'
+        numPlayerPaperChoices++;
     } else if (playerChoiceIcon.getAttribute('class') === 'scissors-yellow') {
         playerChoiceIcon.setAttribute('class', 'scissors-light')
         playerChoice = 'SCISSORS'
+        numPlayerScissorsChoices++;
     }
+}
+
+function getPcChoice () {
+    let randomNumber = () => Math.floor(Math.random() * 3)
+    randomNumber() === 0 ? pcChoice = 'ROCK'
+    : randomNumber() === 1 ? pcChoice = 'PAPER'
+    : pcChoice = 'SCISSORS';
 }
 
 function activateArena() {
@@ -356,24 +368,11 @@ function roundStartInfoMessage() {
     infoMessage.style.animation = 'flicker 150ms steps(3, start) 1100ms 6'
 }
 
-confirmOverlay.addEventListener('mousedown', () => {
-    confirmOverlay.remove()
-    confirmplayerChoice()
-    getPcChoice()
-    playConfirmTrueSound()
-    hideEnabledOptions()
-    showDisabledOptions()
-    resetChoiceDescriptionOpacity()
-    roundStartInfoMessage()
-    activateArena()
-    setTimeout(countdown3, 2000)
-    setTimeout(() => {
-        infoMessage.style.color = 'var(--grey-blue)';
-        infoMessage.style.animation = '';
-        infoMessage.textContent = 'Round in progress...'
-      }, 2000);
-
-})
+function roundProgressInfoMessage() {
+    infoMessage.style.animation = '';
+    infoMessage.style.color = 'var(--grey-blue)';
+    infoMessage.textContent = 'Round in progress...'
+}
 
 // Countdown to round 3... 2... 1...
 
@@ -412,21 +411,6 @@ function countdown1() {
     setTimeout(determineWinner, 2500)
 }
 
-// Get pc choice and reveal it to player
-
-function getPcChoice () {
-    function randomNumber() {
-        return Math.floor(Math.random() * 1)
-    }
-    if (randomNumber() === 1) {
-        pcChoice = 'ROCK';
-    } else if (randomNumber() === 2) {
-        pcChoice = 'PAPER';
-    } else {
-        pcChoice = 'SCISSORS';
-    }
-}
-
 function displayPcChoice() {
     pcChoiceIcon.style.transition = 'background-image 500ms, transform 1s';
     if (pcChoice === 'ROCK') {
@@ -438,67 +422,27 @@ function displayPcChoice() {
     }
 }
 
-// Determine winner
-
 function determineWinner() {
     if (playerChoice === pcChoice) {
         drawIcon(playerChoiceIcon);
         playRoundDrawSound();
-        setTimeout(addDraw, 1000);
         declareDraw();
+        setTimeout(addDraw, 1000);
         setTimeout(checkForWinner, 1000)
-        (playerChoice === 'ROCK') ? numPlayerRockChoices ++ :
-        (playerChoice === 'PAPER') ? numPlayerPaperChoices ++ :
-        numPlayerScissorsChoices ++ ;
         return
     }
-    if (playerChoice === 'ROCK') {
-        if (pcChoice === 'SCISSORS') {
-            winningIcon(playerChoiceIcon)
-            losingIcon(pcChoiceIcon)
-            playRoundWinSound()
-            setTimeout(addPlayerWin, 1000)
-            declarePlayerWin()
-        } else {
-            winningIcon(pcChoiceIcon)
-            losingIcon(playerChoiceIcon)
-            playRoundLossSound()
-            setTimeout(addPcWin, 1000)
-            declarePcWin()
-        }
-        numPlayerRockChoices ++
-    }
-    if (playerChoice === 'PAPER') {
-        if (pcChoice === 'ROCK') {
-            winningIcon(playerChoiceIcon)
-            losingIcon(pcChoiceIcon)
-            playRoundWinSound()
-            setTimeout(addPlayerWin, 1000)
-            declarePlayerWin()
-        } else {
-            winningIcon(pcChoiceIcon)
-            losingIcon(playerChoiceIcon)
-            playRoundLossSound()
-            setTimeout(addPcWin, 1000)
-            declarePcWin()
-        }
-        numPlayerPaperChoices ++
-    }
-    if (playerChoice === 'SCISSORS') {
-        if (pcChoice === 'PAPER') {
-            winningIcon(playerChoiceIcon)
-            losingIcon(pcChoiceIcon)
-            playRoundWinSound()
-            setTimeout(addPlayerWin, 1000)
-            declarePlayerWin()
-        } else {
-            winningIcon(pcChoiceIcon)
-            losingIcon(playerChoiceIcon)
-            playRoundLossSound()
-            setTimeout(addPcWin, 1000)
-            declarePcWin()
-        }
-        numPlayerScissorsChoices ++
+    if (playerChoice === 'ROCK' && pcChoice === 'SCISSORS' || playerChoice === 'PAPER' && pcChoice === 'ROCK' || playerChoice === 'SCISSORS' && pcChoice === 'PAPER') {
+        winningIcon(playerChoiceIcon)
+        losingIcon(pcChoiceIcon)
+        playRoundWinSound()
+        setTimeout(addPlayerWin, 1000)
+        declarePlayerWin()
+    } else {
+        winningIcon(pcChoiceIcon)
+        losingIcon(playerChoiceIcon)
+        playRoundLossSound()
+        setTimeout(addPcWin, 1000)
+        declarePcWin()
     }
     setTimeout(checkForWinner, 2000)
 }
@@ -572,14 +516,12 @@ function drawIcon(icon) {
 function declarePlayerWin() {
     infoMessage.style.color = 'white';
     infoMessage.style.animation = 'player-score-increase 2s';
-    // , flicker 200ms steps(4, start) 0s 2';
     infoMessage.textContent = `${playerName} wins the round!`;
 }
 
 function declarePcWin() {
     infoMessage.style.color = 'white';
     infoMessage.style.animation = 'pc-score-increase 1s';
-    // , flicker 200ms steps(4, start) 0s 2';
     infoMessage.textContent = 'Computer wins the round!';
 }
 
@@ -747,13 +689,10 @@ playAgainButton.addEventListener('click', startNewGame)
 let numPlayerRockChoices = 0;
 let numPlayerPaperChoices = 0;
 let numPlayerScissorsChoices = 0;
+const checkPlayerChoices = () => console.log(`${playerName} chose ROCK ${numPlayerRockChoices} time(s), chose PAPER ${numPlayerPaperChoices} time(s), and chose SCISSORS ${numPlayerScissorsChoices} time(s).`);
 
 let favouritePlayerChoice = '';
 let favouriteChoicePercentage = 0;
-
-function checkPlayerChoices() {
-    console.log(`Chose ROCK ${numPlayerRockChoices} times, chose PAPER ${numPlayerPaperChoices} times, chose SCISSORS ${numPlayerScissorsChoices} times.`)
-}
 
 function calcFavouritePlayerChoice() {
     if (numPlayerRockChoices >= numPlayerPaperChoices && numPlayerRockChoices >= numPlayerScissorsChoices) {
@@ -834,20 +773,32 @@ function showEnabledOptions() {
 
 // Reset functons
 
+function nextRound() {
+    resetOptions()
+    resetArena()
+    hideNextRoundOption()
+    playNextRoundSound()
+}
+
+function resetGame() {
+    resetOptions()
+    resetArena()
+    resetScoreboard()
+}
+
+const resetAnimation = element => element.style.animation = '';
+const resetInlineStyles = element => element.style = '';
+const resetInfoMessage = () => {
+    infoMessage.style.color = ('white');
+    infoMessage.textContent = 'Make your choice:';
+}
+
 function resetOptions() {
+    infoMessage.style.animation = 'flicker 150ms steps(3, start) 250ms 3'
     hideDisabledOptions();
     showEnabledOptions();
-    infoMessage.style.animation = 'flicker 150ms steps(3, start) 250ms 3'
     setTimeout(resetInfoMessage, 700)
     setTimeout(resetAnimation, 700, infoMessage)
-}
-
-function resetAnimation(element) {
-    element.style.animation = '';
-}
-
-function resetInlineStyles(element) {
-    element.style = '';
 }
 
 function resetArena() {
@@ -876,19 +827,6 @@ function resetScoreboard() {
     counterPcWins.textContent = pcWins;
     counterDraws.textContent = draws;
     counterRoundsPlayed.textContent = roundsPlayed;
-}
-
-function nextRound() {
-    resetOptions()
-    resetArena()
-    hideNextRoundOption()
-    playNextRoundSound()
-}
-
-function resetGame() {
-    resetOptions()
-    resetArena()
-    resetScoreboard()
 }
 
 /*
