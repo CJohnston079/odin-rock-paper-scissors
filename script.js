@@ -66,9 +66,6 @@ const gameModeDisplay = document.querySelectorAll('.game-options')[0].firstEleme
 const gameSpeedSelector = document.querySelector('#game-speed')
 const gameSpeedSelectorArrows = [optionArrows[4], optionArrows[5]]
 
-// Play sound functions
-
-const gameOptionSound = document.getElementById('audio-option');
 const blipSound = document.getElementById('audio-blip');
 const getConfirmSound = document.getElementById('audio-get-confirm');
 const confirmTrueSound = document.getElementById('confirm-true');
@@ -79,10 +76,6 @@ const roundLossSound = document.getElementById('round-loss');
 const roundDrawSound = document.getElementById('round-draw');
 const nextRoundSound = document.getElementById('next-round-sound');
 
-const playGameOptionSound = () => {
-    gameOptionSound.currentTime = 0;
-    gameOptionSound.play();
-}
 const playBlipSound = () => {
     blipSound.currentTime = 0;
     blipSound.play();
@@ -95,34 +88,19 @@ const playCountdownSound = () => {
     countdownSound.currentTime = 0;
     countdownSound.play();
 }
-const playConfirmTrueSound =() => confirmTrueSound.play();
+const playConfirmTrueSound = () => confirmTrueSound.play();
 const playRoundStartSound = () => roundStartSound.play();
 const playRoundWinSound = () => roundWinSound.play();
 const playRoundLossSound = () => roundLossSound.play();
 const playRoundDrawSound = () => roundDrawSound.play();
 const playNextRoundSound = () => nextRoundSound.play();
 
-// Menu screen
-
 for (let i = 0; i < optionArrows.length; i++) {
     optionArrows[i].addEventListener('mousedown', playCountdownSound);
 }
 
-function updateScoreSelectorDisplay() {
-    scoreSelector.textContent = winningScore;
-    scoreSelector.style.color = 'var(--yellow)';
-    setTimeout(() => {
-        scoreSelector.style.transition = '400ms';
-        scoreSelector.style.color = 'white';
-    }, 100);
-    setTimeout(resetInlineStyles, 500, scoreSelector);
-}
-
-function displayScoreLimitAnimation() {
-    scoreSelector.style.animation = 'player-wobble 500ms reverse';
-    setTimeout(resetAnimation, 500, scoreSelector);
-}
-
+increaseWinningScoreSelector.addEventListener('click', increaseRounds);
+decreaseWinningScoreSelector.addEventListener('click', decreaseRounds);
 
 function increaseRounds() {
     if (winningScore < 9) {
@@ -144,8 +122,27 @@ function decreaseRounds() {
     }
 }
 
-increaseWinningScoreSelector.addEventListener('click', increaseRounds);
-decreaseWinningScoreSelector.addEventListener('click', decreaseRounds);
+function updateScoreSelectorDisplay() {
+    scoreSelector.textContent = winningScore;
+    scoreSelector.style.color = 'var(--yellow)';
+    setTimeout(() => {
+        scoreSelector.style.transition = '100ms';
+        scoreSelector.style.color = 'white';
+    }, 400);
+    setTimeout(resetInlineStyles, 500, scoreSelector);
+}
+
+function displayScoreLimitAnimation() {
+    scoreSelector.style.animation = 'player-wobble 500ms reverse';
+    setTimeout(resetAnimation, 500, scoreSelector);
+}
+
+gameModeSelectorArrows.forEach(option => {
+    option.addEventListener('mousedown', () => {
+        changeGameMode();
+        setTimeout(resetAnimation, 500, gameModeSelector)
+        });
+});
 
 function changeGameMode() {
     gameModeSelector.style.animation = 'option-change 500ms';
@@ -160,10 +157,10 @@ function changeGameMode() {
     }
 }
 
-gameModeSelectorArrows.forEach(option => {
+gameSpeedSelectorArrows.forEach(option => {
     option.addEventListener('mousedown', () => {
-        changeGameMode();
-        setTimeout(resetAnimation, 500, gameModeSelector)
+        changeGameSpeed();
+        setTimeout(resetAnimation, 500, gameSpeedSelector)
         });
 });
 
@@ -174,29 +171,23 @@ function changeGameSpeed() {
         gameSpeedSelector.textContent = 'Speedy';
     } else if (gameSpeed === 'speedy') {
         gameSpeed = 'normal';
-        gameSpeedSelector.textContent = 'Classic';
+        gameSpeedSelector.textContent = 'Normal';
     }
 }
 
-gameSpeedSelectorArrows.forEach(option => {
-    option.addEventListener('mousedown', () => {
-        changeGameSpeed();
-        setTimeout(resetAnimation, 500, gameSpeedSelector)
-        });
-});
-
-// Start game
+startGameButton.addEventListener('mousedown', startGame);
+document.getElementById("player-name-input").addEventListener('keydown', startGameOnEnter);
+const startGameOnEnter = (e) => (e.keyCode === 13) ? startGame() : {};
 
 function startGame() {
-    overlay.style.animation = 'fade-in 1100ms reverse';
+    applyGameMode();
+    getPlayerName();
+    updatePlayerNameElements();
+    hideGameStartScreen();
     playRoundStartSound();
-    setPlayerName()
-    updatePlayerName()
-    setTimeout(() => {
-        overlay.setAttribute('class', 'disabled');
-        gameStartScreen.setAttribute('class', 'disabled');
-        resetAnimation(overlay);
-    }, 1000)
+}
+
+function applyGameMode() {
     if (gameMode === 'first-to') {
         gameModeScoreboardDisplay.textContent = 'Rounds played';
         counterRoundsPlayed.textContent = roundsPlayed;
@@ -206,16 +197,7 @@ function startGame() {
     }
 }
 
-function startGameOnEnter(e) {
-    if (e.keyCode === 13) {
-        startGame()
-    }
-}
-
-startGameButton.addEventListener('mousedown', startGame)
-document.getElementById("player-name-input").addEventListener('keydown', startGameOnEnter)
-
-function setPlayerName() {
+function getPlayerName() {
     playerName = document.getElementById("player-name-input").value;
     if (playerName === '') {
         playerName = 'Player'
@@ -223,10 +205,19 @@ function setPlayerName() {
     return playerName
 }
 
-function updatePlayerName() {
+function updatePlayerNameElements() {
     for (let i = 0; i < playerNameElements.length; i++) {
         playerNameElements[i].textContent = playerName;
     }
+}
+
+function hideGameStartScreen() {
+    overlay.style.animation = 'fade-in 1100ms reverse';
+    setTimeout(() => {
+        overlay.setAttribute('class', 'disabled');
+        gameStartScreen.setAttribute('class', 'disabled');
+        resetAnimation(overlay);
+    }, 1000);
 }
 
 // For player options, highlight, play a sound and display an arena preview on hover

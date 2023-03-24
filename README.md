@@ -17,7 +17,6 @@ My first JavaScript project from scratch. This began as a game to play in the br
 ### Setting up the game
 - ✔️ The player should see a pop-up on site load that asks for their name
 - ✔️ There should be an option to skip this step and assign a name of "Player".
-- OPTIONAL: there could be an option to generate a random name from an array.
 - ✔️ OPTIONAL: there could be an option to select game type, e.g. number of rounds to play.
 - OPTIONAL: there could be an option to select the speed of gameplay.
 
