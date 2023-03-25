@@ -407,11 +407,11 @@ function countdown1() {
     setTimeout(resetAnimation, 900, vsCountdown)
     setTimeout(hideVsCountdown, 1000, vsCountdown)
     setTimeout(playRoundStartSound, 1000)
-    setTimeout(displayPcChoice, 1000)
-    setTimeout(determineWinner, 2500)
+    setTimeout(showPcChoice, 1000)
+    setTimeout(displayRoundResult, 2500)
 }
 
-function displayPcChoice() {
+function showPcChoice() {
     pcChoiceIcon.style.transition = 'background-image 500ms, transform 1s';
     if (pcChoice === 'ROCK') {
         pcChoiceIcon.setAttribute('class', 'rock-light');
@@ -422,32 +422,48 @@ function displayPcChoice() {
     }
 }
 
-function determineWinner() {
+let roundResult = '';
+
+function determineRoundResult() {
     if (playerChoice === pcChoice) {
-        drawIcon(playerChoiceIcon);
+        roundResult = 'draw';
+    } else if (playerChoice === 'ROCK' && pcChoice === 'SCISSORS' || playerChoice === 'PAPER' && pcChoice === 'ROCK' || playerChoice === 'SCISSORS' && pcChoice === 'PAPER') {
+        roundResult = 'player-win';
+    } else {
+        roundResult = 'pc-win'
+    }
+    return roundResult
+}
+
+function displayRoundResult() {
+    determineRoundResult()
+    declareRoundResult()
+    if (roundResult === 'draw') {
         playRoundDrawSound();
-        declareDraw();
+        showDrawIcon(playerChoiceIcon);
         setTimeout(addDraw, 1000);
         setTimeout(checkForWinner, 1000)
         return
     }
-    if (playerChoice === 'ROCK' && pcChoice === 'SCISSORS' || playerChoice === 'PAPER' && pcChoice === 'ROCK' || playerChoice === 'SCISSORS' && pcChoice === 'PAPER') {
-        winningIcon(playerChoiceIcon)
-        losingIcon(pcChoiceIcon)
+    if (roundResult === 'player-win') {
         playRoundWinSound()
+        showWinningIcon(playerChoiceIcon)
+        showLosingIcon(pcChoiceIcon)
+        animateWinningIcon(playerChoiceIcon)
+        animateLosingIcon(pcChoiceIcon)
         setTimeout(addPlayerWin, 1000)
-        declarePlayerWin()
     } else {
-        winningIcon(pcChoiceIcon)
-        losingIcon(playerChoiceIcon)
         playRoundLossSound()
+        showWinningIcon(pcChoiceIcon)
+        showLosingIcon(playerChoiceIcon)
+        animateWinningIcon(pcChoiceIcon)
+        animateLosingIcon(playerChoiceIcon)
         setTimeout(addPcWin, 1000)
-        declarePcWin()
     }
     setTimeout(checkForWinner, 2000)
 }
 
-function losingIcon(icon) {
+function showLosingIcon(icon) {
     if (icon.getAttribute('class') === 'rock-light') {
         icon.setAttribute('class', 'rock-dark');
     } else if (icon.getAttribute('class') === 'paper-light' === true) {
@@ -455,6 +471,9 @@ function losingIcon(icon) {
     } else if (icon.getAttribute('class') === 'scissors-light' === true) {
         icon.setAttribute('class', 'scissors-dark');
     }
+}
+
+function animateLosingIcon(icon) {
     icon.style.transition = 'background-image 200ms'
     icon.style.animation = 'flicker 200ms steps(4, start) 400ms 3'
     setTimeout(() => {
@@ -464,20 +483,29 @@ function losingIcon(icon) {
     }, 1000)
 }
 
-function winningIcon(icon) {
-    if (icon.getAttribute('class') === 'rock-light' && icon.getAttribute('id') === 'player-choice') {
-        icon.setAttribute('class', 'rock-green');
-    } else if (icon.getAttribute('class') === 'paper-light' && icon.getAttribute('id') === 'player-choice') {
-        icon.setAttribute('class', 'paper-green');
-    } else if (icon.getAttribute('class') === 'scissors-light' && icon.getAttribute('id') === 'player-choice') {
-        icon.setAttribute('class', 'scissors-green');
-    } else if (icon.getAttribute('class') === 'rock-light' && icon.getAttribute('id') === 'pc-choice') {
-        icon.setAttribute('class', 'rock-red');
-    } else if (icon.getAttribute('class') === 'paper-light' && icon.getAttribute('id') === 'pc-choice') {
-        icon.setAttribute('class', 'paper-red');
-    } else if (icon.getAttribute('class') === 'scissors-light' && icon.getAttribute('id') === 'pc-choice') {
-        icon.setAttribute('class', 'scissors-red');
+function showWinningIcon(icon) {
+    if (icon.getAttribute('id') === 'player-choice') {
+        if (playerChoice === 'ROCK') {
+            icon.setAttribute('class', 'rock-green');
+        } else if (playerChoice === 'PAPER') {
+            icon.setAttribute('class', 'paper-green');
+        } else if (playerChoice === 'SCISSORS') {
+            icon.setAttribute('class', 'scissors-green');
+        }
+    } else if (icon.getAttribute('id') === 'pc-choice') {
+        if (pcChoice === 'ROCK') {
+            icon.setAttribute('class', 'rock-red');
+        } else if (pcChoice === 'PAPER') {
+            icon.setAttribute('class', 'paper-red');
+        } else if (pcChoice === 'SCISSORS') {
+            icon.setAttribute('class', 'scissors-red');
+        }
     }
+}
+
+function animateWinningIcon(icon) {
+    icon.style.transition = 'background-image 200ms'
+    icon.style.animation = 'grow-shrink 1s'
     if (icon.getAttribute('id') === 'player-choice') {
         playerChoiceHighlight.style.animation = 'highlight-green 2s';
         // browserWindow.style.animation = 'highlight-green-window 6s'
@@ -495,40 +523,34 @@ function winningIcon(icon) {
             pcChoiceHighlight.style.animation = 'highlight-red 4s linear infinite';
         }, 1000)
     }
-    icon.style.transition = 'background-image 200ms'
-    icon.style.animation = 'grow-shrink 1s'
     setTimeout(() => {vsCountdown.style.width = '0rem';}, 1000)
 }
 
-function drawIcon(icon) {
-    if (icon.getAttribute('class') === 'rock-light') {
+function showDrawIcon(icon) {
+    if (playerChoice === 'ROCK') {
         playerChoiceIcon.style.animation = 'draw-rock 1s, player-wobble 400ms linear 200ms 1 normal';
         pcChoiceIcon.style.animation = 'draw-rock 1s, pc-wobble 400ms linear 200ms 1 reverse';
-    } else if (icon.getAttribute('class') === 'paper-light') {
+    } else if (playerChoice === 'PAPER') {
         playerChoiceIcon.style.animation = 'draw-paper 1s, player-wobble 400ms linear 200ms 1 normal';
         pcChoiceIcon.style.animation = 'draw-paper 1s, pc-wobble 400ms linear 200ms 1 reverse';
-    } else if (icon.getAttribute('class') === 'scissors-light') {
+    } else if (playerChoice === 'SCISSORS') {
         playerChoiceIcon.style.animation = 'draw-scissors 1s, player-wobble 400ms linear 200ms 1 normal';
         pcChoiceIcon.style.animation = 'draw-scissors 1s, pc-wobble 400ms linear 200ms 1 reverse';
     }
 }
 
-function declarePlayerWin() {
+function declareRoundResult() {
     infoMessage.style.color = 'white';
-    infoMessage.style.animation = 'player-score-increase 2s';
-    infoMessage.textContent = `${playerName} wins the round!`;
-}
-
-function declarePcWin() {
-    infoMessage.style.color = 'white';
-    infoMessage.style.animation = 'pc-score-increase 1s';
-    infoMessage.textContent = 'Computer wins the round!';
-}
-
-function declareDraw() {
-    infoMessage.style.color = 'white';
-    infoMessage.style.animation = 'neutral-score-increase 1s';
-    infoMessage.textContent = 'The round is a draw...';
+    if (roundResult === 'draw') {
+        infoMessage.style.animation = 'neutral-score-increase 1s';
+        infoMessage.textContent = 'The round is a draw...';
+    } else if (roundResult === 'player-win') {
+        infoMessage.style.animation = 'player-score-increase 2s';
+        infoMessage.textContent = `${playerName} wins the round!`;
+    } else {
+        infoMessage.style.animation = 'pc-score-increase 1s';
+        infoMessage.textContent = 'Computer wins the round!';
+    }
 }
 
 // Display players wins, opponent wins, draws and rounds played
