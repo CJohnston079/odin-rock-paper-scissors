@@ -10,7 +10,7 @@ li {
     font-family: 'Silkscreen', cursive;
     text-align: center;
     user-select: none;
-    --dark-blue: hsla(240,100%,10%,1);
+    --dark-blue: hsla(240,100%,6%,1);
     --grey-blue: hsla(240,10%,50%,1);
     --light-blue: hsla(240,40%,80%, 1);
     --yellow: hsla(50, 100%, 60%, 1);

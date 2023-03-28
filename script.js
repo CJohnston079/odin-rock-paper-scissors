@@ -232,16 +232,11 @@ playerOptions.forEach(option => {
         resetPreview()
     });
     option.addEventListener('click', () => {
-        if (gameSpeed === 'normal') {
-            playGetConfirmSound(),
-            showConfirmMessage(option),
-            showConfirmIcon(option),
-            showConfirmPreview(option),
-            showConfirmOverlay(option)
-        } else {
-            showConfirmOverlay(option),
-            startRound()
-        }
+        playGetConfirmSound(),
+        showConfirmMessage(option),
+        showConfirmIcon(option),
+        showConfirmPreview(option),
+        showConfirmOverlay(option)
     });
 });
 
