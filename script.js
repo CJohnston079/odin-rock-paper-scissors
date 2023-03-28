@@ -223,6 +223,7 @@ function hideGameStartScreen() {
 playerOptions.forEach(option => {
     option.addEventListener('mouseenter', () => {
         playBlipSound(),
+        getPlayerChoice(option),
         highlightOption(option),
         showPreview(option)
         });
@@ -231,13 +232,28 @@ playerOptions.forEach(option => {
         resetPreview()
     });
     option.addEventListener('click', () => {
-        playGetConfirmSound(),
-        showConfirmMessage(option),
-        showConfirmIcon(option),
-        showConfirmPreview(option),
-        showConfirmOverlay(option)
+        if (gameSpeed === 'normal') {
+            playGetConfirmSound(),
+            showConfirmMessage(option),
+            showConfirmIcon(option),
+            showConfirmPreview(option),
+            showConfirmOverlay(option)
+        } else {
+            showConfirmOverlay(option),
+            startRound()
+        }
     });
 });
+
+function getPlayerChoice(option) {
+    if (option === optionRock) {
+        playerChoice = 'ROCK'
+    } else if (option === optionPaper) {
+        playerChoice = 'PAPER'
+    } else if (option === optionScissors) {
+        playerChoice = 'SCISSORS'
+    }
+}
 
 function highlightOption(option) {
     if (option === optionRock) {
@@ -321,6 +337,10 @@ function showConfirmOverlay(option) {
 
 confirmOverlay.addEventListener('mousedown', () => {
     confirmOverlay.remove()
+    startRound()
+});
+
+function startRound() {
     playConfirmSound()
     confirmPlayerChoice()
     getPcChoice()
@@ -330,21 +350,22 @@ confirmOverlay.addEventListener('mousedown', () => {
     roundStartInfoMessage()
     activateArena()
     setTimeout(roundProgressInfoMessage, 2000);
-    setTimeout(countdown3, 2000)
-})
+    if (gameSpeed === 'normal') {
+        setTimeout(countdownFromThree, 2000)
+    } else {
+        setTimeout(playRound, 2000)
+    }
+}
 
 function confirmPlayerChoice() {
-    if (playerChoiceIcon.getAttribute('class') === 'rock-yellow') {
+    if (playerChoice === 'ROCK') {
         playerChoiceIcon.setAttribute('class', 'rock-light');
-        playerChoice = 'ROCK'
         numPlayerRockChoices++;
-    } else if (playerChoiceIcon.getAttribute('class') === 'paper-yellow') {
+    } else if (playerChoice === 'PAPER') {
         playerChoiceIcon.setAttribute('class', 'paper-light')
-        playerChoice = 'PAPER'
         numPlayerPaperChoices++;
-    } else if (playerChoiceIcon.getAttribute('class') === 'scissors-yellow') {
+    } else if (playerChoice === 'SCISSORS') {
         playerChoiceIcon.setAttribute('class', 'scissors-light')
-        playerChoice = 'SCISSORS'
         numPlayerScissorsChoices++;
     }
 }
@@ -376,39 +397,37 @@ function roundProgressInfoMessage() {
 
 // Countdown to round 3... 2... 1...
 
-function hideVsCountdown(element) {
-    element.style.transition = 'padding 1s ease-out, width 1s ease-out';
-    element.style.width = '4rem';
-    element.style.padding = 0;
-    element.style.opacity = 0;
-    element.textContent = '';
+let count = 3
+
+function countdownFromThree() {
+    count = 3;
+    countdown()
+    setTimeout(countdown, 1000)
+    setTimeout(countdown, 2000)
+    setTimeout(playRound, 3000);
 }
 
-function countdown3() {
-    vsCountdown.textContent = '3'
-    vsCountdown.style.animation = 'highlight-white-text 1s, grow-shrink 1s'
+function countdown() {
     playCountdownSound()
+    vsCountdown.textContent = count;
+    vsCountdown.style.animation = 'highlight-white-text 1s, grow-shrink 1s'
+    count--;
     setTimeout(resetAnimation, 900, vsCountdown)
-    setTimeout(countdown2, 1000)
 }
 
-function countdown2() {
-    vsCountdown.textContent = '2'
-    vsCountdown.style.animation = 'highlight-white-text 1s, grow-shrink 1s'
-    playCountdownSound()
-    setTimeout(resetAnimation, 900, vsCountdown)
-    setTimeout(countdown1, 1000)
+function playRound() {
+    playRoundStartSound();
+    hideVsCountdown();
+    showPcChoice();
+    setTimeout(displayRoundResult, 1500)
 }
 
-function countdown1() {
-    vsCountdown.textContent = '1'
-    vsCountdown.style.animation = 'highlight-white-text 1s, grow-shrink 1s'
-    playCountdownSound()
-    setTimeout(resetAnimation, 900, vsCountdown)
-    setTimeout(hideVsCountdown, 1000, vsCountdown)
-    setTimeout(playRoundStartSound, 1000)
-    setTimeout(showPcChoice, 1000)
-    setTimeout(displayRoundResult, 2500)
+function hideVsCountdown() {
+    vsCountdown.style.transition = 'padding 1s ease-out, width 1s ease-out';
+    vsCountdown.style.width = '4rem';
+    vsCountdown.style.padding = 0;
+    vsCountdown.style.opacity = 0;
+    vsCountdown.textContent = '';
 }
 
 function showPcChoice() {
