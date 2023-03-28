@@ -18,7 +18,7 @@ My first JavaScript project from scratch. This began as a game to play in the br
 - ✔️ The player should see a pop-up on site load that asks for their name
 - ✔️ There should be an option to skip this step and assign a name of "Player".
 - ✔️ OPTIONAL: there could be an option to select game type, e.g. number of rounds to play.
-- OPTIONAL: there could be an option to select the speed of gameplay.
+- ✔️ OPTIONAL: there could be an option to select the speed of gameplay.
 
 ### Choosing a tool
 - ✔️ Player starts the round by choosing a tool (rock, paper or scissors).
@@ -34,7 +34,7 @@ My first JavaScript project from scratch. This began as a game to play in the br
 ### Declaring a winner
 - ✔️ The winning tool should change colour, grow and move to the centre of the arena. The losing tool should disappear.
 - ✔️ If the player wins, the tool should change colour to green, if the PC wins, red.
-- The player should be promtped to start the next round.
+- ✔️ The player should be promtped to start the next round.
 
 ### Keeping score
 - ✔️ The score should keep track of player wins, PC wins, draws and the number of rounds played.
