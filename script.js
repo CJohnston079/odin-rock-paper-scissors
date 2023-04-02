@@ -820,6 +820,7 @@ function resetGame() {
     resetOptions()
     resetArena()
     resetScoreboard()
+    resetStatistics()
 }
 
 const resetAnimation = element => element.style.animation = '';
@@ -854,15 +855,18 @@ function resetScoreboard() {
     draws = 0
     roundsPlayed = 0
     roundsRemaining = scoreSelector.textContent;
+    counterPlayerWins.textContent = playerWins;
+    counterPcWins.textContent = pcWins;
+    counterDraws.textContent = draws;
+    counterRoundsPlayed.textContent = roundsPlayed;
+}
+
+function resetStatistics() {
     numPlayerRockChoices = 0;
     numPlayerPaperChoices = 0;
     numPlayerScissorsChoices = 0;
     favouritePlayerChoice = '';
     favouriteChoicePercentage = 0;
-    counterPlayerWins.textContent = playerWins;
-    counterPcWins.textContent = pcWins;
-    counterDraws.textContent = draws;
-    counterRoundsPlayed.textContent = roundsPlayed;
 }
 
 /*
