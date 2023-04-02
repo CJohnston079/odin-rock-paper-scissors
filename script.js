@@ -671,7 +671,7 @@ function declareWinner() {
 
 function showGameOverScreen() {
     overlay.removeAttribute('class')
-    overlay.style.backgroundColor = 'var(--black-trans-80)'
+    overlay.style.backgroundColor = 'var(--black-trans-85)'
     overlay.style.animation = 'fade-in 2s'
     gameOverScreen.removeAttribute('class')
     resetInlineStyles(gameOverScreen);

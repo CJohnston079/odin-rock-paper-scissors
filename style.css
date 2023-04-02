@@ -21,6 +21,7 @@ li {
     --black-trans-50: hsla(0, 0%, 0%, 0.5);
     --black-trans-60: hsla(0, 0%, 0%, 0.6);
     --black-trans-80: hsla(0, 0%, 0%, 0.8);
+    --black-trans-85: hsla(0, 0%, 0%, 0.85);
     --shadow-white: 0px 0px 10px white;
     --pixel-border: polygon(
         0px 4px,
@@ -414,6 +415,10 @@ button:active {
 }
 
 /* Game over screen */
+
+#game-over-screen {
+    background: radial-gradient(var(--black-trans-50), var(--black-trans-00), var(--black-trans-00));
+}
 
 #game-over-screen > h2 {
     display: inline-block;
