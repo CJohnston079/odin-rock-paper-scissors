@@ -1,6 +1,8 @@
 # odin-rock-paper-scissors
 My first JavaScript project from scratch. This began as a game to play in the browser console, which took prompts from the player each round and alerted of an overall winner after five rounds. I was then tasked with created a UI for the program, which I decided to add a few additional features to.
 
+Live preview: https://cjohnston079.github.io/odin-rock-paper-scissors/
+
 <div float="left">
   <img src="./images/rock-hover.svg" width="100" />
   <img src="./images/paper-hover.svg" width="100" /> 
